@@ -1,0 +1,38 @@
+.app-name-link img {
+    width: 64px;
+    max-width: 100%;
+}
+
+.cover-logo-bar {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cover-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+}
+
+.cover-buttons a {
+    padding: 10px 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    border-radius: 30px;
+    background: var(--theme-color,#36bc98);
+    color: #FFFFFF;
+}
+
+pre code {
+    white-space: pre-wrap !important;
+}
+
+.gitter-open-chat-button {
+    background: var(--theme-color,#36bc98);
+}
+
+.gitter-open-chat-button:focus,
+.gitter-open-chat-button:hover {
+    background: var(--theme-color,#36bc98);
+}

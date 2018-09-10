@@ -1,0 +1,18 @@
+# Build modules
+/node_modules/
+
+# Composer packages
+/vendor/
+
+# NPM lockfile as it causes more problems than it solves
+package-lock.json
+
+# Common
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea
