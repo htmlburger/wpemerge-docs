@@ -1,5 +1,10 @@
+a.app-name-link {
+    display: block;
+    font-size: 0;
+}
+
 .app-name-link img {
-    width: 64px;
+    width: 48px;
     max-width: 100%;
 }
 
