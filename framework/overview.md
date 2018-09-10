@@ -18,9 +18,9 @@
 
 ## Features & Documentation
 
-[https://docs.wpemerge.com/](https://docs.wpemerge.com/)
+[http://docs.wpemerge.com/#/framework/overview](http://docs.wpemerge.com/#/framework/overview)
 
-[https://docs.wpemerge.com/quickstart.html](https://docs.wpemerge.com/quickstart.html)
+[http://docs.wpemerge.com/#/framework/quickstart](http://docs.wpemerge.com/#/framework/quickstart)
 
 ## API Reference
 
