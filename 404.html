@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>WP Emerge</title>
+  <title>WP Emerge - Please wait ...</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
   <meta name="description" content="WP Emerge - the advanced framework and starter theme for WordPress." />
@@ -25,38 +25,10 @@
   </style>
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
   <link rel="stylesheet" href="/_media/style.css" />
+  <script>
+    window.location = '/#/framework' + window.location.pathname.replace(/\.html$/, '');
+  </script>
 </head>
 <body>
-  <div data-app id="app">Please wait ...</div>
-  <script src="//unpkg.com/docsify-edit-on-github@1.0.1/index.js"></script>
-  <script>
-    window.$docsify = {
-      name: 'WP Emerge',
-      repo: 'https://github.com/htmlburger/wpemerge-docs',
-      logo: '/_images/logo.png',
-      ga: 'UA-115991844-1',
-      auto2top: true,
-      loadSidebar: true,
-      subMaxLevel: 2,
-      plugins: [
-        EditOnGithubPlugin.create(
-          'https://github.com/htmlburger/wpemerge-docs/blob/master/'
-        )
-      ]
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
-  <script src="//unpkg.com/docsify-copy-code@2"></script>
-  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
-  <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
-
-  <script>
-    ((window.gitter = {}).chat = {}).options = {
-      room: 'wpemerge/Lobby'
-    };
-  </script>
-  <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 </body>
 </html>
