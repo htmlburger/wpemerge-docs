@@ -22,12 +22,12 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
 
 1. Open `THEME_DIR/functions.php` in your favorite editor.
 1. Add the following to the **end** of the file:
-    ```php
-    /**
-     * Load Composer's autoloader.
-     */
-    require 'vendor/autoload.php';
-    ```
+  ```php
+  /**
+   * Load Composer's autoloader.
+   */
+  require 'vendor/autoload.php';
+  ```
 1. Now that we have the autoloader ready, let's boot WP Emerge itself:
     ```php
     /**
