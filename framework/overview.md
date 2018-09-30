@@ -15,7 +15,7 @@
 - [Documentation](#documentation)
 - [API Reference](#api-reference)
 - [Development Team](#development-team)
-- [Comparison Table](#comparison-table)
+- [Comparison Table](#comparison-table-¹-²)
 - [Requirements](#requirements)
 - [Features](#features)
 - [Contributing](#contributing)
