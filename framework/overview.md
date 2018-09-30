@@ -169,7 +169,7 @@ $container['my_service'] = function( $container ) {
 - Define your dependencies in a service container.
 - Override any and all WP Emerge dependencies when needed.
 - Enables dependency injection.
-- Uses [Pimple](https://pimple.symfony.com/).
+- Uses Pimple - [read more](https://pimple.symfony.com/).
 
 ---
 
