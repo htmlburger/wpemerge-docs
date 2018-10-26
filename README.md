@@ -1,5 +1,5 @@
 <div class="cover-logo-bar">
-    ![WPEmerge.com](_images/logo-bar.png)
+    ![WPEmerge.com](_images/wpemerge-logo-bar.png)
 </div>
 
 <div class="cover-buttons">

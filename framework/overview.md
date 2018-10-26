@@ -1,4 +1,4 @@
-# [![WPEmerge.com](../_images/logo-bar.png ':size=autox60')](http://wpemerge.com)
+# [![WPEmerge.com](../_images/wpemerge-logo-bar.png ':size=autox61')](http://wpemerge.com)
 
 [![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge/builds) [![Scrutinizer](https://img.shields.io/scrutinizer/g/htmlburger/wpemerge.svg?style=flat-square)](https://scrutinizer-ci.com/g/htmlburger/wpemerge/) [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/htmlburger/wpemerge.svg?style=flat-square)](https://scrutinizer-ci.com/g/htmlburger/wpemerge/code-structure/master/code-coverage) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
 
