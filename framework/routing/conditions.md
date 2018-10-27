@@ -34,7 +34,7 @@ Router::get(
 
 ---
 
-Add a rewrite rule for your route (if it does not match any predefined rewrite rule):
+Filter the WP_Query parameters for your route:
 
 ```php
 Router::get( '/foo/bar/{page_id}', $handler )
@@ -45,7 +45,7 @@ Router::get( '/foo/bar/{page_id}', $handler )
     } );
 ```
 
-?> Route parameters will be passed as additional arguments to the anonymous function you supply to `->query()`.
+?> Route parameters will be passed as additional arguments to the callable you supply to `->query()`.
 
 ---
 
