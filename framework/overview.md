@@ -70,7 +70,11 @@ _Email any factual inaccuracies to [atanas.angelov.dev@gmail.com](mailto:atanas.
 Router::get( '/', 'HomeController@index' );
 
 Router::get( '/custom', 'CustomController@custom' )
-    ->rewrite( 'index.php?...' );
+    ->query( function ( $query_vars ) {
+        return [
+            // WP_Query query vars ...
+        ];
+    } );
 
 Router::get( ['post_id', get_option('page_on_front')], 'HomeController@index' );
 

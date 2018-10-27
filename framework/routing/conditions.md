@@ -10,7 +10,7 @@ Router::get( '/foo/bar/', $handler );
 
 ?> Paths in URL conditions are relative to the site's home url.
 
-!> You should use `->rewrite()` on routes which do not match any valid WordPress URL or your WP Query will consider the request as a `404 - Not Found`.
+!> You should use `->query()` on routes which do not match any valid WordPress URL or your WP Query will consider the request as a `404 - Not Found`.
 
 ---
 
@@ -38,15 +38,14 @@ Add a rewrite rule for your route (if it does not match any predefined rewrite r
 
 ```php
 Router::get( '/foo/bar/{page_id}', $handler )
-    ->rewrite( 'index.php?foo=1&bar=1&page_id=$matches[1]' );
+    ->query( function ( $query_vars, $page_id ) {
+        return [
+            'page_id' => intval( $page_id ),
+        ];
+    } );
 ```
 
-?> Remember to refresh your rewrite rules after this change.
-
-?> Route parameters can be referred to with `$matches[ORDER]` based on the order they appear in the route path, 
-starting from 1.
-
-?> See https://codex.wordpress.org/Rewrite_API/add_rewrite_rule for more details.
+?> Route parameters will be passed as additional arguments to the anonymous function you supply to `->query()`.
 
 ---
 
