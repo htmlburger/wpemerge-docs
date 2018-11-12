@@ -15,12 +15,7 @@ Here's the main `theme/index.php` view of the WP Emerge Theme:
 /**
  * App Layout: layouts/app.php
  */
-
-if ( is_single() ) {
-	Theme::partial( 'loop', 'single' );
-} else {
-	Theme::partial( 'loop' );
-}
+Theme::partial( 'loop' );
 ```
 
 The above is not a snippet - this is the entire file!
@@ -49,4 +44,4 @@ get_footer();
 Nothing unusual about this file except the call to `app_layout_content()` - this is what defines where the actual view content should be rendered. Essentially, any view can be used as a layout as long as it calls `app_layout_content()` to include the "child" view content.
 Also like any other view, layouts can declare their own `App Layout` to achieve layout nesting and you can even use View Composers on layouts to pass context values.
 
-You no longer need to have the header/footer boilerplate in every view while retaining the flexibility of having different header/footer partials for different templates by having loading different layouts when needed.
+You no longer need to have the header/footer boilerplate in every view while retaining the flexibility of having different header/footer partials for different templates by declaring your desired layouts when needed.
