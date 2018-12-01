@@ -9,7 +9,7 @@ Essentially, this engine loads views in the same way WordPress does, but with a 
 
 ## Implementing other View Engines
 
-Implementing your own or a third-party engine is simple and straightforward - there are only a couple requirements:
+Implementing your own or a third-party engine is straightforward - there are only a couple requirements:
 
 1. Your class must implement the `\WPEmerge\View\ViewEngineInterface` interface
     ```php

@@ -178,7 +178,7 @@ If we open up the homepage we will now be presented with an error:
 Fatal error: Uncaught Error: Class '\App\Controllers\HomeController' not found
 ```
 
-This is because we have not loaded our class file. We can add a simple `require` statement but we will have to do this every time we add a new controller, view composer or other type of class. Instead let's add class autoloading to our theme:
+This is because we have not loaded our class file. We can add a `require` statement but we will have to do this every time we add a new controller, view composer or other type of class. Instead let's add class autoloading to our theme:
 
 1. Open `THEME_DIR/composer.json` - it should currently look something like this:
     ```js
@@ -229,7 +229,7 @@ Now if we visit `HOME_URL` we will see our CTA template but when we click on our
 ## Improvements
 
 Let's say that we want to have 2 "Skip" buttons - one above and one below our Lorem Ipsum content. The link url code is short but if we want to stay [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) we can't just copy-paste it.
-We could, of course, define a new variable at the top of our template file but this means that the variable will only be available in this particular template file (what if we wanted that variable to also appear in a child template partial?) and we will be mixing php logic with presentation (which we should always strive to avoid).
+We could define a new variable at the top of our template file but this means that the variable will only be available in this particular template file (what if we wanted that variable to also appear in a child template partial?) and we will be mixing php logic with presentation (which we should always strive to avoid).
 
 Instead we can modify our controller method to supply our template (which we will be referring to as a `view` from now on) with a variable which will hold the skip url (we will refer to variables passed to views as `context`):
 ```php
