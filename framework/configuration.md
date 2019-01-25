@@ -31,7 +31,12 @@ WPEmerge::boot( [
             return $response;
         },
     ],
-    
+
+    // Custom directory to search for views.
+    // Use an absolute path or leave blank to disable.
+    // Applies only to the default PhpViewEngine.
+    'views' => '',
+
     // Array of debug settings.
     'debug' => [
         // Enable the use of filp/whoops for an enhanced error interface. Defaults to true.
