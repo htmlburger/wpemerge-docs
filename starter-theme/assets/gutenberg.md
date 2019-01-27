@@ -99,13 +99,13 @@ add_theme_support( 'editor-font-sizes', [
         'name'      => __( 'extra small', 'app' ),
         'shortName' => __( 'XS', 'app' ),
         'size'      => Theme\Config::get( 'variables.font-size.xs', 12 ),
-        'slug'      => 'extra-small',
+        'slug'      => 'xs',
     ],
     [
         'name'      => __( 'small', 'app' ),
         'shortName' => __( 'S', 'app' ),
         'size'      => Theme\Config::get( 'variables.font-size.s', 16 ),
-        'slug'      => 'small',
+        'slug'      => 's',
     ],
 	// ...
 ] );
@@ -113,7 +113,7 @@ add_theme_support( 'editor-font-sizes', [
 
 `resources/styles/shared/_editor.scss`
 ```scss
-.has-extra-small-font-size {
+.has-xs-font-size {
   font-size: $font-size-xs;
 }
 // ...
