@@ -1,8 +1,6 @@
 # View Composers
 
-View composers are anonymous functions, class names or class methods (`'CLASS_NAME@METHOD_NAME'` format) that prepare
- a context for a view whenever it is rendered.
-This includes views, partials and even layouts.
+View composers are anonymous functions, class names or class methods (in the `'CLASS_NAME@METHOD_NAME'` format with automatically prepended `\App\ViewComposers\` to the class name for convenience) that prepare a context for a view whenever it is rendered. This includes views, partials and even layouts.
 
 !> Default View Engine WARNING: Due to the nature of how `get_template_part()` works, you __MUST__ render partials using `app_render()` instead of `get_template_part()` in order to support composition.
 

@@ -40,12 +40,13 @@ WPEmerge::boot( [
 
 ## Order of execution
 
-!> Middleware without a specified priority will be sorted and run in an undefined order (see `Note` on http://php
-.net/manual/en/function.sort.php). In most cases this will work perfectly fine, however, if you have middleware that 
-depends on another middleware being run before it you may want to specify a priority to ensure a specific order of 
-execution (priority is in ascending order).
+Step 1: Middleware is concatenated in the following order:
 
-!> Middleware defined with an anonymous function will use the default priority as specified in your [configuration](framework/configuration.md).
+1. Global middleware
+2. Route group middleware
+3. Route middleware
+
+Step 2: Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](framework/configuration.md):
 
 ```php
 WPEmerge::boot( [
@@ -55,3 +56,7 @@ WPEmerge::boot( [
     ],
 ] );
 ```
+
+!> Middleware defined with an anonymous function will use the default priority as specified in your [configuration](framework/configuration.md).
+
+!> When compared, middleware with equal priority will retain their original relative order from Step 1.

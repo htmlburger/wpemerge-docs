@@ -169,8 +169,10 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     <?php
     /**
      * Routes
+     * WPEmerge will automatically prepent "\App\Controllers\" to our controller class
+     * so we don't have to specify it every time.
      */
-    Router::get( '/', '\App\Controllers\HomeController@index' );
+    Router::get( '/', 'HomeController@index' );
     ```
 
 If we open up the homepage we will now be presented with an error:
@@ -271,5 +273,5 @@ We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route
 (framework/routing/conditions.md). As an example, this is what our route definition will look like if we wish to show 
 the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
-Router::get( ['post_template', 'template-cta-enabled-page.php'], '\App\Controllers\HomeController@index' );
+Router::get( ['post_template', 'template-cta-enabled-page.php'], 'HomeController@index' );
 ```
