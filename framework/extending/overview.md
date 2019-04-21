@@ -83,7 +83,9 @@ For a real-world example, we will be adding our own custom routing condition.
 
 We can now use our custom route condition like so:
 ```php
-Route::get( ['past_event'], function( $request ) {
-    return 'This event has already passed :(';
-} );
+Route::get()
+    ->where( 'past_event' )
+    ->handle( function( $request ) {
+        return 'This event has already passed :(';
+    } );
 ```

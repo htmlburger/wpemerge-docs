@@ -9,7 +9,7 @@ Route::middleware( 'mymiddleware' )
         Route::url( '/bar/' )
             ->group( function() {
                 // Match if '/foo/bar/' is the full path:
-                Route::get( '/' )->handle( $handler );
+                Route::get()->url( '/' )->handle( $handler );
         
                 // Match if '/foo/bar/baz/' is the full path:
                 Route::get()->url( '/baz/' )->handle( $handler );

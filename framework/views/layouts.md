@@ -15,7 +15,7 @@ Here's the main `theme/index.php` view of the WP Emerge Theme:
 /**
  * App Layout: layouts/app.php
  */
-Theme::partial( 'loop' );
+app_partial( 'loop' );
 ```
 
 The above is not a snippet - this is the entire file!
