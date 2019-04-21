@@ -58,7 +58,7 @@ And we're done - we have composer and WP Emerge loaded and bootstrapped! But ...
     } );
     ```
 1. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
-  - `Route::` - The Route facades provides us with tools to create and register our routes.
+  - `Route::` - The Route facade provides us with tools to create and register our routes.
   - `get()` - Match requests which use the `GET` request method.
   - `url( '/' )` - Match requests that match the provided url, relative to the homepage.
   - `handle( function () { ... } )` - Declare a function that should respond to the request when it matches.
@@ -222,8 +222,10 @@ If we refresh the homepage we will be greeted with our error-free CTA template a
 Now that we have our controller's `index` method ready let's add some logic to it:
 ```php
 public function index( $request, $view ) {
-    // $request is a WP Emerge class which represents the current request made to the server.
-    // $view is the view file that WordPress is trying to load for the current request.
+    // $request is a WP Emerge class which represents the current request
+    // made to the server.
+    // $view is the view file that WordPress is trying to load for the
+    // current request.
     
     // If the request includes the "cta" GET parameter with a value of "0" ...
     if ( $request->get( 'cta' ) === '0' ) {
@@ -280,5 +282,7 @@ Thankfully, no! This is where view composers come into play - check out the [Vie
 
 We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](framework/routing/conditions.md). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
-Route::get()->where( 'post_template', 'template-cta-enabled-page.php' )->handle( 'HomeController@index' );
+Route::get()
+    ->where( 'post_template', 'template-cta-enabled-page.php' )
+    ->handle( 'HomeController@index' );
 ```
