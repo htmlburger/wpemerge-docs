@@ -2,7 +2,7 @@
 
 When booting WP Emerge you can specify a number of configuration options:
 ```php
-WPEmerge::boot( [
+WPEmerge::bootstrap( [
     /**
      * Array of classes that implement \WPEmerge\ServiceProviders\ServiceProviderInterface.
      */

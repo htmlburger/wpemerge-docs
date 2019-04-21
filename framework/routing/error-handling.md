@@ -4,7 +4,7 @@ WP Emerge comes with a basic `ErrorHandler` class which is used to translate err
 
 ## Development
 
-In development, the [filp/whoops](https://github.com/filp/whoops) package is included which provides you with a beautiful and interactive stack trace interface whenever an error occurs:
+In development mode, the [filp/whoops](https://github.com/filp/whoops) package is included which provides you with a beautiful and interactive stack trace interface whenever an error occurs:
 ![filp/whoops](https://camo.githubusercontent.com/31a4e1410e740fd0ccda128cbcab8723f45e7e73/687474703a2f2f692e696d6775722e636f6d2f305651706539362e706e67)
 
 ## Production

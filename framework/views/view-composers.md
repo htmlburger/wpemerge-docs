@@ -13,7 +13,7 @@ partials (e.g. `header.php`, `footer.php`) that are rendered using a `get_*()` f
 
 In this example we want to pass the latest posts to the `latest-news.php` partial:
 ```php
-// immediately after WPEmerge::boot()
+// immediately after WPEmerge::bootstrap()
 View::addComposer( 'templates/partials/latest-news', function( $view ) {
 	$view->with( [
 		'news' => new WP_Query( [
@@ -47,7 +47,7 @@ class LatestNewsViewComposer {
 ```
 
 ```php
-// immediately after WPEmerge::boot()
+// immediately after WPEmerge::bootstrap()
 View::addComposer( 'templates/partials/latest-news', LatestNewsViewComposer::class );
 ```
 

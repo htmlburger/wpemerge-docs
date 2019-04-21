@@ -4,7 +4,7 @@ In order to enable WP Emerge you first have to boot it. This is usually done in 
 
 ## `after_setup_theme`
 
-1. Configuration options passed to `WPEmerge::boot( $config )` are loaded.
+1. Configuration options passed to `WPEmerge::bootstrap( $config )` are loaded.
 1. All service providers listed in the configuration are registered.
 1. All service providers listed in the configuration are booted.
 
@@ -18,13 +18,18 @@ registrations or overrides are done in your own Service Provider instead of afte
     - If no route is satisfied, normal WordPress execution takes place and no further action is taken by WP Emerge.
 1. If a route is satisfied, normal WordPress template output will be halted and WP Emerge will take over.
 1. All suitable arguments depending on the route condition are prepared and passed to the route handler.
-1. All global and route-specific middleware are sorted according to the global middleware priority array and executed in ascending order. At the end of the middleware chain, the route handler (a controller method, for example) is executed. The middleware and route handler chain will be referred to as the `pipeline`.
-1. If an exception is thrown from the pipeline the `ErrorHandler` defined in the service container will be invoked 
-with that exception as its argument and the pipeline will be halted. The error handler must return a corresponding 
-response object.
-1. The returned response object from the pipeline or the error handler will be used to set the headers and output 
-the body, ending the response.
+1. All middleware is sorted according to the middleware priority array and is executed. At the end of the middleware chain, the route handler (a controller method, for example) is executed. The middleware and route handler chain will be referred to as the `pipeline`.
+1. If an exception is thrown from the pipeline the `ErrorHandler` defined in the service container will be invoked with that exception as its argument and the pipeline will be halted. The error handler must return a corresponding response object.
+1. The returned response object from the pipeline or the error handler will be used to set the headers and output the body, ending the response.
 
 ## WP Emerge and The Loop
 
 Since WP Emerge hooks right before the first template is loaded, the main WordPress query is not interrupted and you can use The Loop as you normally would.
+
+## WordPress AJAX
+
+AJAX routes are handled in the same way but use the appropriate `wp_ajax_*` and `wp_ajax_nopriv_*` hooks instead of `template_include`.
+
+## WordPress Admin
+
+Admin routes are handled in the same way but use the appropriate page `{$admin_page_hook}` and `load-{$admin_page_hook}` hooks instead of `template_include`. In addition, the response is split with the headers being sent during `load-{$admin_page_hook}` while the body of the response is sent during `{$admin_page_hook}`.

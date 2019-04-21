@@ -76,7 +76,7 @@ require 'vendor/autoload.php';
  * Bootstrap WP Emerge.
  */
 add_action( 'after_setup_theme', function() {
-    WPEmerge::boot();
+    WPEmerge::bootstrap();
 
     WPEmerge::routes( __DIR__ . '/app/routes/web.php' );
 } );

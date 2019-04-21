@@ -19,7 +19,7 @@ Implementing your own or a third-party engine is straightforward - there are onl
     ```
 1. You must replace the built-in engine in the service container:
     ```php
-    // ... somewhere after WPEmerge::boot()
+    // ... somewhere after WPEmerge::bootstrap()
     // getContainer() used for brevity's sake - use a Service Provider instead.
     $container = WPEmerge::getContainer();
     $container[ WPEMERGE_VIEW_ENGINE_KEY ] = function() {

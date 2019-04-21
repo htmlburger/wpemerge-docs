@@ -5,7 +5,7 @@
 Match against a specific path:
 
 ```php
-Router::get( '/foo/bar/', $handler );
+Route::get()->url( '/foo/bar/' )->handle( $handler );
 ```
 
 ?> Paths in URL conditions are relative to the site's home url.
@@ -17,18 +17,24 @@ Router::get( '/foo/bar/', $handler );
 Use parameters in the path:
 
 ```php
-Router::get(
-    '/foo/{param1}/bar/{param2?}/baz/{param3:\d+}/{param4?:\d+}',
-    function( $request, $view, $param1, $param2, $param3, $param4 ) {
+Route::get()
+    ->url(
+        '/foo/{param1}/bar/{param2?}/baz/{param3}/{param4?}',
+        [
+            'param3' => '/^\d+$/',
+            'param4' => '/^\d+$/',
+        ]
+      )
+    ->handle( function( $request, $view, $param1, $param2, $param3, $param4 ) {
         // ...
-    }
+    } );
 );
 ```
 
-- `param1` - required, matches everything
-- `param2` - optional, matches everything
-- `param3` - required, matches a custom regex
-- `param4` - optional, matches a custom regex
+- `param1` - required, matches everything.
+- `param2` - optional, matches everything.
+- `param3` - required, matches a custom regular expression.
+- `param4` - optional, matches a custom regular expression.
 
 ?> Parameter values are passed as arguments to the handler method.
 
@@ -37,12 +43,14 @@ Router::get(
 Filter the WP_Query parameters for your route:
 
 ```php
-Router::get( '/foo/bar/{page_id}', $handler )
+Route::get()
+    ->url( '/foo/bar/{page_id}' )
     ->query( function ( $query_vars, $page_id ) {
         return [
             'page_id' => intval( $page_id ),
         ];
-    } );
+    } )
+    ->handle( $handler );
 ```
 
 ?> Route parameters will be passed as additional arguments to the callable you supply to `->query()`.
@@ -52,17 +60,42 @@ Router::get( '/foo/bar/{page_id}', $handler )
 Match __any__ url:
 
 ```php
-Router::get( '*', $handler );
+Route::get()->url( '*' )->handle( $handler );
 ```
 
-?> `Router::handleAll()` uses this internally.
+?> `Route::all()` uses this internally.
+
+## Admin
+
+Match against a custom WordPress admin page registered using [add_menu_page()](https://developer.wordpress.org/reference/functions/add_menu_page/) or [add_submenu_page()](https://developer.wordpress.org/reference/functions/add_submenu_page/):
+
+```php
+Route::get()->where( 'admin', 'my-menu-page' )->handle( $handler );
+
+Route::get()->where( 'admin', 'my-submenu-page', 'my-menu-page' )->handle( $handler );
+```
+
+## AJAX
+
+Match against an WordPress AJAX request:
+
+```php
+// Match requests from authenticated users only:
+Route::get()->where( 'ajax', 'my-ajax-action', true, false )->handle( $handler );
+
+// Match requests from unauthenticated users only:
+Route::get()->where( 'ajax', 'my-ajax-action', false, true )->handle( $handler );
+
+// Match requests from any user:
+Route::get()->where( 'ajax', 'my-ajax-action', true, true )->handle( $handler );
+```
 
 ## Post ID
 
 Match against the current post id:
 
 ```php
-Router::get( ['post_id', 10], $handler );
+Route::get()->where( 'post_id', 10 )->handle( $handler );
 ```
 
 ## Post slug
@@ -70,7 +103,7 @@ Router::get( ['post_id', 10], $handler );
 Match against the current post slug:
 
 ```php
-Router::get( ['post_slug', 'about-us'], $handler );
+Route::get()->where( 'post_slug', 'about-us' )->handle( $handler );
 ```
 
 ## Post template
@@ -78,7 +111,7 @@ Router::get( ['post_slug', 'about-us'], $handler );
 Match against the current post template:
 
 ```php
-Router::get( ['post_template', 'templates/contact-us.php'], $handler );
+Route::get()->where( 'post_template', 'templates/contact-us.php' )->handle( $handler );
 ```
 
 ## Post status
@@ -86,7 +119,7 @@ Router::get( ['post_template', 'templates/contact-us.php'], $handler );
 Match against the current post status:
 
 ```php
-Router::get( ['post_status', 'publish'], $handler );
+Route::get()->where( 'post_status', 'publish' )->handle( $handler );
 ```
 
 ## Post type
@@ -94,7 +127,7 @@ Router::get( ['post_status', 'publish'], $handler );
 Match against the current post type:
 
 ```php
-Router::get( ['post_type', 'product'], $handler );
+Route::get()->where( 'post_type', 'product' )->handle( $handler );
 ```
 
 ## Query var
@@ -102,7 +135,7 @@ Router::get( ['post_type', 'product'], $handler );
 Match when a specified query var is present (any value is accepted):
 
 ```php
-Router::get( ['query_var', 's'], $handler );
+Route::get()->where( 'query_var', 's' )->handle( $handler );
 ```
 
 This is especially useful when dealing with custom endpoints ([add_rewrite_endpoint()](https://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint)):
@@ -115,7 +148,7 @@ add_action( 'init', function() {
 
 // ...
 
-Router::get( ['query_var', 'my_custom_endpoint'], $handler );
+Route::get()->where( 'query_var', 'my_custom_endpoint' )->handle( $handler );
 ```
 
 When combined with the post template condition, you can create pages that optionally receive additional parameters in the url using clean url "/sections/" instead of query arguments:
@@ -126,18 +159,20 @@ add_action( 'init', function() {
     add_rewrite_endpoint( 'secret', EP_PAGES );
 } );
 
-...
+// ...
 
-Router::get( [
-    ['post_template', 'templates/page-with-secret.php'],
-    ['query_var', 'secret'],
-], $handler );
+Route::get()
+    ->where( 'post_template', 'templates/page-with-secret.php' )
+    ->where( 'query_var', 'secret' )
+    ->handle( $handler );
 ```
 
 You can match with a specific value of the query var as well:
 
 ```php
-Router::get( ['query_var', 'some_query_var_name', 'some_query_var_value'], $handler );
+Route::get()
+    ->where( 'query_var', 'some_query_var_name', 'some_query_var_value' )
+    ->handle( $handler );
 ```
 
 ## Custom
@@ -145,74 +180,74 @@ Router::get( ['query_var', 'some_query_var_name', 'some_query_var_value'], $hand
 The custom condition allows you to add a callable which must return a boolean (whether the route has matched the current request or not):
 
 ```php
-Router::get( function() {
-    $my_condition = true; // your custom code here
-    return $my_condition;
-}, $handler );
+Route::get()
+    ->where( function() {
+        $my_condition = true; // your custom code here
+        return $my_condition;
+    } )
+    ->handle( $handler );
 ```
-
-?> When using the array syntax, adding `'custom'` literally is optional and all examples will not use it for simplicity.
 
 ---
 
 You can also pass parameters to use built-in callables:
 
 ```php
-Router::get( ['is_tax', 'app_custom_taxonomy'], $handler );
+Route::get()
+    ->where( 'is_tax', 'app_custom_taxonomy' )
+    ->handle( $handler );
 ```
 
-Any parameters you pass will be provided to both the callable AND the $handler:
+Any parameters you pass will be provided to both the callable AND the `$handler`:
 
 ```php
-Router::get( ['is_tax', 'app_custom_taxonomy'], function( $request, $view, $taxonomy ) {
-    // $taxonomy is passed after $request and $view which are always passed to handlers
-} );
+Route::get()
+    ->where( 'is_tax', 'app_custom_taxonomy' )
+    ->handle( function( $request, $view, $taxonomy ) {
+        // $taxonomy is passed after $request and $view which are always passed to handlers.
+    } );
 ```
 
 This works with anonymous functions as well, which can be used to reduce duplication:
 
 ```php
-Router::get( [function( $foo, $bar ) {
-    // $foo and $bar are available here
-    return true;
-}, 'foo', 'bar'], function( $request, $view, $foo, $bar ) {
-    // ... and here!
-} );
-// you may notice this use-case is a bit hard to read - exact same usage is not advisable
+Route::get()
+    ->where(
+        function( $foo, $bar ) {
+            // $foo and $bar are available here.
+            return true;
+        },
+        'foo',
+        'bar'
+    )
+    ->handle( function( $request, $view, $foo, $bar ) {
+        // ... and here!
+    } );
 ```
+
+!> This use-case is a bit hard to read - exact same usage is not advisable.
 
 ## Multiple
 
-The multiple condition allows you to specify an array of conditions which must ALL match:
+To match multiple conditions specify them one after the other:
 
 ```php
-Router::get( ['multiple', [
-    ['is_tax', 'app_custom_taxonomy'],
-    [function() {
+Route::get()
+    ->where( 'is_tax', 'app_custom_taxonomy' )
+    ->where( function() {
         return true;
-    }],
-]], $handler );
+    } )
+    ->handle( $handler );
 ```
 
-The multiple condition will also pass ALL arguments that its child conditions provide to the handler following the child conditions definition order.
-
-The syntax can also be simplified by directly passing an array of conditions:
-
-```php
-Router::get( [
-    ['is_tax', 'app_custom_taxonomy'],
-    [function() {
-        return true;
-    }],
-], $handler );
-```
+Multiple conditions will also pass ALL arguments to the handler following the definition order.
 
 ## Negate
 
 The negate condition allows you to negate another condition's result. The following example will match any request as long as it is not for the singular view of the post with id of 3:
 
 ```php
-Router::get( ['!post_id', 3], $handler ); // notice the exclamation mark
+Route::get()->where( '!post_id', 3 )->handle( $handler ); // notice the exclamation mark.
 ```
 
 ?> The negate condition will also pass whatever arguments its child condition passes to the handler.
@@ -222,25 +257,29 @@ Router::get( ['!post_id', 3], $handler ); // notice the exclamation mark
 Since not all conditions are defined using strings, here's the full syntax which you can use for any condition:
 
 ```php
-Router::get( ['negate', 'post_id', 3], $handler );
-```
+// Negate a single condition:
+Route::get()
+    ->where( 'negate', 'post_id', 3 )
+    ->handle( $handler );
 
-You can also use it with any of the simplified syntaxes of other conditions:
+// Negate a custom condition:
+Route::get()
+    ->where( 'negate', function() {
+      return false;
+    ] )
+    ->handle( $handler );
 
-```php
-Router::get( ['negate', function() {
-    return false;
-], $handler );
-
-Router::get( ['negate', [
-    ['is_tax', 'app_custom_taxonomy'],
-    [function() {
-        return true;
-    }],
-], $handler );
+// Negate multiple conditions:
+Route::get()
+    ->where( 'negate', [
+      ['is_tax', 'app_custom_taxonomy'],
+      [function() {
+          return true;
+      }],
+    ] )
+    ->handle( $handler );
 ```
 
 ## Extending Conditions
 
-You can define your own custom condition classes that you can reuse throughout your project. For more information on 
-how to do this please refer to the [Extending](framework/extending/overview.md) section.
+You can define your own custom condition classes that you can reuse throughout your project. For more information on how to do this please refer to the [Extending](framework/extending/overview.md) section.

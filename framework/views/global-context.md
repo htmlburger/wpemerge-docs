@@ -3,7 +3,7 @@
 You can pass variables to all views and partials by adding them as globals:
 
 ```php
-// immediately after WPEmerge::boot()
+// immediately after WPEmerge::bootstrap()
 
 // add one variable
 View::addGlobal( 'foo', 'bar' );

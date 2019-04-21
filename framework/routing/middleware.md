@@ -1,15 +1,14 @@
 # Route Middleware
 
 Middleware allow you to modify the request and/or response before and/or after it reaches the route handler. Middleware can be any of the following:
-1. the class name of a class that implements `MiddlewareInterface` (see `src/Middleware/MiddlewareInterface`). This is the recommended way of defining middleware.
-1. any anonymous function
-1. an instance of a class  that implements `MiddlewareInterface`
+1. the class name of a class that has a method with the following signature: `public function handle( \WPEmerge\Requests\RequestInterface $request, \Closure $next )`
+1. an alias of a middleware class as defined in the `middleware` key of your config. This is the recommended way of using middleware.
 
 A common example for middleware usage is protecting certain routes to be accessible by logged in users only:
 
 ```php
-class AuthenticationMiddleware implements \WPEmerge\Middleware\MiddlewareInterface {
-    public function handle( $request, Closure $next ) {
+class AuthenticationMiddleware {
+    public function handle( $request, $next ) {
         if ( ! is_user_logged_in() ) {
             $return_url = $request->getUrl();
             $login_url = wp_login_url( $return_url );
@@ -19,44 +18,18 @@ class AuthenticationMiddleware implements \WPEmerge\Middleware\MiddlewareInterfa
     }
 }
 
-Router::get( '/protected-url/')
-    ->add( AuthenticationMiddleware::class );
+Route::get()
+    ->url( '/protected-url/')
+    ->middleware( AuthenticationMiddleware::class )
+    ->handle( ... );
 ```
 
-You can also define global middleware which is applied to all defined routes when booting the framework:
+You can also define middleware that is automatically applied to all routes - check out the [Configuration](framework/configuration.md) page for more details.
 
-!> Global middleware is only applied on defined routes - normal WordPress requests that do not match any route 
-will NOT have middleware applied. To apply global middleware to all requests you have to match all requests with 
-routes. Take a look at [Handling all requests](framework/routing/methods.md#handling-all-requests) for an easy way to 
-achieve this.
-
-```php
-WPEmerge::boot( [
-    'global_middleware' => [
-        AuthenticationMiddleware::class,
-    ],
-] );
-```
+!> Middleware is only applied on defined routes - normal WordPress requests that do not match any route will NOT have middleware applied. To apply middleware to all requests you have to match all requests with routes. Take a look at [Handling all requests](framework/routing/methods.md#handling-all-requests) for an easy way to achieve this.
 
 ## Order of execution
 
-Step 1: Middleware is concatenated in the following order:
+Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](framework/configuration.md).
 
-1. Global middleware
-2. Route group middleware
-3. Route middleware
-
-Step 2: Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](framework/configuration.md):
-
-```php
-WPEmerge::boot( [
-    'middleware_priority' => [
-        // CLASS_NAME => DESIRED_PRIORITY,
-        \App\Middleware\YourMiddleware::class => 30,
-    ],
-] );
-```
-
-!> Middleware defined with an anonymous function will use the default priority as specified in your [configuration](framework/configuration.md).
-
-!> When compared, middleware with equal priority will retain their original relative order from Step 1.
+!> When compared, middleware that is not specified in the priority array will be executed after all middleware that is and will keep its relative order to other middleware without a specified priority.
