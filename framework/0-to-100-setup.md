@@ -21,15 +21,10 @@ We begin by installing WP Emerge through Composer:
 Once that's done, we have to make sure the Composer `autoload.php` file is required into our theme, otherwise no composer packages will be loaded at all:
 
 1. Open `THEME_DIR/functions.php` in your favorite editor.
-1. Add the following to the **end** of the file:
+1. Add the following to the **start** of the file:
     ```php
-    /**
-     * Load Composer's autoloader.
-     */
-    require 'vendor/autoload.php';
-    ```
-1. Now that we have the autoloader ready, let's boot WP Emerge itself:
-    ```php
+    use WPEmerge\Facades\WPEmerge;
+
     /**
      * Load Composer's autoloader.
      */
@@ -39,32 +34,38 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
      * Bootstrap WP Emerge.
      */
     add_action( 'after_setup_theme', function() {
-        WPEmerge::boot();
+        WPEmerge::bootstrap();
     } );
     ```
 
 And we're done - we have composer and WP Emerge loaded and bootstrapped! But ... we're not really doing anything with WP Emerge - let's change that:
 
-1. In order to avoid bloating up the main theme `functions.php` we will separate our framework code into its own file.
+1. In order to avoid bloating up the main theme `functions.php` we will separate our routes into their own file.
 1. Create a new directory inside `THEME_DIR` called `app`.
-1. Create a new file inside the new `app` directory called `framework.php` and open it in your editor.
+1. Create a new directory inside `app` called `routes`.
+1. Create a new file inside the new `routes` directory called `web.php` and open it in your editor.
 1. Add the following code to your new file:
     ```php
     <?php
     /**
-     * Routes
+     * Web Routes.
      */
-    // Note: '/' is the URL we are matching with, and it is always
-    // relative to the WordPress homepage url.
-    Router::get( '/', function() {
+
+    use WPEmerge\Facades\Route;
+
+    Route::get()->url( '/' )->handle( function() {
         return app_output( 'Hello World!' );
     } );
     ```
-1. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test.
+1. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
+  - `Route::` - The Route facades provides us with tools to create and register our routes.
+  - `get()` - Match requests which use the `GET` request method.
+  - `url( '/' )` - Match requests that match the provided url, relative to the homepage.
+  - `handle( function () { ... } )` - Declare a function that should respond to the request when it matches.
 
 Let's open up `HOME_URL` in our browser and we should be greeted with an almost blank page with the `Hello World!` sentence ... but we are not. Did we miss anything?
 
-Ah yes - we forgot to load our `framework.php` file! Let's fix this so our `functions.php` code looks like this:
+Ah yes - we forgot to load our `web.php` file! Let's fix this so our `functions.php` code looks like this:
 ```php
 /**
  * Load Composer's autoloader.
@@ -76,7 +77,8 @@ require 'vendor/autoload.php';
  */
 add_action( 'after_setup_theme', function() {
     WPEmerge::boot();
-    require 'app/framework.php';
+
+    WPEmerge::routes( __DIR__ . '/app/routes/web.php' );
 } );
 ```
 
@@ -133,13 +135,16 @@ This works OK but it is certainly not perfect and if we ever have other CTAs or 
 
 ### Using our new template
 
-We have our pretty basic template ready so let's put it to use by editing `THEME_DIR/app/framework.php` to look like this (deleting our previous test route):
+We have our pretty basic template ready so let's put it to use by editing `THEME_DIR/app/routes/web.php` to look like this (deleting our previous test route):
 ```html
 <?php
 /**
- * Routes
+ * Web Routes.
  */
-Router::get( '/', function() {
+
+use WPEmerge\Facades\Route;
+
+Route::get()->url( '/' )->handle( function() {
     return app_view( 'template-cta.php' );
 } );
 ```
@@ -164,15 +169,19 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     }
     ```
     As you probably already guessed, this controller will do exactly the same as our anonymous function.
-1. Edit `THEME_DIR/app/framework.php` and assign our controller and its `index` method to the route:
+1. Edit `THEME_DIR/app/routes/web.php` and assign our controller and its `index` method to the route:
     ```php
     <?php
     /**
-     * Routes
-     * WPEmerge will automatically prepent "\App\Controllers\" to our controller class
+     * Web Routes.
+     * 
+     * WPEmerge will automatically prepend "\App\Controllers\" to our controller class
      * so we don't have to specify it every time.
      */
-    Router::get( '/', 'HomeController@index' );
+
+    use WPEmerge\Facades\Route;
+
+    Route::get()->url( '/' )->handle( 'HomeController@index' );
     ```
 
 If we open up the homepage we will now be presented with an error:
@@ -269,9 +278,7 @@ Thankfully, no! This is where view composers come into play - check out the [Vie
 
 ##### What if we wanted to show the CTA on a page other than the homepage - do we have to hardcode that page's url in the route definition?
 
-We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions]
-(framework/routing/conditions.md). As an example, this is what our route definition will look like if we wish to show 
-the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
+We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](framework/routing/conditions.md). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
-Router::get( ['post_template', 'template-cta-enabled-page.php'], 'HomeController@index' );
+Route::get()->where( 'post_template', 'template-cta-enabled-page.php' )->handle( 'HomeController@index' );
 ```

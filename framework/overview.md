@@ -38,8 +38,10 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 
 |  | WPEmerge | Sage | Timber |
 | --- | --- | --- | --- |
-| View Engine | PHP, Blade, Twig, any | Blade | Twig |
+| View Engine | PHP, Blade, Twig, any | PHP, Blade | Twig |
 | Routing | ✔ | ✖ | ✖ |
+| WP Admin Routing | ✔ | ✖ | ✖ |
+| WP AJAX Routing | ✔ | ✖ | ✖ |
 | MVC | ✖✔✔ | ✖✔✖³ | ✖✔✖ |
 | Middleware | ✔ | ✖ | ✖ |
 | View Composers | ✔ | ✔/✖⁴ | ✖ |
@@ -54,7 +56,7 @@ _³ Sage's Controller is more of a View Composer than a Controller._
 
 _⁴ Sage's Controller provides similar functionality but is limited to 1 composer (controller) per view and vice versa._
 
-_Email any factual inaccuracies to [atanas.angelov.dev@gmail.com](mailto:atanas.angelov.dev@gmail.com) so they can be corrected._
+_Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they can be corrected._
 
 ## Requirements
 
@@ -64,27 +66,33 @@ _Email any factual inaccuracies to [atanas.angelov.dev@gmail.com](mailto:atanas.
 
 ## Features
 
-#### Routes with optional rewrite rule integration
+#### Routes with custom URLs or dynamic conditions
 
 ```php
-Router::get( '/', 'HomeController@index' );
+Route::get()->url( '/' )->handle( 'HomeController@index' );
 
-Router::get( '/custom', 'CustomController@custom' )
+Route::get()
+    ->url( '/custom' )
     ->query( function ( $query_vars ) {
         return [
-            // WP_Query query vars ...
+            // WP_Query query vars go here ...
         ];
+    } )
+    ->handle( 'CustomController@custom' );
+
+Route::get()
+    ->where( 'post_id', get_option( 'page_on_front' ) )
+    ->handle( 'HomeController@index' );
+
+Route::get()
+    ->where( function() {
+        return is_front_page();
     } );
-
-Router::get( ['post_id', get_option('page_on_front')], 'HomeController@index' );
-
-Router::get( function() {
-    return is_front_page();
-}, 'HomeController@index' );
+    ->handle( 'HomeController@index' );
 ```
 
 - Enable the use of controllers to compartmentalize your business logic away from your presentation.
-- Use existing routes or add new ones with a rewrite.
+- Use existing routes or add new ones.
 - Use built-in dynamic route conditions or define your own custom ones.
 - Use anonymous functions for quick one-off conditions.
 
@@ -115,16 +123,13 @@ class HomeController {
 #### Middleware
 
 ```php
-Router::get( '/', 'HomeController@index' )
-    ->add( function( $request, $next ) {
-        // perform action before
-        $response = $next( $request );
-        // perform action after
-        return $response;
-    } );
+Route::get()
+    ->url( '/' )
+    ->middleware( ['minify', 'auth'] )
+    ->handle( 'HomeController@index' );
 ```
 
-- Hook before and/or after route handlers (e.g. controller methods).
+- Hook before and/or after controller methods.
 - Add globally or to specific routes or route groups.
 - Powers features such as Flash and OldInput.
 
@@ -209,9 +214,9 @@ class MyServiceProvider implements ServiceProviderInterface {
 */
 
 if ( is_single() ) {
-    Theme::partial( 'loop', 'single' );
+    app_partial( ['loop-single', 'loop'] );
 } else {
-    Theme::partial( 'loop' );
+    app_partial( 'loop' );
 }
 ```
 `layouts/app.php`
@@ -232,7 +237,7 @@ get_footer();
 ```
 
 - Eliminate repeating `get_header()`/`get_footer()` calls in every view.
-- Reduce boilerplate and improve maintainability of views without sacrifixing flexibility.
+- Reduce boilerplate and improve maintainability of views without sacrificing flexibility.
 
 ---
 
@@ -256,7 +261,7 @@ WP Emerge is completely open source and we encourage everybody to participate by
 
 - ⭐ the project on GitHub \([https://github.com/htmlburger/wpemerge](https://github.com/htmlburger/wpemerge)\)
 - Posting bug reports \([https://github.com/htmlburger/wpemerge/issues](https://github.com/htmlburger/wpemerge/issues)\)
-- (Emailing security issues to [atanas.angelov.dev@gmail.com](mailto:atanas.angelov.dev@gmail.com) instead)
+- (Emailing security issues to [hi@atanas.dev](mailto:hi@atanas.dev) instead)
 - Posting feature suggestions \([https://github.com/htmlburger/wpemerge/issues](https://github.com/htmlburger/wpemerge/issues)\)
 - Posting and/or answering questions \([https://github.com/htmlburger/wpemerge/issues](https://github.com/htmlburger/wpemerge/issues)\)
 - Submitting pull requests \([https://github.com/htmlburger/wpemerge/pulls](https://github.com/htmlburger/wpemerge/pulls)\)

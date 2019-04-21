@@ -53,7 +53,7 @@ _² Sage's Controller provides similar functionality but is limited to 1 compose
 
 _³ Timber does not provide a front-end build process so you can implement whatever you prefer._
 
-_Email any factual inaccuracies to [atanas.angelov.dev@gmail.com](mailto:atanas.angelov.dev@gmail.com) so they can be corrected._ 
+_Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they can be corrected._ 
 
 ## Features
 - All features from [WP Emerge](https://docs.wpemerge.com/#/framework/overview):
@@ -189,7 +189,7 @@ WP Emerge Theme is completely open source and we encourage everybody to particip
 
 - ⭐ the project on GitHub (https://github.com/htmlburger/wpemerge-theme)
 - Posting bug reports (https://github.com/htmlburger/wpemerge-theme/issues)
-- (Emailing security issues to [atanas.angelov.dev@gmail.com](mailto:atanas.angelov.dev@gmail.com) instead)
+- (Emailing security issues to [hi@atanas.dev](mailto:hi@atanas.dev) instead)
 - Posting feature suggestions (https://github.com/htmlburger/wpemerge-theme/issues)
 - Posting and/or answering questions (https://github.com/htmlburger/wpemerge-theme/issues)
 - Submitting pull requests (https://github.com/htmlburger/wpemerge-theme/pulls)

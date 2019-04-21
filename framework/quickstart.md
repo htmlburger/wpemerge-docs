@@ -4,24 +4,36 @@
     ```bash
     composer require htmlburger/wpemerge
     ```
-1. Make sure you've included the generated `autoload.php` file inside your `functions.php` file
+1. Create a new file for your routes, for example `routes/web.php`.
+1. Add the following to your new `web.php` file:
     ```php
-    require_once( 'vendor/autoload.php' );
+    <?php
+    /**
+     * Web Routes.
+     */
+    use WPEmerge\Facades\Route;
+
+    Route::get()->url( '/' )->handle( function() {
+        return app_output( 'Hello World!' );
+    } );
     ```
-1. Add the following to your `functions.php`:
+1. Add the following to the **start** of your `functions.php`:
     ```php
+    use WPEmerge\Facades\WPEmerge;
+ 
+    require_once( 'vendor/autoload.php' );
+ 
     add_action( 'init', function() {
         session_start(); // required only if you use Flash and OldInput
     } );
 
     add_action( 'after_setup_theme', function() {
-        WPEmerge::boot();
+        WPEmerge::bootstrap();
 
-        Router::get( '/', function() {
-            return app_output( 'Hello World!' );
-        } );
+        WPEmerge::routes( __DIR__ . '/routes/web.php' );
     } );
     ```
+1. If you open your website's homepage in your browser you will now be greeted with `Hello World!`.
 
 ## Optional: Setting up autoloading for your own classes
 
