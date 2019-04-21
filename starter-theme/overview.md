@@ -32,8 +32,10 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 
 |                                | WP Emerge Theme  | Sage           | Timber   |
 |--------------------------------|------------------|----------------|----------|
-| View Engine                    | PHP, Blade, Twig, any | Blade          | Twig     |
+| View Engine                    | PHP, Blade, Twig, any | PHP, Blade     | Twig     |
 | Routing                        | ✔                | ✖              | ✖        |
+| WP Admin Routing | ✔ | ✖ | ✖ |
+| WP AJAX Routing | ✔ | ✖ | ✖ |
 | MVC                            | ✖✔✔              | ✖✔✖¹           | ✖✔✖      |
 | Middleware                     | ✔                | ✖              | ✖        |
 | View Composers                 | ✔                | ✔/✖²           | ✖        |
@@ -99,6 +101,10 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 wp-content/themes/your-theme
 ├── app/
 │   ├── helpers/              # Helper files, add your own here as well.
+│   ├── routes/                # Register your WP Emerge routes.
+│   │   ├── admin.php
+│   │   ├── ajax.php
+│   │   └── web.php
 │   ├── setup/                # Register WordPress menus, post types etc.
 │   │   ├── menus.php
 │   │   ├── post-types.php
@@ -113,7 +119,7 @@ wp-content/themes/your-theme
 │   ├── config.php            # WP Emerge configuration.
 │   ├── helpers.php           # Require your helper files here.
 │   ├── hooks.php             # Register your actions and filters here.
-│   └── framework.php         # Register your WP Emerge routes, globals etc.
+│   └── views.php             # Register your WP Emerge view composers etc.
 ├── dist/                     # Bundles, optimized images etc.
 ├── languages/                # Language files.
 ├── resources/
