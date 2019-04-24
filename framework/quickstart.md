@@ -28,9 +28,11 @@
     } );
 
     add_action( 'after_setup_theme', function() {
-        WPEmerge::bootstrap();
-
-        WPEmerge::routes( __DIR__ . '/routes/web.php' );
+        WPEmerge::bootstrap( [
+            'routes' => [
+                'web' => __DIR__ . '/routes/web.php',
+            ],
+        ] );
     } );
     ```
 1. If you open your website's homepage in your browser you will now be greeted with `Hello World!`.
