@@ -24,12 +24,12 @@ Route::get()
     ->handle( ... );
 ```
 
-You can also define middleware that is automatically applied to all routes - check out the [Configuration](framework/configuration.md) page for more details.
+You can also define middleware that is automatically applied to all routes - check out the [Configuration](/framework/configuration) page for more details.
 
-!> Middleware is only applied on defined routes - normal WordPress requests that do not match any route will NOT have middleware applied. To apply middleware to all requests you have to match all requests with routes. Take a look at [Handling all requests](framework/routing/methods.md#handling-all-requests) for an easy way to achieve this.
+!> Middleware is only applied on defined routes - normal WordPress requests that do not match any route will NOT have middleware applied. To apply middleware to all requests you have to match all requests with routes. Take a look at [Handling all requests](/framework/routing/methods#handling-all-requests) for an easy way to achieve this.
 
 ## Order of execution
 
-Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](framework/configuration.md).
+Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](/framework/configuration).
 
 !> When compared, middleware that is not specified in the priority array will be executed after all middleware that is and will keep its relative order to other middleware without a specified priority.

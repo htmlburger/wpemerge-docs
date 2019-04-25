@@ -1,27 +1,27 @@
 * Starter Theme
 
-  * [Overview](starter-theme/overview.md)
-  * [Quickstart](starter-theme/quickstart.md)
+  * [Overview](/starter-theme/overview)
+  * [Quickstart](/starter-theme/quickstart)
 
 * Scripts
 
-  * [Overview](starter-theme/scripts/overview.md)
+  * [Overview](/starter-theme/scripts/overview)
 
 * Assets
 
-  * [Overview](starter-theme/assets/overview.md)
-  * [Sprite Mixins](starter-theme/assets/sprite-mixins.md)
-  * [Gutenberg](starter-theme/assets/gutenberg.md)
+  * [Overview](/starter-theme/assets/overview)
+  * [Sprite Mixins](/starter-theme/assets/sprite-mixins)
+  * [Gutenberg](/starter-theme/assets/gutenberg)
 
 * Utilities
 
-  * [Theme](starter-theme/utilities/theme.md)
-  * [Theme\Assets](starter-theme/utilities/theme-assets.md)
-  * [Theme\Avatar](starter-theme/utilities/theme-avatar.md)
-  * [Theme\Config](starter-theme/utilities/theme-config.md)
-  * [Theme\Image](starter-theme/utilities/theme-image.md)
-  * [Theme\Sidebar](starter-theme/utilities/theme-sidebar.md)
+  * [Theme](/starter-theme/utilities/theme)
+  * [Theme\Assets](/starter-theme/utilities/theme-assets)
+  * [Theme\Avatar](/starter-theme/utilities/theme-avatar)
+  * [Theme\Config](/starter-theme/utilities/theme-config)
+  * [Theme\Image](/starter-theme/utilities/theme-image)
+  * [Theme\Sidebar](/starter-theme/utilities/theme-sidebar)
 
 * CLI
 
-  * [Overview](starter-theme/cli/overview.md)
+  * [Overview](/starter-theme/cli/overview)

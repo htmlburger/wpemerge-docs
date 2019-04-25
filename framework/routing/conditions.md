@@ -282,4 +282,4 @@ Route::get()
 
 ## Extending Conditions
 
-You can define your own custom condition classes that you can reuse throughout your project. For more information on how to do this please refer to the [Extending](framework/extending/overview.md) section.
+You can define your own custom condition classes that you can reuse throughout your project. For more information on how to do this please refer to the [Extending](/framework/extending/overview) section.

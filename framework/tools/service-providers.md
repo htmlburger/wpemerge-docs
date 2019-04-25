@@ -23,4 +23,4 @@ WPEmerge::bootstrap( [
 ] );
 ```
 
-Take a look at the [Extending](framework/extending/overview.md) section for a real-world usage example.
+Take a look at the [Extending](/framework/extending/overview) section for a real-world usage example.

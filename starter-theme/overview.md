@@ -46,7 +46,7 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 | Automatic Sprite Generation    | ✔                | ✖              | N/A³     |
 | Automatic Cache Busting        | ✔                | ✖              | ✖        |
 | WPCS Linting                   | ✔                | ✖              | ✖        |
-| [Advanced Error Reporting](https://docs.wpemerge.com/#/framework/routing/error-handling) | ✔ | ✖ | ✖ |
+| [Advanced Error Reporting](/framework/routing/error-handling) | ✔ | ✖ | ✖ |
 | WP Unit Tests for your classes | ✔                | ✖              | ✖        |
 
 _¹ Sage's Controller is more of a View Composer than a Controller._
@@ -186,7 +186,7 @@ These directories are for the admin, editor and login bundles, respectively. The
 
 #### `theme/`
 
-Add views in this, the `theme/partials/` or the `theme/templates/` directories accordingly. Avoid adding any PHP logic here, unless it pertains to layouting (PHP logic should go into helper files or [WP Emerge controllers](../framework/routing/controllers.md))
+Add views in this, the `theme/partials/` or the `theme/templates/` directories accordingly. Avoid adding any PHP logic here, unless it pertains to layouting (PHP logic should go into helper files or [WP Emerge controllers](/framework/routing/controllers))
 
 ## Contributing
 

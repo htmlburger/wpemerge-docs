@@ -25,4 +25,4 @@ Adding this will initially seem like it makes no difference because WP Emerge wi
 1. Global middleware will be applied to ALL requests (since this declaration will match all requests)
 1. All views will be rendered using WP Emerge's current view engine. By default there will be no difference, however, if you use a different view engine all WordPress templates will be rendered through it.
 
-    _Check out [NameProxy](framework/views/overview.md#nameproxyviewengine) if you wish to have mixed views._
+    _Check out [NameProxy](/framework/views/overview#nameproxyviewengine) if you wish to have mixed views._

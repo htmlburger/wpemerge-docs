@@ -46,9 +46,9 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 | Middleware | ✔ | ✖ | ✖ |
 | View Composers | ✔ | ✔/✖⁴ | ✖ |
 | Service Container | ✔ | ✔ | ✖ |
-| [Advanced Error Reporting](https://docs.wpemerge.com/routing/exceptions.html) | ✔ | ✖ | ✖ |
+| [Advanced Error Reporting](/framework/routing/error-handling) | ✔ | ✖ | ✖ |
 
-_¹ We are comparing frameworks and themes - style, build tools etc. are not mentioned. For a full comparison check out the [WP Emerge Starter Theme](../../starter-theme/overview)._
+_¹ We are comparing frameworks and themes - style, build tools etc. are not mentioned. For a full comparison check out the [WP Emerge Starter Theme](/starter-theme/overview)._
 
 _² WP Emerge is theme agnostic - you can use it in any theme._
 

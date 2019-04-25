@@ -8,4 +8,4 @@ The following example will create a new instance of the `HomeController` class a
 Route::get()->url( '/' )->handle( 'HomeController@index' );
 ```
 
-Refer to the [Controllers](framework/routing/controllers.md) section for more information on route handlers.
+Refer to the [Controllers](/framework/routing/controllers) section for more information on route handlers.

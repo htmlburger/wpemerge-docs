@@ -278,11 +278,11 @@ We reduced PHP logic duplication, but this doesn't solve the use case where we w
 
 ##### What if we wish to have a partial that is reused throughout the site but it needs a certain variable? Do we have to add that logic to every controller which loads a view which includes that partial?
 
-Thankfully, no! This is where view composers come into play - check out the [View Composers](framework/views/view-composers.md) article to see how they can solve this problem and more.
+Thankfully, no! This is where view composers come into play - check out the [View Composers](/framework/views/view-composers) article to see how they can solve this problem and more.
 
 ##### What if we wanted to show the CTA on a page other than the homepage - do we have to hardcode that page's url in the route definition?
 
-We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](framework/routing/conditions.md). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
+We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](/framework/routing/conditions). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
 Route::get()
     ->where( 'post_template', 'template-cta-enabled-page.php' )

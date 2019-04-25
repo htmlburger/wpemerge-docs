@@ -62,4 +62,4 @@ Here are a few example classes (and their filepaths) that will be autoloaded:
 | `App\Controllers\Home`   | `app/Controllers/Home.php` |
 
 
-You can find more information about PSR-4 autoloading on http://www.php-fig.org/psr/psr-4/
+You can find more information about PSR-4 autoloading at http://www.php-fig.org/psr/psr-4/

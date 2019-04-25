@@ -1,3 +1,3 @@
 * [Home](/)
-* [Framework](framework/overview.md)
-* [Starter Theme](starter-theme/overview.md)
+* [Framework](/framework/overview)
+* [Starter Theme](/starter-theme/overview)

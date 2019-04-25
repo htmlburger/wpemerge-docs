@@ -8,8 +8,7 @@ In order to enable WP Emerge you first have to boot it. This is usually done in 
 1. All service providers listed in the configuration are registered.
 1. All service providers listed in the configuration are booted.
 
-!> Step 2 and 3 are a critical part of bootstrapping which is why you should make sure your own service container 
-registrations or overrides are done in your own Service Provider instead of after WP Emerge has been booted.
+!> Step 2 and 3 are a critical part of bootstrapping which is why you should make sure your own service container registrations or overrides are done in your own Service Provider instead of after WP Emerge has been booted.
 
 
 ## `template_include`
