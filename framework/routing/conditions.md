@@ -10,7 +10,7 @@ Route::get()->url( '/foo/bar/' )->handle( $handler );
 
 ?> Paths in URL conditions are relative to the site's home url.
 
-!> You should use `->query()` on routes which do not match any valid WordPress URL or your WP Query will consider the request as a `404 - Not Found`.
+!> You should use `query()` on routes which do not match any valid WordPress URL or your WP Query will consider the request as a `404 - Not Found`. You can find more information on this in the dedicated [Query API](https://wpemerge.com/2018/11/15/a-quick-look-into-wp-emerges-new-route-query-api/) blog post.
 
 ---
 
