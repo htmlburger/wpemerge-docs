@@ -38,9 +38,16 @@ Let's break it down:
   - `url( '/' )` - Shorthand for `where( 'url', '/' )`. See below for more information on `where` attribute.
   - `handle( 'HomeController@index' )` - Finalize the definition as a single route which is handled by `HomeController@index` when its conditions are satisfied.
   
-!> Not finalizing a route with `handler()` or `group()` will invalidate the route.
+!> Not finalizing a route with `view()`, `handler()` or `group()` will invalidate the route.
 
 !> Setting the same attribute multiple times will merge it. Take a loot at every attribute below to see how merging happens.
+
+## Finalizing Definition
+
+To finalize a definition you have to call one of the following methods:
+- `Route::...->handle( $handler )` - Finalize as a single route with the specified handler when the route condition is satisfied.
+- `Route::...->view( $view )` - Shortcut to finalizing a single route with a handler that only renders the specified view.
+- `Route::...->group( $routes )` - Finalize as a route group.
 
 ## Route Groups
 
