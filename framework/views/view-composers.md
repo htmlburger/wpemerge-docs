@@ -11,23 +11,55 @@ partials (e.g. `header.php`, `footer.php`) that are rendered using a `get_*()` f
 
 ## Example
 
-In this example we want to pass the latest posts to the `latest-news.php` partial:
+In this example we want to pass the latest posts to the `latest-news.php` partial.
+
+First, we need to create a service provider class:
 ```php
-// immediately after WPEmerge::bootstrap()
-View::addComposer( 'templates/partials/latest-news', function( $view ) {
-	$view->with( [
-		'news' => new WP_Query( [
-			'posts_per_page' => 3,
-		] ),
-	] );
-} );
+<?php
+
+namespace App\ViewComposers;
+
+use WPEmerge\ServiceProviders\ServiceProviderInterface;
+
+class ViewComposersServiceProvider implements ServiceProviderInterface {
+    /**
+     * {@inheritDoc}
+     */
+    public function register( $container ) {
+        // Nothing to register.
+    }
+  
+    /**
+     * {@inheritDoc}
+     */
+    public function bootstrap( $container ) {
+        View::addComposer( 'templates/partials/latest-news', function( $view ) {
+            $view->with( [
+                'news' => new WP_Query( [
+                    'posts_per_page' => 3,
+                ] ),
+            ] );
+        } );
+    }
+}
+```
+
+Then, we need to register that service provider in the configuration:
+```php
+WPEmerge::bootstrap( [
+    'providers' => [
+        // ...
+        \App\ViewComposers\ViewComposersServiceProvider::class,
+    ],
+    // ...
+] );
 ```
 
 With this, whenever the `latest-news.php` partial is loaded, we will have the `$news` variable automatically available:
 ```php
-// latest-news.php
+// Inside latest-news.php:
 <?php while ( $news->have_posts() ) : $news->the_post() ?>
-	...
+  ...
 <?php endwhile; ?>
 <?php wp_reset_postdata(); ?>
 ```
@@ -35,6 +67,10 @@ With this, whenever the `latest-news.php` partial is loaded, we will have the `$
 Here's the same example, but using a class:
 
 ```php
+<?php
+
+namespace App\ViewComposers;
+
 class LatestNewsViewComposer {
     public function compose( $view ) {
         $view->with( [
@@ -47,13 +83,26 @@ class LatestNewsViewComposer {
 ```
 
 ```php
-// immediately after WPEmerge::bootstrap()
-View::addComposer( 'templates/partials/latest-news', LatestNewsViewComposer::class );
+// ...
+public function bootstrap( $container ) {
+    View::addComposer(
+      'templates/partials/latest-news',
+      \App\ViewComposers\LatestNewsViewComposer::class
+    );
+}
+// ...
 ```
 
 The expected method name by default is `compose` but you can use a custom one as well:
 ```php
-View::addComposer( 'templates/partials/latest-news', 'LatestNewsViewComposer@customMethodName' );
+// ...
+public function bootstrap( $container ) {
+    View::addComposer(
+      'templates/partials/latest-news',
+      'LatestNewsViewComposer@customMethodName'
+    );
+}
+// ...
 ```
 
 By default, WP Emerge will instantiate your class directly. However, if your class is registered in the service container with its class name as the key, then the class will be resolved from the service container instead of being directly instantiated:
