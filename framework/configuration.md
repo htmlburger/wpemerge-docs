@@ -56,12 +56,11 @@ WPEmerge::bootstrap( [
     ],
 
     /**
-     * Custom directory to search for views.
-     * Use an absolute path or leave blank to enable default.
-     * Applies only to the default PhpViewEngine as other engines
-     * have their own setting.
+     * Custom directories to search for views.
+     * Use absolute paths or leave blank to disable.
+     * Applies only to the default PhpViewEngine.
      */
-    'views' => '',
+    'views'               => [get_stylesheet_directory(), get_template_directory()],
 
     /**
      * Debug settings.
