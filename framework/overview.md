@@ -39,7 +39,7 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 |  | WPEmerge | Sage | Timber |
 | --- | --- | --- | --- |
 | View Engine | PHP, Blade, Twig, any | PHP, Blade | Twig |
-| Routing | ✔ | ✖ | ✖ |
+| Routing | ✔ | ✖ | ✔ |
 | WP Admin Routing | ✔ | ✖ | ✖ |
 | WP AJAX Routing | ✔ | ✖ | ✖ |
 | MVC | ✖✔✔ | ✖✔✖³ | ✖✔✖ |
