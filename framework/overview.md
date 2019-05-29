@@ -168,8 +168,7 @@ View::addComposer( 'templates/about-us', function( $view ) {
 #### Service container
 
 ```php
-// getContainer() used for brevity's sake - use a Service Provider instead.
-$container = WPEmerge::getContainer();
+// Run this inside the register() method of a service provider.
 $container['my_service'] = function( $container ) {
     return new MyService( $container['my_dependency'] );
 };
@@ -243,8 +242,7 @@ WPEmerge\render( 'footer' );
 #### Custom view engine support
 
 ```php
-// getContainer() used for brevity's sake - use a Service Provider instead.
-$container = WPEmerge::getContainer();
+// Run this inside the register() method of a service provider.
 $container[ WPEMERGE_VIEW_ENGINE_KEY ] = function( $container ) {
     return new MyViewEngine();
 };

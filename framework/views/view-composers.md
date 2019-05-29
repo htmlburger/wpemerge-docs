@@ -1,11 +1,14 @@
 # View Composers
 
-View composers are anonymous functions, class names or class methods (in the `'CLASS_NAME@METHOD_NAME'` format with automatically prepended `\App\ViewComposers\` to the class name for convenience) that prepare a context for a view whenever it is rendered. This includes views, partials and even layouts.
+View composers are anonymous functions, class names or class methods (in the `'CLASS_NAME@METHOD_NAME'` format) that prepare a context for a view whenever it is rendered. This includes views, partials and even layouts.
+
 
 !> Default View Engine WARNING: Due to the nature of how `get_template_part()` works, you __MUST__ render partials using `WPEmerge\render()` instead of `get_template_part()` in order to support composition.
 
 !> If you wish to compose core 
 partials (e.g. `header.php`, `footer.php`) that are rendered using a `get_*()` function call (e.g. `get_header()`) you will have to use `WPEmerge\render( 'name' )` (e.g. `WPEmerge\render( 'header' )`) instead.
+
+?> If the specified class name does not exist `\App\ViewComposers\` is automatically prepended for convenience.
 
 ?> More information on how to use `WPEmerge\render()` is available at the end of this article.
 
@@ -28,7 +31,7 @@ class ViewComposersServiceProvider implements ServiceProviderInterface {
     public function register( $container ) {
         // Nothing to register.
     }
-  
+
     /**
      * {@inheritDoc}
      */
@@ -108,8 +111,7 @@ public function bootstrap( $container ) {
 By default, WP Emerge will instantiate your class directly. However, if your class is registered in the service container with its class name as the key, then the class will be resolved from the service container instead of being directly instantiated:
 
 ```php
-// getContainer() used for brevity's sake - use a Service Provider instead.
-$container = WPEmerge::getContainer();
+// Run this inside the register() method of a service provider.
 $container[ LatestNewsViewComposer::class ] = function( $container ) {
     // your custom instantiation code here, e.g.:
     return new LatestNewsViewComposer();

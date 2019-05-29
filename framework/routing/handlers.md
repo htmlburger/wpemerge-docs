@@ -1,6 +1,8 @@
 # Route Handlers
 
-A route handler can be an anonymous function or a reference in the `'CLASS_NAME@METHOD_NAME'` format with automatically prepended `\App\Controllers\` to the class name for convenience.
+A route handler can be an anonymous function or a reference in the `'CLASS_NAME@METHOD_NAME'` format.
+
+?> If the specified class name does not exist `\App\Controllers\` is automatically prepended for convenience.
 
 The following example will create a new instance of the `HomeController` class and call its `index` method:
 

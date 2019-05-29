@@ -38,8 +38,7 @@ public function index( $request, $view ) {
 To use a custom `ErrorHandler` class, replace the `WPEMERGE_EXCEPTIONS_ERROR_HANDLER_KEY` key in the service container with a class that implements the `\WPEmerge\Exceptions\ErrorHandlerInterface` interface:
 
 ```php
-// getContainer() used for brevity's sake - use a Service Provider instead.
-$container = WPEmerge::getContainer();
+// Run this inside the register() method of a service provider.
 $container[ WPEMERGE_EXCEPTIONS_ERROR_HANDLER_KEY ] = function() {
     return new MyCustomErrorHandler();
 };

@@ -22,8 +22,7 @@ By default, WP Emerge will instantiate your controller class and call the specif
 However, if your controller class is registered in the service container with its class name as the key, then the class will be resolved from the service container instead of being directly instantiated:
 
 ```php
-// getContainer() used for brevity's sake - use a Service Provider instead.
-$container = WPEmerge::getContainer();
+// Run this inside the register() method of a service provider.
 $container[ HomeController::class ] = function( $container ) {
     // your custom instantiation code here, e.g.:
     return new HomeController();

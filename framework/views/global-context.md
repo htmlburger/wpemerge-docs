@@ -22,10 +22,10 @@ class ViewGlobalContextServiceProvider implements ServiceProviderInterface {
      * {@inheritDoc}
      */
     public function bootstrap( $container ) {
-        // add one variable
+        // Add one variable.
         View::addGlobal( 'foo', 'bar' );
         
-        // add many variables
+        // Add many variables.
         View::addGlobals( [
             'name' => get_bloginfo( 'name' ),
             'url' => home_url( '/' ),
