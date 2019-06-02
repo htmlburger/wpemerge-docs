@@ -16,6 +16,14 @@ WPEmerge::bootstrap( [
     /**
      * Register middleware class aliases.
      * Use fully qualified middleware class names.
+     *
+     * Internal aliases that you should avoid overriding:
+     * - 'flash'
+     * - 'old_input'
+     * - 'csrf'
+     * - 'user.logged_in'
+     * - 'user.logged_out'
+     * - 'user.can'
      */
     'middleware' => [
         // Examples:

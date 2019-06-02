@@ -87,8 +87,98 @@ Route::middleware( 'mygroup' )->...
 
 Refer to the [Configuration](/framework/configuration) article for more information on middleware groups.
 
-## Order of execution
+## Order of Execution
 
 Middleware is sorted by priority as specified in the `'middleware_priority'` key of your [configuration](/framework/configuration).
 
 !> When compared, middleware that is not specified in the priority array will be executed after all middleware that is and will keep its relative order to other middleware without a specified priority.
+
+## Built-in Middleware
+
+### flash
+
+Flash middleware is applied globally by default. Check out the [Flash](/framework/tools/flash) article for more information.
+
+### old_input
+
+OldInput middleware is applied globally by default. Check out the [OldInput](/framework/tools/oldinput) article for more information.
+
+### csrf
+
+CSRF middleware is **NOT** applied globally by default. Check out the [CSRF Protection](/framework/tools/csrf-protection) article for more information.
+
+### user.logged_in:redirect_url
+
+Require the current user to be logged in redirecting non-logged in users to the login page:
+```php
+Route::middleware( 'user.logged_in' )->...
+```
+
+Optionally, you can specify a custom url to redirect to:
+```php
+Route::middleware( 'user.logged_in:http://example.com' )->...
+```
+
+You can also filter the final url:
+```php
+add_filter( 'wpemerge.middleware.user.logged_in.redirect_url', function ( $url, $request ) {
+    return 'http://example.com'; 
+}, 10, 2 );
+```
+
+### user.logged_out:redirect_url
+
+The opposite of `user.logged_in` - require the current user to be logged out redirecting logged in users to the home page:
+```php
+Route::middleware( 'user.logged_out' )->...
+```
+
+Optionally, you can specify a custom url to redirect to:
+```php
+Route::middleware( 'user.logged_out:http://example.com' )->...
+```
+
+You can also filter the final url:
+```php
+add_filter( 'wpemerge.middleware.user.logged_out.redirect_url', function ( $url, $request ) {
+    return 'http://example.com'; 
+}, 10, 2 );
+```
+
+### user.can:capability,object_id,redirect_url
+
+Require the current user to have a capability redirecting users who do not to the homepage:
+```php
+Route::middleware( 'user.can:edit_posts' )->...
+```
+
+Optionally, you can specify an object ID for the capability check:
+```php
+Route::middleware( 'user.can:edit_post,10' )->...
+```
+
+Optionally, you can specify a custom url to redirect to:
+```php
+Route::middleware( 'user.can:edit_posts,0,http://example.com' )->...
+```
+
+You can also filter the capability:
+```php
+add_filter( 'wpemerge.middleware.user.can.capability', function ( $capability, $request ) {
+    return 'edit_posts'; 
+}, 10, 2 );
+```
+
+... the object ID:
+```php
+add_filter( 'wpemerge.middleware.user.can.object_id', function ( $object_id, $capability, $request ) {
+    return 10; 
+}, 10, 3 );
+```
+
+... and the final url:
+```php
+add_filter( 'wpemerge.middleware.user.can.redirect_url', function ( $url, $request ) {
+    return 'http://example.com'; 
+}, 10, 2 );
+```
