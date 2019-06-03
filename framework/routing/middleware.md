@@ -3,7 +3,7 @@
 Middleware allow you to modify the request and/or response before and/or after it reaches the route handler. Middleware can be any of the following:
 1. the class name of a class that has a method with the following signature:  
 `public function handle( \WPEmerge\Requests\RequestInterface $request, \Closure $next )`
-1. an alias of a middleware class as defined in the `middleware` key of your configuration. This is the recommended way of using middleware.
+1. an alias of a middleware class as defined in the `middleware` key of your configuration. **This is the recommended way of using middleware.**
 
 A common example for middleware usage is protecting certain routes to be accessible by logged in users only:
 
@@ -24,6 +24,8 @@ Route::get()
     ->middleware( AuthenticationMiddleware::class )
     ->handle( ... );
 ```
+
+?> There's built-in middleware that deals with this exact use case - `user.logged_in`. Check out the [Built-in Middleware](#built-in-middleware) section below for more information.
 
 You can also define middleware that is automatically applied to all routes - check out the [Configuration](/framework/configuration) page for more details.
 
@@ -64,6 +66,8 @@ Passing `manage_options` as the required capability to the middleware:
 ```php
 Route::middleware( 'capability:manage_options' )->...
 ```
+
+?> There's built-in middleware that deals with this exact use case - `user.can`. Check out the [Built-in Middleware](#built-in-middleware) section below for more information.
 
 ## Middleware Groups
 

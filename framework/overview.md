@@ -125,7 +125,7 @@ class HomeController {
 ```php
 Route::get()
     ->url( '/' )
-    ->middleware( ['minify', 'auth'] )
+    ->middleware( ['user.can:manage_options', 'minify'] )
     ->handle( 'HomeController@index' );
 ```
 
