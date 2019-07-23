@@ -14,7 +14,7 @@
     use WPEmerge\Facades\Route;
 
     Route::get()->url( '/' )->handle( function() {
-        return WPEmerge\output( 'Hello World!' );
+        return \WPEmerge\output( 'Hello World!' );
     } );
     ```
 1. Add the following to the **start** of your `functions.php`:

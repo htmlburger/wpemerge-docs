@@ -104,7 +104,7 @@ Route::get()
 class HomeController {
     public function index( $request ) {
         $name = $request->get( 'name' );
-        return WPEmerge\view( 'templates/home.php' )
+        return \WPEmerge\view( 'templates/home.php' )
             ->with( [
                 'welcome' => 'Welcome, ' . $name . '!',
             ] );
@@ -140,7 +140,7 @@ Route::get()
 ```php
 class HomeController {
     public function index( $request ) {
-        return WPEmerge\response()
+        return \WPEmerge\response()
             ->withHeader( 'X-Custom-Header', 'foo' );
     }
 }
@@ -213,25 +213,25 @@ class MyServiceProvider implements ServiceProviderInterface {
 */
 
 if ( is_single() ) {
-    WPEmerge\render( ['loop-single', 'loop'] );
+    \WPEmerge\render( ['loop-single', 'loop'] );
 } else {
-    WPEmerge\render( 'loop' );
+    \WPEmerge\render( 'loop' );
 }
 ```
 `layouts/app.php`
 ```php
 <?php
-WPEmerge\render( 'header' );
+\WPEmerge\render( 'header' );
 
 if ( ! is_singular() ) {
 	app_the_title( '<h2 class="post-title">', '</h2>' );
 }
 
-WPEmerge\layout_content();
+\WPEmerge\layout_content();
 
-WPEmerge\render( 'sidebar' );
+\WPEmerge\render( 'sidebar' );
 
-WPEmerge\render( 'footer' );
+\WPEmerge\render( 'footer' );
 ```
 
 - Eliminate repeating `get_header()`/`get_footer()` calls in every view.
