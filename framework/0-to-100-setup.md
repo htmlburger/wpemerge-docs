@@ -157,12 +157,12 @@ If we open up the homepage we will now be presented with our template.
 
 WP Emerge allows us to use anonymous functions to define as our route handlers, however, it's best if we define controller classes instead so our logic is neatly compartmentalized and separated from other handlers' logic:
 
-1. Create a new `THEME_DIR/app/src/Controllers` directory.
-1. Create a new `THEME_DIR/app/src/Controllers/HomeController.php` file with the following content:
+1. Create a new `THEME_DIR/app/src/Controllers/Web` directory.
+1. Create a new `THEME_DIR/app/src/Controllers/Web/HomeController.php` file with the following content:
     ```php
     <?php
 
-    namespace App\Controllers;
+    namespace App\Controllers\Web;
     
     class HomeController {
         public function index( $request, $view ) {
@@ -177,7 +177,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     /**
      * Web Routes.
      * 
-     * WPEmerge will automatically prepend "\App\Controllers\" to our controller class
+     * WPEmerge will automatically prepend "\App\Controllers\Web\" to our controller class
      * so we don't have to specify it every time.
      */
 
@@ -188,7 +188,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
 
 If we open up the homepage we will now be presented with an error:
 ```
-Fatal error: Uncaught Error: Class '\App\Controllers\HomeController' not found
+Fatal error: Uncaught Error: Class '\App\Controllers\Web\HomeController' not found
 ```
 
 This is because we have not loaded our class file. We can add a `require` statement but we will have to do this every time we add a new controller, view composer or other type of class. Instead let's add class autoloading to our theme:

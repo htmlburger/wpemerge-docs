@@ -174,7 +174,7 @@ Route::query( function ( $query_vars ) {
 
 The `namespace` attribute defines what namespace should be automatically prepended to the route handler:
 ```php
-Route::setNamespace( '\\App\\Controllers\\Dashboard\\' )->...
+Route::setNamespace( '\\App\\Controllers\\Web\\Dashboard\\' )->...
 ``` 
 
 ?> The `namespace` attribute is set using `setNamespace` as PHP<7 does not allow method names to match reserved keywords.
@@ -182,11 +182,11 @@ Route::setNamespace( '\\App\\Controllers\\Dashboard\\' )->...
 This is especially useful if you have namespaces for different route groups, for example:
 ```php
 Route::url( '/dashboard/' )
-    ->setNamespace( '\\App\\Controllers\\Dashboard\\' )
+    ->setNamespace( '\\App\\Controllers\\Web\\Dashboard\\' )
     ->group( function () {
         // Match /dashboard/profile/ ...
         Route::get( '/profile/' )->handle( 'Profile@index' );
-        // ... using \App\Controllers\Dashboard\Profile@index as the handler.
+        // ... using \App\Controllers\Web\Dashboard\Profile@index as the handler.
     } );
 ```
 
