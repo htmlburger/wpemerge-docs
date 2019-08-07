@@ -266,7 +266,7 @@ Route::get()
 Route::get()
     ->where( 'negate', function() {
       return false;
-    ] )
+    } )
     ->handle( $handler );
 
 // Negate multiple conditions:
