@@ -22,6 +22,7 @@ First, we need to create a service provider class:
 
 namespace App\ViewComposers;
 
+use WPEmerge\Facades\View;
 use WPEmerge\ServiceProviders\ServiceProviderInterface;
 
 class ViewComposersServiceProvider implements ServiceProviderInterface {
