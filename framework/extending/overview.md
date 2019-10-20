@@ -14,8 +14,11 @@ For a real-world example, we will be adding our own custom routing condition.
 
 1. First, we will define our custom condition class:
     ```php
-    class PastEvent implements \WPEmerge\Routing\Conditions\ConditionInterface {
-        public function isSatisfied( \WPEmerge\Requests\Request $request ) {
+    use WPEmerge\Requests\RequestInterface;
+    use WPEmerge\Routing\Conditions\ConditionInterface;
+
+    class PastEvent implements ConditionInterface {
+        public function isSatisfied( RequestInterface $request ) {
             // Makre sure we are on a singular event page.
             if ( is_singular( 'event' ) ) {
                 // Get the event date.
@@ -34,7 +37,7 @@ For a real-world example, we will be adding our own custom routing condition.
             return false;
         }
 
-        public function getArguments( \WPEmerge\Requests\Request $request ) {
+        public function getArguments( RequestInterface $request ) {
             // We can return an array of arguments we wish to pass on to the
             // route handler for convenience.
             // We do not really need to pass anything so we return an empty
@@ -46,7 +49,9 @@ For a real-world example, we will be adding our own custom routing condition.
 
 1. Next, we will define a service provider class which will register our new condition:
     ```php
-    class PastEventConditionServiceProvider implements \WPEmerge\ServiceProviders\ServiceProviderInterface {
+    use WPEmerge\ServiceProviders\ServiceProviderInterface;
+
+    class PastEventConditionServiceProvider implements ServiceProviderInterface {
         public function register( $container ) {
             // Conditions are registered by appending them to the
             // array of condition types which is registered with
@@ -54,7 +59,7 @@ For a real-world example, we will be adding our own custom routing condition.
             // in the container.
             $condition_name = 'past_event';
             $condition_class = PastEvent::class;
-            
+
             $container[ WPEMERGE_ROUTING_CONDITION_TYPES_KEY ] = array_merge(
                 $container[ WPEMERGE_ROUTING_CONDITION_TYPES_KEY ],
                 [
