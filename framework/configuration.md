@@ -4,13 +4,35 @@ When booting WP Emerge you can specify a number of configuration options:
 ```php
 WPEmerge::bootstrap( [
     /**
-     * Array of classes that implement \WPEmerge\ServiceProviders\ServiceProviderInterface.
+     * Array of service providers you wish to enable.
      */
     'providers' => [
         // Examples:
         MyServiceProviders::class,
         // Blade example for htmlburger/wpemerge-blade:
         WPEmergeBlade\View\ServiceProvider::class,
+    ],
+
+    /**
+     * Array of route group definitions and default attributes.
+     * All of these are optional so if we are not using
+     * a certain group of routes we can skip it.
+     * If we are not using routing at all we can skip
+     * the entire 'routes' option.
+     */
+    'routes' => [
+        'web'   => [
+            'definitions' => get_template_directory() . '/routes/web.php',
+            'attributes'  => [],
+        ],
+        'admin' => [
+            'definitions' => get_template_directory() . '/routes/admin.php',
+            'attributes'  => [],
+        ],
+        'ajax'  => [
+            'definitions' => get_template_directory() . '/routes/ajax.php',
+            'attributes'  => [],
+        ],
     ],
 
     /**
@@ -43,7 +65,7 @@ WPEmerge::bootstrap( [
      * Warning: The 'wpemerge' group contains some internal WP Emerge
      * middleware which you should avoid overriding.
      */
-    'middleware_groups'   => [
+    'middleware_groups' => [
         'global' => [],
         'web'    => [
             // Examples:
@@ -70,7 +92,7 @@ WPEmerge::bootstrap( [
      * Use absolute paths or leave blank to disable.
      * Applies only to the default PhpViewEngine.
      */
-    'views'               => [get_stylesheet_directory(), get_template_directory()],
+    'views' => [get_stylesheet_directory(), get_template_directory()],
 
     /**
      * Debug settings.
