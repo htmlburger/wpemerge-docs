@@ -28,21 +28,25 @@ Replacing the default view engine:
 ```php
 // Run this inside the register() method of a service provider.
 $container[ WPEMERGE_VIEW_ENGINE_KEY ] = function( $container ) {
-    return new \WPEmerge\View\NameProxyViewEngine( [
-        // Format: view name suffix => service container key for alternative engine.
-
-        // Use Twig for twig.php views.
-        '.twig.php' => WPEMERGETWIG_VIEW_TWIG_VIEW_ENGINE_KEY,
-
-        // Use Blade for .blade.php views.
-        '.blade.php' => WPEMERGEBLADE_VIEW_BLADE_VIEW_ENGINE_KEY,
-
-        // Use default PHP engine for .php views. 
-        '.php' => WPEMERGE_VIEW_PHP_VIEW_ENGINE_KEY,
-
-        // Use Blade for all other cases as blade views can be referenced
-        // in blade.format.as.well without an extension.
-    ], WPEMERGEBLADE_VIEW_BLADE_VIEW_ENGINE_KEY ); 
+    return new \WPEmerge\View\NameProxyViewEngine(
+        $container[ WPEMERGE_APPLICATION_KEY ],
+        [
+            // Format: view name suffix => service container key for alternative engine.
+    
+            // Use Twig for twig.php views.
+            '.twig.php' => WPEMERGETWIG_VIEW_TWIG_VIEW_ENGINE_KEY,
+    
+            // Use Blade for .blade.php views.
+            '.blade.php' => WPEMERGEBLADE_VIEW_BLADE_VIEW_ENGINE_KEY,
+    
+            // Use default PHP engine for .php views. 
+            '.php' => WPEMERGE_VIEW_PHP_VIEW_ENGINE_KEY,
+    
+            // Use Blade for all other cases as blade views can be referenced
+            // in blade.format.as.well without an extension.
+        ],
+        WPEMERGEBLADE_VIEW_BLADE_VIEW_ENGINE_KEY
+    );
 };
 ```
 !> The example above assumes you have included both WP Emerge Twig and WP Emerge Blade composer packages. 
