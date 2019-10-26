@@ -209,7 +209,7 @@ class MyServiceProvider implements ServiceProviderInterface {
 ```php
 <?php
 /**
-* App Layout: layouts/app.php
+* Layout: layouts/app.php
 */
 
 if ( is_single() ) {
