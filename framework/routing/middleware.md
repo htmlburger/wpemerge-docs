@@ -1,4 +1,6 @@
-# Route Middleware
+# Middleware
+
+## Route Middleware
 
 Middleware allow you to modify the request and/or response before and/or after it reaches the route handler. Middleware can be any of the following:
 1. the class name of a class that has a method with the following signature:  
@@ -31,11 +33,66 @@ You can also define middleware that is automatically applied to all routes - che
 
 !> Middleware is only applied on defined routes - normal WordPress requests that do not match any route will NOT have middleware applied. To apply middleware to all requests you have to match all requests with routes. Take a look at [Handling all requests](/framework/routing/methods#handling-all-requests) for an easy way to achieve this.
 
+## Controller Middleware
+
+Another way you can specify middleware is by declaring it in your controller's `__construct()` method. To do so, follow these steps:
+1. Implement the `HasControllerMiddlewareInterface` interface and use the `HasControllerMiddlewareTrait` trait like so:
+  ```php
+  use WPEmerge\Middleware\HasControllerMiddlewareInterface;
+  use WPEmerge\Middleware\HasControllerMiddlewareTrait;
+  
+  class MyController implements HasControllerMiddlewareInterface {
+      use HasControllerMiddlewareTrait;
+
+      // ...
+  }
+  ```
+2. Declare the `__construct()` method if you haven't already:
+  ```php
+  public function __construct() {
+
+  }
+  ```
+3. Add your middleware using the `middleware()` method:
+  ```php
+  public function __construct() {
+      $this->middleware( 'mymiddleware' );
+  }
+  ```
+
+Here's a full example:
+```php
+class UserDashboard implements HasControllerMiddlewareInterface {
+    use HasControllerMiddlewareTrait;
+
+    public function __construct() {
+        // Apply the 'csrf' middleware to all methods of this controller:
+        $this->middleware( 'csrf' );
+
+        // Apply the 'user.logged_in' middleware to all methods of this
+        // controller except 'login':
+        $this->middleware( 'user.logged_in' )->except( 'login' );
+
+        // Apply the 'user.logged_out' middleware only to the 'login' method
+        // of this controller:
+        $this->middleware( 'user.logged_out' )->only( 'login' );
+    }
+
+    public function login() {
+        // ...
+    }
+
+    public function logout() {
+        // ...
+    }
+}
+```
+
 ## Passing arguments to middleware
 
-Another benefit to using route aliases is that they enable you to pass parameters to middleware in a comma-separated list.
+Another benefit of using middleware aliases is that they enable you to pass arguments to middleware in a comma-separated list.
 
-For example, if you have a middleware class that limits access to a route based on the capabilities of the current user you can reuse it for different capabilities by passing an argument:
+For example, if you have a middleware class that limits access based on the capabilities of the current user you can reuse it for different capabilities by passing an argument:
 
 Our middleware class:
 ```php
