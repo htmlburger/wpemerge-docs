@@ -98,6 +98,8 @@ WPEmerge::bootstrap( [
      * Debug settings.
      */
     'debug' => [
+        // Enable debug mode. Defaults to the value of WP_DEBUG.
+        'enable' => true,
         // Enable the use of filp/whoops for an enhanced error interface. Defaults to true.
         'pretty_errors' => true,
     ],
