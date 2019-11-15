@@ -33,9 +33,7 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
     /**
      * Bootstrap WP Emerge.
      */
-    add_action( 'after_setup_theme', function() {
-        WPEmerge::bootstrap();
-    } );
+    WPEmerge::bootstrap();
     ```
 
 And we're done - we have composer and WP Emerge loaded and bootstrapped! But ... we're not really doing anything with WP Emerge - let's change that:
@@ -75,13 +73,11 @@ require 'vendor/autoload.php';
 /**
  * Bootstrap WP Emerge.
  */
-add_action( 'after_setup_theme', function() {
-    WPEmerge::bootstrap( [
-        'routes' => [
-            'web' => __DIR__ . '/app/routes/web.php',
-        ],
-    ] );
-} );
+WPEmerge::bootstrap( [
+    'routes' => [
+        'web' => __DIR__ . '/app/routes/web.php',
+    ],
+] );
 ```
 
 If we open up our browser again we will now see the `Hello World!` sentence as we originally expected!
