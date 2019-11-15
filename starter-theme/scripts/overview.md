@@ -2,11 +2,27 @@
 
 ## `yarn dev`
 
-Run the build process in development mode and enable [Browsersync](#browsersync).
+Run the build process in development mode:
+- **Enable [Browsersync](#browsersync) to auto-refresh when changes are detected.**
+- Transpile modern JavaScript syntax based on Stage 2 proposals and the `browserslist` key in `package.json`.
+- Compile SCSS into CSS.
+- Combine CSS media queries to reduce stylesheet size.
+- Process CSS through Autoprefixer.
+- Generate a `manifest.json` file with automatic filename-based asset cache busting.
+- Bundle images in `resources/images/sprite/` into a single sprite image, with optional @2x version.
 
 ## `yarn build`
 
-Run the build process in production mode with all optimizations enabled.
+Run the build process in production mode with Webpack optimizations enabled:
+- Transpile modern JavaScript syntax based on Stage 2 proposals and the `browserslist` key in `package.json`.
+- **Minify JavaScript.**
+- Compile SCSS into CSS.
+- Combine CSS media queries to reduce stylesheet size.
+- Process CSS through Autoprefixer.
+- **Minify CSS.**
+- Generate a `manifest.json` file with automatic filename-based asset cache busting.
+- Bundle images in `resources/images/sprite/` into a single sprite image, with optional @2x version.
+- **Optimize images to reduce filesize.**
 
 ## `yarn release`
 
