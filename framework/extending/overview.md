@@ -68,8 +68,8 @@ For a real-world example, we will be adding our own custom routing condition.
             );
         }
 
-        public function boot( $container ) {
-            // We have nothing to boot.
+        public function bootstrap( $container ) {
+            // We have nothing to bootstrap.
         }
     }
     ```
