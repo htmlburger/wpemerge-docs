@@ -95,6 +95,14 @@ WPEmerge::bootstrap( [
     'views' => [get_stylesheet_directory(), get_template_directory()],
 
     /**
+     * View Composers settings.
+     */
+    'view_composers' => [
+        // Default namespace.
+        'namespace' => 'App\\ViewComposers\\',
+    ],
+
+    /**
      * Debug settings.
      */
     'debug' => [
