@@ -15,13 +15,13 @@ Sometimes it can be hard to see the full picture which is why this guide will sh
 We begin by installing WP Emerge through Composer:
 
 1. Open your terminal of choice.
-1. `$ cd THEME_DIR`
-1. `$ composer require htmlburger/wpemerge`
+2. `$ cd THEME_DIR`
+3. `$ composer require htmlburger/wpemerge`
 
 Once that's done, we have to make sure the Composer `autoload.php` file is required into our theme, otherwise no composer packages will be loaded at all:
 
 1. Open `THEME_DIR/functions.php` in your favorite editor.
-1. Add the following to the **start** of the file:
+2. Add the following to the **start** of the file:
     ```php
     use WPEmerge\Facades\WPEmerge;
 
@@ -39,10 +39,10 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
 And we're done - we have composer and WP Emerge loaded and bootstrapped! But ... we're not really doing anything with WP Emerge - let's change that:
 
 1. In order to avoid bloating up the main theme `functions.php` we will separate our routes into their own file.
-1. Create a new directory inside `THEME_DIR` called `app`.
-1. Create a new directory inside `app` called `routes`.
-1. Create a new file inside the new `routes` directory called `web.php` and open it in your editor.
-1. Add the following code to your new file:
+2. Create a new directory inside `THEME_DIR` called `app`.
+3. Create a new directory inside `app` called `routes`.
+4. Create a new file inside the new `routes` directory called `web.php` and open it in your editor.
+5. Add the following code to your new file:
     ```php
     <?php
     /**
@@ -55,7 +55,7 @@ And we're done - we have composer and WP Emerge loaded and bootstrapped! But ...
         return \WPEmerge\output( 'Hello World!' );
     } );
     ```
-1. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
+6. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
   - `Route::` - The Route facade provides us with tools to create and register our routes.
   - `get()` - Match requests which use the `GET` request method.
   - `url( '/' )` - Match requests that match the provided url, relative to the homepage.
@@ -93,8 +93,8 @@ Let's go over what we achieved in the previous section:
 That's great and all but we didn't really do anything useful that can help us build a better website which is why in this section we will do the following:
 
 1. Create a landing Call-to-Action template with a "Skip" button.
-1. Show the CTA only on the homepage.
-1. Show the real homepage if the user clicks the "Skip" button.
+2. Show the CTA only on the homepage.
+3. Show the real homepage if the user clicks the "Skip" button.
 
 Let's get started!
 
@@ -154,7 +154,7 @@ If we open up the homepage we will now be presented with our template.
 WP Emerge allows us to use anonymous functions to define as our route handlers, however, it's best if we define controller classes instead so our logic is neatly compartmentalized and separated from other handlers' logic:
 
 1. Create a new `THEME_DIR/app/src/Controllers/Web` directory.
-1. Create a new `THEME_DIR/app/src/Controllers/Web/HomeController.php` file with the following content:
+2. Create a new `THEME_DIR/app/src/Controllers/Web/HomeController.php` file with the following content:
     ```php
     <?php
 
@@ -167,7 +167,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     }
     ```
     As you probably already guessed, this controller will do exactly the same as our anonymous function.
-1. Edit `THEME_DIR/app/routes/web.php` and assign our controller and its `index` method to the route:
+3. Edit `THEME_DIR/app/routes/web.php` and assign our controller and its `index` method to the route:
     ```php
     <?php
     /**
@@ -197,7 +197,7 @@ This is because we have not loaded our class file. We can add a `require` statem
         }
     }
     ```
-1. Edit it so it looks like this:
+2. Edit it so it looks like this:
     ```js
     {
         "require": {
@@ -211,7 +211,7 @@ This is because we have not loaded our class file. We can add a `require` statem
     }
     ```
     The above will tell Composer's autoloader package to autoload any class that is in the `App\` namespace by searching for a file in the `app/src/` directory according to [PSR-4](https://www.php-fig.org/psr/psr-4/) based on the class's namespace and class name.
-1. Execute `composer dump-autoload` in your terminal so the changes take effect.
+3. Execute `composer dump-autoload` in your terminal so the changes take effect.
 
 If we refresh the homepage we will be greeted with our error-free CTA template again.
 

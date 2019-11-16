@@ -124,8 +124,8 @@ $container[ LatestNewsViewComposer::class ] = function( $container ) {
 Why you would use `\WPEmerge\render()`:
 
 1. You are using the default default view engine. You do not need it when using Blade or Twig, for example, as they have composition built-in.
-1. Partials rendered using `include`, `require`, `get_template_part()` etc. __DO NOT__ support composition, `\WPEmerge\render()` does.
-1. `\WPEmerge\render()` optionally provides context to the partial through the `$context` parameter.
+2. Partials rendered using `include`, `require`, `get_template_part()` etc. __DO NOT__ support composition, `\WPEmerge\render()` does.
+3. `\WPEmerge\render()` optionally provides context to the partial through the `$context` parameter.
 
 For example, instead of using
 ```php

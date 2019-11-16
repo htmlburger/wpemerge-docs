@@ -5,7 +5,7 @@
 Middleware allow you to modify the request and/or response before and/or after it reaches the route handler. Middleware can be any of the following:
 1. the class name of a class that has a method with the following signature:  
 `public function handle( \WPEmerge\Requests\RequestInterface $request, \Closure $next )`
-1. an alias of a middleware class as defined in the `middleware` key of your configuration. **This is the recommended way of using middleware.**
+2. an alias of a middleware class as defined in the `middleware` key of your configuration. **This is the recommended way of using middleware.**
 
 A common example for middleware usage is protecting certain routes to be accessible by logged in users only:
 

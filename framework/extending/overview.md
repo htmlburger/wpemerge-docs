@@ -47,7 +47,7 @@ For a real-world example, we will be adding our own custom routing condition.
     }
     ```
 
-1. Next, we will define a service provider class which will register our new condition:
+2. Next, we will define a service provider class which will register our new condition:
     ```php
     use WPEmerge\ServiceProviders\ServiceProviderInterface;
 
@@ -74,7 +74,7 @@ For a real-world example, we will be adding our own custom routing condition.
     }
     ```
 
-1. Finally, we pass our brand new service provider while booting WP Emerge:
+3. Finally, we pass our brand new service provider while booting WP Emerge:
     ```php
     WPEmerge::bootstrap( [
         'providers' => [

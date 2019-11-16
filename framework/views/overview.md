@@ -5,7 +5,7 @@ This view engine uses `extract()` for the view context and then includes the vie
 Essentially, this engine loads views in the same way WordPress does, but with a couple extra features:
 
 1. Context variable passing.
-1. Ability to specify layouts for views.
+2. Ability to specify layouts for views.
 
 ## External view engines
 

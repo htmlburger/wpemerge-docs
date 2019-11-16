@@ -13,14 +13,14 @@ In addition, a variable will be defined for every sprite image which you will us
     }
     ```
 
-1. Add a sprite image as a background and set the element's width and height to the exact dimensions of the image:
+2. Add a sprite image as a background and set the element's width and height to the exact dimensions of the image:
     ```scss
     .foo {
         @include sprite($birds);
     }
     ```
 
-1. Set an element's height to be equal to a sprite image's height:
+3. Set an element's height to be equal to a sprite image's height:
     ```scss
     .foo {
         @include sprite-height($birds);
@@ -37,9 +37,9 @@ To enable retina support for sprites follow these steps:
     ```js
     // retina: '@2x',
     ```
-1. Restart the dev process if you have it running.
-1. For every image you have in `resources/images/sprite/`, create a retina copy with `@2x` added as a suffix to the filename (e.g. `foo.jpg` should have a `foo@2x.jpg` retina version).
-1. Replace mixin usage with the appropriate retina counterpart and add a `-group` suffix to your sprite variable (e.g. `@include sprite($birds);` becomes `@include retina-sprite($birds-group);`)
+2. Restart the dev process if you have it running.
+3. For every image you have in `resources/images/sprite/`, create a retina copy with `@2x` added as a suffix to the filename (e.g. `foo.jpg` should have a `foo@2x.jpg` retina version).
+4. Replace mixin usage with the appropriate retina counterpart and add a `-group` suffix to your sprite variable (e.g. `@include sprite($birds);` becomes `@include retina-sprite($birds-group);`)
 
 That's it! Completing the above steps ensures the build process will add relevant media queries to replace the sprite image references with the retina version for suitable devices.
 

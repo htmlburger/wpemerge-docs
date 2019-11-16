@@ -8,13 +8,13 @@ Route handlers have a couple of requirements:
 
 1. Must receive at least 2 arguments
     1. `$request` - an object representing the current request to the server
-    1. `$view` - the view filepath WordPress is currently attempting to load
-    1. You may have additional arguments depending on the route condition(s) you are using (e.g. URL parameters, custom condition arguments etc.)
-1. Must return one the following:
+    2. `$view` - the view filepath WordPress is currently attempting to load
+    3. You may have additional arguments depending on the route condition(s) you are using (e.g. URL parameters, custom condition arguments etc.)
+2. Must return one the following:
     1. Any `string` which will be output literally
-    1. Any `array` which will be output as a JSON response
-    1. an object implementing the `Psr\Http\Message\ResponseInterface` interface.
-1. Can optionally throw exceptions. Make sure you catch these exceptions in your `ErrorHandler` and translate them to responses so that visitors are not greeted with blank pages or stack traces. An example exception that is handled for you by default is the `\WPEmerge\Routing\NotFoundException` exception which is translated to a 404 response.
+    2. Any `array` which will be output as a JSON response
+    3. an object implementing the `Psr\Http\Message\ResponseInterface` interface.
+3. Can optionally throw exceptions. Make sure you catch these exceptions in your `ErrorHandler` and translate them to responses so that visitors are not greeted with blank pages or stack traces. An example exception that is handled for you by default is the `\WPEmerge\Routing\NotFoundException` exception which is translated to a 404 response.
 
 ## Instantiation
 
