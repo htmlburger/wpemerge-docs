@@ -13,15 +13,20 @@ If the middleware cannot find a valid token in a non-read request (e.g. `POST`, 
 
 Here's how to add the middleware to a route:
 ```php
-Route::get()->middleware( 'csrf' )->...
+Route::post()->middleware( 'csrf' )->...
 ```
 
-... or to add it globally:
+Here's how to add the middleware with a custom nonce action:
+```php
+Route::post()->middleware( 'csrf:custom_action_goes_here' )->...
+```
+
+It is not advisable to use a single nonce for your entire site but here's how to do it if the need arises:
 ```php
 WPEmerge::bootstrap( [
     // ...
     'middleware_groups' => [
-        'global' => ['csrf'],
+        'global' => ['csrf:custom_action'],
         // ...
     ],
     // ...
@@ -34,15 +39,21 @@ To output a hidden CSRF token field to your forms:
 ```html
 <form>
     <?php Csrf::field(); ?>
+    <!-- or -->
+    <?php Csrf::field( 'custom_action' ); ?>
 </form>
 ```
 
 To add the token to a url:
 ```php
 $url = Csrf::url( $url );
+// or
+$url = Csrf::url( $url, 'custom_action' );
 ```
 
 To get the token directly:
 ```php
 $token = Csrf::getToken();
+// or
+$token = Csrf::getToken( 'custom_action' );
 ```
