@@ -103,6 +103,17 @@ WPEmerge::bootstrap( [
     ],
 
     /**
+     * Cache settings.
+     */
+    'cache' => [
+        // Absolute path to custom default cache directory.
+        // Extensions like Blade and Twig will use this value for their views cache
+        // unless one has been specified for them.
+        // Defaults to ROOT_DIR/wp-content/uploads/wpemerge/cache.
+        'path' =>'/some/cache/directory/',
+    ],
+
+    /**
      * Debug settings.
      */
     'debug' => [
