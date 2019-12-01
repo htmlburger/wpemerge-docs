@@ -46,8 +46,8 @@ To help with importing assets, the webpack configuration supports a number of re
 | `node_modules/foo/foo.js` | `import foo from '~/foo/foo';` |
 | `node_modules/foo/index.js` | `import foo from '~/foo';` |
 | `resources/vendor/foo/foo.js` | `import foo from '@vendor/foo/foo';` |
-| `resources/scripts/theme/foo/foo.js` | `import foo from '@scripts/theme/foo/foo';` |
-| `resources/scripts/theme/foo.js` | `import foo from '@scripts/theme/foo';` |
+| `resources/scripts/frontend/foo/foo.js` | `import foo from '@scripts/frontend/foo/foo';` |
+| `resources/scripts/frontend/foo.js` | `import foo from '@scripts/frontend/foo';` |
 
 In the last two examples you can even omit the `@scripts/` portion as your `resources/scripts/` directory is considered a module root:
 
