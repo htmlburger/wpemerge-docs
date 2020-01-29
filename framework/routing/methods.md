@@ -3,13 +3,13 @@
 The method you call when you create a route defines which request method the route will match:
 
 ```php
-App::route()->[get|post|put|patch|delete|options|any]();
+\App::route()->[get|post|put|patch|delete|options|any]();
 ```
 
-If you wish to match a specific set of methods you can also use the generic `App::route()->methods()` method:
+If you wish to match a specific set of methods you can also use the generic `\App::route()->methods()` method:
 
 ```php
-App::route()->methods( ['GET', 'HEAD', 'POST'] );
+\App::route()->methods( ['GET', 'HEAD', 'POST'] );
 ```
 
 ## Handling all requests
@@ -17,7 +17,7 @@ App::route()->methods( ['GET', 'HEAD', 'POST'] );
 By default, WP Emerge will only handle the requests which match its routes so you can implement it only where you need to (even on legacy projects). However, you can also handle all requests if you wish to do so:
 ```php
 // Add this AFTER all of your route definitions
-App::route()->all();
+\App::route()->all();
 ```
 
 Adding this will initially seem like it makes no difference because WP Emerge will make sure requests produce the same results as normal WordPress requests would, however, there are a couple notable differences:

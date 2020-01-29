@@ -4,7 +4,7 @@ In order to enable WP Emerge you first have to boot it. This is usually done in 
 
 ## Bootstrapping
 
-1. Configuration options passed to `App::make()->bootstrap( $config )` are loaded.
+1. Configuration options passed to `\App::make()->bootstrap( $config )` are loaded.
 2. All service providers listed in the configuration are registered.
 3. All service providers listed in the configuration are booted.
 

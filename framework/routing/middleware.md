@@ -21,7 +21,7 @@ class AuthenticationMiddleware {
     }
 }
 
-App::route()->get()
+\App::route()->get()
     ->url( '/protected-url/')
     ->middleware( AuthenticationMiddleware::class )
     ->handle( ... );
@@ -111,7 +111,7 @@ class CapabilityMiddleware {
 
 Defining the middleware alias:
 ```php
-App::make()->bootstrap( [
+\App::make()->bootstrap( [
     'middleware' => [
         'capability' => CapabilityMiddleware::class,
     ],
@@ -121,7 +121,7 @@ App::make()->bootstrap( [
 
 Passing `manage_options` as the required capability to the middleware:
 ```php
-App::route()->middleware( 'capability:manage_options' )->...
+\App::route()->middleware( 'capability:manage_options' )->...
 ```
 
 ?> There's built-in middleware that deals with this exact use case - `user.can`. Check out the [Built-in Middleware](#built-in-middleware) section below for more information.
@@ -130,7 +130,7 @@ App::route()->middleware( 'capability:manage_options' )->...
 
 Commonly used middleware can be grouped up so you do not have to list it every time and pass the same arguments (if any). To define a new middleware group you have to add a new key to the `middleware_groups` configuration option with a value of the array of middleware that you wish this group to include:
 ```php
-App::make()->bootstrap( [
+\App::make()->bootstrap( [
     'middleware_groups' => [
         'mygroup' => [
             'mymiddleware1',
@@ -143,7 +143,7 @@ App::make()->bootstrap( [
 
 Using middleware groups is done in exactly the same way as you would use a single middleware alias:
 ```php
-App::route()->middleware( 'mygroup' )->...
+\App::route()->middleware( 'mygroup' )->...
 ```
 
 Refer to the [Configuration](/framework/configuration) article for more information on middleware groups.
@@ -172,12 +172,12 @@ CSRF middleware is **NOT** applied globally by default. Check out the [CSRF Prot
 
 Require the current user to be logged in redirecting non-logged in users to the login page:
 ```php
-App::route()->middleware( 'user.logged_in' )->...
+\App::route()->middleware( 'user.logged_in' )->...
 ```
 
 Optionally, you can specify a custom url to redirect to:
 ```php
-App::route()->middleware( 'user.logged_in:http://example.com' )->...
+\App::route()->middleware( 'user.logged_in:http://example.com' )->...
 ```
 
 You can also filter the final url:
@@ -191,12 +191,12 @@ add_filter( 'wpemerge.middleware.user.logged_in.redirect_url', function ( $url, 
 
 The opposite of `user.logged_in` - require the current user to be logged out redirecting logged in users to the home page:
 ```php
-App::route()->middleware( 'user.logged_out' )->...
+\App::route()->middleware( 'user.logged_out' )->...
 ```
 
 Optionally, you can specify a custom url to redirect to:
 ```php
-App::route()->middleware( 'user.logged_out:http://example.com' )->...
+\App::route()->middleware( 'user.logged_out:http://example.com' )->...
 ```
 
 You can also filter the final url:
@@ -210,17 +210,17 @@ add_filter( 'wpemerge.middleware.user.logged_out.redirect_url', function ( $url,
 
 Require the current user to have a capability redirecting users who do not to the homepage:
 ```php
-App::route()->middleware( 'user.can:edit_posts' )->...
+\App::route()->middleware( 'user.can:edit_posts' )->...
 ```
 
 Optionally, you can specify an object ID for the capability check:
 ```php
-App::route()->middleware( 'user.can:edit_post,10' )->...
+\App::route()->middleware( 'user.can:edit_post,10' )->...
 ```
 
 Optionally, you can specify a custom url to redirect to:
 ```php
-App::route()->middleware( 'user.can:edit_posts,0,http://example.com' )->...
+\App::route()->middleware( 'user.can:edit_posts,0,http://example.com' )->...
 ```
 
 You can also filter the capability:

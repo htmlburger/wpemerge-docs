@@ -97,7 +97,7 @@ Implementing your own or a third-party engine is straightforward - there are onl
     ```
 4. Finally, register your service provider with WP Emerge:
     ```php
-    App::make()->bootstrap( [
+    \App::make()->bootstrap( [
         'providers' => [
             // ... other providers
             MyCustomServiceProvider::class,

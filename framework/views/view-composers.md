@@ -37,7 +37,7 @@ class ViewComposersServiceProvider implements ServiceProviderInterface {
      * {@inheritDoc}
      */
     public function bootstrap( $container ) {
-        App::views()->addComposer( 'templates/partials/latest-news', function( $view ) {
+        \App::views()->addComposer( 'templates/partials/latest-news', function( $view ) {
             $view->with( [
                 'news' => new WP_Query( [
                     'posts_per_page' => 3,
@@ -50,7 +50,7 @@ class ViewComposersServiceProvider implements ServiceProviderInterface {
 
 Then, we need to register that service provider in the configuration:
 ```php
-App::make()->bootstrap( [
+\App::make()->bootstrap( [
     'providers' => [
         // ...
         \App\ViewComposers\ViewComposersServiceProvider::class,

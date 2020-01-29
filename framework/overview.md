@@ -69,9 +69,9 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 #### Routes with custom URLs or dynamic conditions
 
 ```php
-App::route()->get()->url( '/' )->handle( 'HomeController@index' );
+\App::route()->get()->url( '/' )->handle( 'HomeController@index' );
 
-App::route()->get()
+\App::route()->get()
     ->url( '/custom' )
     ->query( function ( $query_vars ) {
         return [
@@ -80,11 +80,11 @@ App::route()->get()
     } )
     ->handle( 'CustomController@custom' );
 
-App::route()->get()
+\App::route()->get()
     ->where( 'post_id', get_option( 'page_on_front' ) )
     ->handle( 'HomeController@index' );
 
-App::route()->get()
+\App::route()->get()
     ->where( function() {
         return is_front_page();
     } );
@@ -123,7 +123,7 @@ class HomeController {
 #### Middleware
 
 ```php
-App::route()->get()
+\App::route()->get()
     ->url( '/' )
     ->middleware( ['user.can:manage_options', 'minify'] )
     ->handle( 'HomeController@index' );

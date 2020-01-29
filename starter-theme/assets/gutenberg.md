@@ -32,17 +32,17 @@ add_theme_support( 'editor-color-palette', [
 	[
 		'name'  => __( 'Red', 'app' ),
 		'slug'  => 'material-red',
-		'color' => App::theme()->config()->get( 'variables.color.material-red', '#000000' ),
+		'color' => \App::theme()->config()->get( 'variables.color.material-red', '#000000' ),
 	],
 	[
 		'name'  => __( 'Pink', 'app' ),
 		'slug'  => 'material-pink',
-		'color' => App::theme()->config()->get( 'variables.color.material-pink', '#000000' ),
+		'color' => \App::theme()->config()->get( 'variables.color.material-pink', '#000000' ),
 	],
 	[
 		'name'  => __( 'Purple', 'app' ),
 		'slug'  => 'material-purple',
-		'color' => App::theme()->config()->get( 'variables.color.material-purple', '#000000' ),
+		'color' => \App::theme()->config()->get( 'variables.color.material-purple', '#000000' ),
 	],
 	// ...
 ] );
@@ -98,13 +98,13 @@ add_theme_support( 'editor-font-sizes', [
 	[
         'name'      => __( 'extra small', 'app' ),
         'shortName' => __( 'XS', 'app' ),
-        'size'      => App::theme()->config()->get( 'variables.font-size.xs', 12 ),
+        'size'      => \App::theme()->config()->get( 'variables.font-size.xs', 12 ),
         'slug'      => 'xs',
     ],
     [
         'name'      => __( 'small', 'app' ),
         'shortName' => __( 'S', 'app' ),
-        'size'      => App::theme()->config()->get( 'variables.font-size.s', 16 ),
+        'size'      => \App::theme()->config()->get( 'variables.font-size.s', 16 ),
         'slug'      => 's',
     ],
 	// ...

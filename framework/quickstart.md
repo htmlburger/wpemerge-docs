@@ -12,7 +12,7 @@
      * Web Routes.
      */
 
-    App::route()->get()->url( '/' )->handle( function() {
+    \App::route()->get()->url( '/' )->handle( function() {
         return \WPEmerge\output( 'Hello World!' );
     } );
     ```
@@ -24,7 +24,7 @@
         session_start(); // required only if you use Flash and OldInput
     } );
 
-    App::make()->bootstrap( [
+    \App::make()->bootstrap( [
         'routes' => [
             'web' => __DIR__ . '/routes/web.php',
         ],
