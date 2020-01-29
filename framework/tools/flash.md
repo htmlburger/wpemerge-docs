@@ -26,7 +26,7 @@ if ( $email_is_invalid ) {
     // flash an error message
     Flash::add( 'errors', 'Please enter a valid email address.' );
     // redirect the user back to the form
-    return \WPEmerge\redirect()->back();
+    return \App::redirect()->back();
 }
 
 // inside your form view

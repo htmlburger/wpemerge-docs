@@ -15,7 +15,7 @@ Here's the main `theme/index.php` view of the WP Emerge Theme:
 /**
  * Layout: layouts/app.php
  */
-\WPEmerge\render( 'loop' );
+\App::render( 'loop' );
 ```
 
 The above is not a snippet - this is the entire file!
@@ -28,20 +28,20 @@ Whenever the PHP View Engine encounters an `Layout` declaration, it will automat
 The `layouts/app.php` layout looks like this:
 ```php
 <?php
-\WPEmerge\render( 'header' );
+\App::render( 'header' );
 
 if ( ! is_singular() ) {
 	app_the_title( '<h2 class="post-title">', '</h2>' );
 }
 
-\WPEmerge\layout_content();
+\App::layoutContent();
 
-\WPEmerge\render( 'sidebar' );
+\App::render( 'sidebar' );
 
-\WPEmerge\render( 'footer' );
+\App::render( 'footer' );
 ```
 
-Nothing unusual about this file except the call to `\WPEmerge\layout_content()` - this is what defines where the actual view content should be rendered. Essentially, any view can be used as a layout as long as it calls `\WPEmerge\layout_content()` to include the "child" view content.
+Nothing unusual about this file except the call to `\App::layoutContent()` - this is what defines where the actual view content should be rendered. Essentially, any view can be used as a layout as long as it calls `\App::layoutContent()` to include the "child" view content.
 Also like any other view, layouts can declare their own `Layout` to achieve layout nesting and you can even use View Composers on layouts to pass context values.
 
 You no longer need to have the header/footer boilerplate in every view while retaining the flexibility of having different header/footer partials for different templates by declaring your desired layouts when needed.

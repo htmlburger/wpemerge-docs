@@ -13,7 +13,7 @@
      */
 
     \App::route()->get()->url( '/' )->handle( function() {
-        return \WPEmerge\output( 'Hello World!' );
+        return \App::output( 'Hello World!' );
     } );
     ```
 4. Add the following to the **start** of your `functions.php`:

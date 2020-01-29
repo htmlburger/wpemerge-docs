@@ -104,7 +104,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 class HomeController {
     public function index( $request ) {
         $name = $request->get( 'name' );
-        return \WPEmerge\view( 'templates/home.php' )
+        return \App::view( 'templates/home.php' )
             ->with( [
                 'welcome' => 'Welcome, ' . $name . '!',
             ] );
@@ -140,7 +140,7 @@ class HomeController {
 ```php
 class HomeController {
     public function index( $request ) {
-        return \WPEmerge\response()
+        return \App::response()
             ->withHeader( 'X-Custom-Header', 'foo' );
     }
 }
@@ -213,25 +213,25 @@ class MyServiceProvider implements ServiceProviderInterface {
 */
 
 if ( is_single() ) {
-    \WPEmerge\render( ['loop-single', 'loop'] );
+    \App::render( ['loop-single', 'loop'] );
 } else {
-    \WPEmerge\render( 'loop' );
+    \App::render( 'loop' );
 }
 ```
 `layouts/app.php`
 ```php
 <?php
-\WPEmerge\render( 'header' );
+\App::render( 'header' );
 
 if ( ! is_singular() ) {
 	app_the_title( '<h2 class="post-title">', '</h2>' );
 }
 
-\WPEmerge\layout_content();
+\App::layoutContent();
 
-\WPEmerge\render( 'sidebar' );
+\App::render( 'sidebar' );
 
-\WPEmerge\render( 'footer' );
+\App::render( 'footer' );
 ```
 
 - Eliminate repeating `get_header()`/`get_footer()` calls in every view.

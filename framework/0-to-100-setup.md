@@ -47,7 +47,7 @@ And we're done - we have composer and WP Emerge loaded and bootstrapped! But ...
      * Web Routes.
      */
     \App::route()->get()->url( '/' )->handle( function() {
-        return \WPEmerge\output( 'Hello World!' );
+        return \App::output( 'Hello World!' );
     } );
     ```
 6. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
@@ -136,7 +136,7 @@ We have our pretty basic template ready so let's put it to use by editing `THEME
  */
 
 \App::route()->get()->url( '/' )->handle( function() {
-    return \WPEmerge\view( 'template-cta.php' );
+    return \App::view( 'template-cta.php' );
 } );
 ```
 
@@ -155,7 +155,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     
     class HomeController {
         public function index( $request, $view ) {
-            return \WPEmerge\view( 'template-cta.php' );
+            return \App::view( 'template-cta.php' );
         }
     }
     ```
@@ -219,10 +219,10 @@ public function index( $request, $view ) {
     // If the request includes the "cta" GET parameter with a value of "0" ...
     if ( $request->get( 'cta' ) === '0' ) {
         // ... return the view WordPress was trying to load:
-        return \WPEmerge\view( $view );
+        return \App::view( $view );
     }
     // otherwise, return our custom CTA view:
-    return \WPEmerge\view( 'template-cta.php' );
+    return \App::view( 'template-cta.php' );
 }
 ```
 
@@ -237,12 +237,12 @@ Instead we can modify our controller method to supply our template (which we wil
 ```php
 public function index( $request, $view ) {
     if ( $request->get( 'cta' ) === '0' ) {
-        return \WPEmerge\view( $view );
+        return \App::view( $view );
     }
 
     $skip_url = add_query_arg( 'cta', '0', $request->getUrl() );
 
-    return \WPEmerge\view( 'template-cta.php' )
+    return \App::view( 'template-cta.php' )
         ->with( 'skip_url', $skip_url );
 }
 ```
@@ -256,9 +256,9 @@ We also have to modify the template to use the newly available variable:
 <a href="<?php echo esc_url( $skip_url ); ?>">Skip &raquo;</a>
 ```
     
-We reduced PHP logic duplication, but this doesn't solve the use case where we want to have that variable available in a view partial, for example. For this we can use the `\WPEmerge\render( $view, $context = [] )` function which works very similarly to `get_template_part()` but as you can see it has an optional argument which allows you to pass context variables as well:
+We reduced PHP logic duplication, but this doesn't solve the use case where we want to have that variable available in a view partial, for example. For this we can use the `\App::render( $view, $context = [] )` function which works very similarly to `get_template_part()` but as you can see it has an optional argument which allows you to pass context variables as well:
 ```php
-<?php \WPEmerge\render( 'foo-partial.php', ['skip_url' => $skip_url] ); ?>
+<?php \App::render( 'foo-partial.php', ['skip_url' => $skip_url] ); ?>
 ```
 
 ## FAQ

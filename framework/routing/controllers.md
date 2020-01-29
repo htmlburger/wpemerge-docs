@@ -36,12 +36,12 @@ To return a suitable response object you can use one of the built-in utility fun
 ```php
 class MyController {
     public function someHandlerMethod( $request, $view ) {
-        return \WPEmerge\view( 'templates/about-us.php' );
-        return \WPEmerge\redirect()->to( home_url( '/' ) );
-        return \WPEmerge\error( 404 );
-        return \WPEmerge\output( 'Hello World!' ); // same as returning a string
-        return \WPEmerge\json( ['foo' => 'bar'] ); // same as returning an array
-        return \WPEmerge\response(); // a blank response object
+        return \App::view( 'templates/about-us.php' );
+        return \App::redirect()->to( home_url( '/' ) );
+        return \App::error( 404 );
+        return \App::output( 'Hello World!' ); // same as returning a string
+        return \App::json( ['foo' => 'bar'] ); // same as returning an array
+        return \App::response(); // a blank response object
     }
 }
 ```
@@ -51,37 +51,37 @@ Since all of the above functions return an object implementing the `ResponseInte
 ```php
 class MyController {
     public function someHandlerMethod( $request, $view ) {
-        return \WPEmerge\view( 'templates/about-us.php' )->withStatus( 201 );
+        return \App::view( 'templates/about-us.php' )->withStatus( 201 );
     }
 }
 ```
 
-### `\WPEmerge\output( $output );`
+### `\App::output( $output );`
 
 Returns a new response object with the supplied string as the body.
 
-### `\WPEmerge\view( $views );`
+### `\App::view( $views );`
 
 By default, uses `locate_template( $views )` to resolve a view and applies the view output as the response body.
 
 Optionally, you can pass context values to be used from inside the view by chaining `->with( ['foo' => 'bar'] )`.
 
-### `\WPEmerge\json( $data );`
+### `\App::json( $data );`
 
 Returns a new response object json encoding the passed data as the body.
 
-### `\WPEmerge\redirect()->to( $url, $status = 302 );`
+### `\App::redirect()->to( $url, $status = 302 );`
 
 Returns a new response object with location and status headers to redirect the user.
 
-### `\WPEmerge\redirect()->back( $fallback, $status = 302 );`
+### `\App::redirect()->back( $fallback, $status = 302 );`
 
 Returns a new response object with location and status headers to redirect the user. By default it will use the `Referer` request header. If one is not specified, it will use the supplied `$fallback` as the url. If neither is specified it will use the current request url instead.
 
-### `\WPEmerge\error( $status );`
+### `\App::error( $status );`
 
 Returns a new response object with the supplied status code. Additionally, attempts to render a suitable `{$status}.php` view file.
 
-### `\WPEmerge\response();`
+### `\App::response();`
 
 Returns a blank response object.
