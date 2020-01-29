@@ -30,6 +30,7 @@
   * [Flash](/framework/tools/flash)
   * [OldInput](/framework/tools/oldinput)
   * [CSRF Protection](/framework/tools/csrf-protection)
+  * [\App::closure()](/framework/tools/app-closure)
   
 * Extending
 
