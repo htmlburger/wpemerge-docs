@@ -1,8 +1,8 @@
-# Theme
+# App::theme()
 
-This class (it's actually a facade) provides a couple tools to help out with common tasks.
+This utility provides a couple tools to help out with common tasks.
 
-## Theme::partial( $partial, $child = '', $context = [] )
+## App::theme()->partial( $partial, $child = '', $context = [] )
 
 Include a partial view file in a very similar fashion to how `get_template_part()` works, but with a couple of differences:
 
@@ -10,7 +10,7 @@ Include a partial view file in a very similar fashion to how `get_template_part(
 2. Variables can be passed by utilizing the `$context` parameter.
 3. Internally uses WP Emerge's `\WPEmerge\render()` to enable support for View Composers.
 
-## Theme::uri()
+## App::theme()->uri()
 
 Return the public URI of the theme root directory.
-This method is an alias of `Theme\Assets::getThemeUri()`.
+This method is an alias of `App::theme()->assets()->getThemeUri()`.

@@ -11,23 +11,20 @@
     /**
      * Web Routes.
      */
-    use WPEmerge\Facades\Route;
 
-    Route::get()->url( '/' )->handle( function() {
+    App::route()->get()->url( '/' )->handle( function() {
         return \WPEmerge\output( 'Hello World!' );
     } );
     ```
 4. Add the following to the **start** of your `functions.php`:
     ```php
-    use WPEmerge\Facades\WPEmerge;
- 
     require_once( 'vendor/autoload.php' );
  
     add_action( 'init', function() {
         session_start(); // required only if you use Flash and OldInput
     } );
 
-    WPEmerge::bootstrap( [
+    App::make()->bootstrap( [
         'routes' => [
             'web' => __DIR__ . '/routes/web.php',
         ],

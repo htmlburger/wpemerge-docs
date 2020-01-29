@@ -1,8 +1,8 @@
-# Theme\Config
+# App::theme()->config()
 
-This class (it's actually a facade) provides tools to work with the theme's `config.json` file.
+This utility provides tools to work with the theme's `config.json` file.
 
-## Theme\Config::get( $key, $default = null )
+## App::theme()->config()->get( $key, $default = null )
 
 Return the specified config key using dot notation or the specified default if the key is not set.
 
@@ -16,4 +16,4 @@ Example:
   }
 }
 ```
-To get `baz` you would use `Theme\Config::get( 'foo.bar.baz' )`.
+To get `baz` you would use `App::theme()->config()->get( 'foo.bar.baz' )`.

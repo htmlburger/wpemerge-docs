@@ -76,7 +76,7 @@ For a real-world example, we will be adding our own custom routing condition.
 
 3. Finally, we pass our brand new service provider while booting WP Emerge:
     ```php
-    WPEmerge::bootstrap( [
+    App::make()->bootstrap( [
         'providers' => [
             // ... other providers go here
             PastEventConditionServiceProvider::class,
@@ -88,7 +88,7 @@ For a real-world example, we will be adding our own custom routing condition.
 
 We can now use our custom route condition like so:
 ```php
-Route::get()
+App::route()->get()
     ->where( 'past_event' )
     ->handle( function( $request ) {
         return 'This event has already passed :(';

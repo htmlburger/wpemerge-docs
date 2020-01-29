@@ -36,7 +36,7 @@ class ViewGlobalContextServiceProvider implements ServiceProviderInterface {
 
 Second, we need to register that service provider in the configuration:
 ```php
-WPEmerge::bootstrap( [
+App::make()->bootstrap( [
     'providers' => [
         // ...
         \App\View\ViewGlobalContextServiceProvider::class,

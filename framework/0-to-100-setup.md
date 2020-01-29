@@ -23,8 +23,6 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
 1. Open `THEME_DIR/functions.php` in your favorite editor.
 2. Add the following to the **start** of the file:
     ```php
-    use WPEmerge\Facades\WPEmerge;
-
     /**
      * Load Composer's autoloader.
      */
@@ -33,7 +31,7 @@ Once that's done, we have to make sure the Composer `autoload.php` file is requi
     /**
      * Bootstrap WP Emerge.
      */
-    WPEmerge::bootstrap();
+    App::make()->bootstrap();
     ```
 
 And we're done - we have composer and WP Emerge loaded and bootstrapped! But ... we're not really doing anything with WP Emerge - let's change that:
@@ -48,15 +46,12 @@ And we're done - we have composer and WP Emerge loaded and bootstrapped! But ...
     /**
      * Web Routes.
      */
-
-    use WPEmerge\Facades\Route;
-
-    Route::get()->url( '/' )->handle( function() {
+    App::route()->get()->url( '/' )->handle( function() {
         return \WPEmerge\output( 'Hello World!' );
     } );
     ```
 6. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
-  - `Route::` - The Route facade provides us with tools to create and register our routes.
+  - `App::route()` - The route() utility allows us to start registering a new route.
   - `get()` - Match requests which use the `GET` request method.
   - `url( '/' )` - Match requests that match the provided url, relative to the homepage.
   - `handle( function () { ... } )` - Declare a function that should respond to the request when it matches.
@@ -73,7 +68,7 @@ require 'vendor/autoload.php';
 /**
  * Bootstrap WP Emerge.
  */
-WPEmerge::bootstrap( [
+App::make()->bootstrap( [
     'routes' => [
         'web' => __DIR__ . '/app/routes/web.php',
     ],
@@ -140,9 +135,7 @@ We have our pretty basic template ready so let's put it to use by editing `THEME
  * Web Routes.
  */
 
-use WPEmerge\Facades\Route;
-
-Route::get()->url( '/' )->handle( function() {
+App::route()->get()->url( '/' )->handle( function() {
     return \WPEmerge\view( 'template-cta.php' );
 } );
 ```
@@ -177,9 +170,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
      * so we don't have to specify it every time.
      */
 
-    use WPEmerge\Facades\Route;
-
-    Route::get()->url( '/' )->handle( 'HomeController@index' );
+    App::route()->get()->url( '/' )->handle( 'HomeController@index' );
     ```
 
 If we open up the homepage we will now be presented with an error:
@@ -280,7 +271,7 @@ Thankfully, no! This is where view composers come into play - check out the [Vie
 
 We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](/framework/routing/conditions). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
-Route::get()
+App::route()->get()
     ->where( 'post_template', 'template-cta-enabled-page.php' )
     ->handle( 'HomeController@index' );
 ```

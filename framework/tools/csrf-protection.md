@@ -13,17 +13,17 @@ If the middleware cannot find a valid token in a non-read request (e.g. `POST`, 
 
 Here's how to add the middleware to a route:
 ```php
-Route::post()->middleware( 'csrf' )->...
+App::route()->post()->middleware( 'csrf' )->...
 ```
 
 Here's how to add the middleware with a custom nonce action:
 ```php
-Route::post()->middleware( 'csrf:custom_action_goes_here' )->...
+App::route()->post()->middleware( 'csrf:custom_action_goes_here' )->...
 ```
 
 It is not advisable to use a single nonce for your entire site but here's how to do it if the need arises:
 ```php
-WPEmerge::bootstrap( [
+App::make()->bootstrap( [
     // ...
     'middleware_groups' => [
         'global' => ['csrf:custom_action'],

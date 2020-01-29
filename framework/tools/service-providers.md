@@ -12,7 +12,7 @@ The external Twig and Blade view implementations also use service providers to a
 
 Here's how to register a service provider with WP Emerge:
 ```php
-WPEmerge::bootstrap( [
+App::make()->bootstrap( [
     'providers' => [
         SomeServiceProvider::class,
         SomeOtherServiceProvider::class,

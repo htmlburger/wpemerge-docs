@@ -7,7 +7,7 @@ A route handler can be an anonymous function or a reference in the `'CLASS_NAME@
 The following example will create a new instance of the `\App\Controllers\Web\HomeController` class and call its `index` method:
 
 ```php
-Route::get()->url( '/' )->handle( 'HomeController@index' );
+App::route()->get()->url( '/' )->handle( 'HomeController@index' );
 ```
 
 Refer to the [Controllers](/framework/routing/controllers) section for more information on route handlers.
