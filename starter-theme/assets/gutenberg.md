@@ -26,7 +26,7 @@ The color palette is available as shared `config.json` variables which you can e
 
 To access shared variables in PHP, use `Config::get()`:
 
-`app/setup/theme-support.php`
+`app/src/WordPress/ThemeServiceProvider.php`
 ```php
 add_theme_support( 'editor-color-palette', [
 	[
@@ -92,7 +92,7 @@ Works in the same way as colors:
 
 ### PHP
 
-`app/setup/theme-support.php`
+`app/src/WordPress/ThemeServiceProvider.php`
 ```php
 add_theme_support( 'editor-font-sizes', [
 	[
