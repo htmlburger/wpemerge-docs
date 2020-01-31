@@ -19,7 +19,13 @@ The WP Emerge Theme comes with a powerful asset build process which covers a mul
 
 ## Importing assets
 
-The webpack configuration supports a number of resolve aliases and module directories for easier asset referencing:
+In order to process any asset (images, fonts, scripts, styles etc.) that asset must be at least one of the following:
+- imported in the main `index.js` or any other file imported into it.
+- referenced in the main `index.scss` or any other file imported into it.
+
+This way only assets that are used will be processed, rather than every single file.
+
+To help with importing assets, the webpack configuration supports a number of resolve aliases and module directories for easier asset referencing:
 
 | Alias in JavaScript | Alias in SASS | Resolve |
 | --- | --- |--- |
