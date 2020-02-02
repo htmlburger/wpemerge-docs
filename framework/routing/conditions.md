@@ -67,7 +67,9 @@ Route::get()->url( '*' )->handle( $handler );
 
 ## Admin
 
-Match against a custom WordPress admin page registered using [add_menu_page()](https://developer.wordpress.org/reference/functions/add_menu_page/) or [add_submenu_page()](https://developer.wordpress.org/reference/functions/add_submenu_page/):
+Match against a custom WordPress admin page.
+
+!> WP Emerge will not register any pages when you use this condition - you have to register those pages yourself using [add_menu_page()](https://developer.wordpress.org/reference/functions/add_menu_page/) or [add_submenu_page()](https://developer.wordpress.org/reference/functions/add_submenu_page/).
 
 ```php
 Route::get()->where( 'admin', 'my-menu-page' )->handle( $handler );
