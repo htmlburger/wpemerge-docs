@@ -1,15 +1,19 @@
 # Yarn Scripts
 
-## `yarn dev`
+## `yarn start`
 
 Run the build process in development mode:
-- **Enable [Browsersync](#browsersync) to auto-refresh when changes are detected.**
 - Transpile modern JavaScript syntax based on Stage 2 proposals and the `browserslist` key in `package.json`.
 - Compile SCSS into CSS.
 - Combine CSS media queries to reduce stylesheet size.
 - Process CSS through Autoprefixer.
 - Generate a `manifest.json` file with automatic filename-based asset cache busting.
 - Bundle images in `resources/images/sprite/` into a single sprite image, with optional @2x version.
+
+## `yarn hot`
+
+Run the build process in hot mode which is identical to development mode but also automatically reloads your browser as you make changes.
+This mode will run a web server locally proxying your website in order to establish a communication channel between the Webpack Dev Server and your browser.
 
 ## `yarn build`
 
@@ -23,6 +27,8 @@ Run the build process in production mode with Webpack optimizations enabled:
 - Generate a `manifest.json` file with automatic filename-based asset cache busting.
 - Bundle images in `resources/images/sprite/` into a single sprite image, with optional @2x version.
 - **Optimize images to reduce filesize.**
+
+?> Non-minified versions of JavaScript and CSS assets will also be generated in build mode in order to support WordPress' SCRIPT_DEBUG mode.
 
 ## `yarn release`
 
@@ -54,13 +60,13 @@ Runs the `textdomain` command of the [node-wp-i18n](https://www.npmjs.com/packag
 
 Runs the `makepot` command of the [node-wp-i18n](https://www.npmjs.com/package/node-wp-i18n) package, generating your `languages/app.pot` file based on all gettext function calls throughout your code.
 
-## Browsersync
+## Webpack Dev Server
 
-By default, Browsersync will setup a simple web server and serve your files through a custom port in order to establish a communication channel between the build process and your browser like this:
+In `yarn hot` mode, Webpack Dev Server will setup a simple web server and serve your files through a custom port in order to establish a communication channel between the build process and your browser like this:
 `http://localhost:3000/`
 
 This is not ideal when working on WordPress projects that are setup in a subdirectory, for example.
-To let Browsersync know your site's url, open up `config.json` from the root theme directory and edit the `development.url` key like this:
+To let the webpack dev server know your site's url, open up `config.json` from the root theme directory and edit the `development.url` key like this:
 ```json
 {
     "development": {
@@ -70,4 +76,4 @@ To let Browsersync know your site's url, open up `config.json` from the root the
     // ...
 }
 ```
-Save the file and restart your development build process by running `yarn dev`.
+Save the file and restart your development build process by running `yarn hot`.

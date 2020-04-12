@@ -14,7 +14,8 @@ The WP Emerge Theme comes with a powerful asset build process which covers a mul
 1. To install all required packages run `yarn install`
 2. Run your desired build process:
     - To run the build process in production mode run `yarn build`
-    - To run the build process in development mode run `yarn dev`. This will also watch files for changes and run Browsersync.
+    - To run the build process in development mode run `yarn start`. This will also rebuild assets on changes.
+    - To run the build process in development mode run `yarn hot`. This will also rebuild assets on changes and automatically reload your browser.
     - For more information, check out the [Yarn Scripts](/starter-theme/scripts/overview) article.
 
 ## Importing assets
