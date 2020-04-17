@@ -12,8 +12,7 @@ Run the build process in development mode:
 
 ## `yarn hot`
 
-Run the build process in hot mode which is identical to development mode but also automatically reloads your browser as you make changes.
-This mode will run a web server locally proxying your website in order to establish a communication channel between the Webpack Dev Server and your browser.
+Run the build process in hot mode which is identical to development mode but also automatically reloads your browser as you make changes. Modules processed by a Webpack loader that supports HMR (e.g. CSS via `style-loader`) will be injected via HMR avoiding a full page reload.
 
 ## `yarn build`
 
@@ -62,15 +61,13 @@ Runs the `makepot` command of the [node-wp-i18n](https://www.npmjs.com/package/n
 
 ## Webpack Dev Server
 
-In `yarn hot` mode, Webpack Dev Server will setup a simple web server and serve your files through a custom port in order to establish a communication channel between the build process and your browser like this:
-`http://localhost:3000/`
+In `yarn hot` mode, Webpack Dev Server will setup a simple web server and serve changes to your assets as you work on them. If your website is setup inside a virtual machine and you are running `yarn hot` inside that virtual machine you will have to change your `development.hotUrl` option in your `config.json` file as otherwise WP Emerge will assume you are running it on your localhost.
 
-This is not ideal when working on WordPress projects that are setup in a subdirectory, for example.
-To let the webpack dev server know your site's url, open up `config.json` from the root theme directory and edit the `development.url` key like this:
+To let WP Emerge know where you run `yarn hot`, open up `config.json` from the root theme directory and edit the `development.hotUrl` key like this:
 ```json
 {
     "development": {
-        "url": "http://localhost/my/nested/subdirectory/wordpress/"
+        "hotUrl": "http://my-virtual-machine.test/"
         // ...
     }
     // ...
