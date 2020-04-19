@@ -2,6 +2,7 @@
 
   * [Overview](/starter-theme/overview)
   * [Quickstart](/starter-theme/quickstart)
+  * [Publishing](/starter-theme/publishing)
 
 * Scripts
 
