@@ -3,7 +3,7 @@
 There are 3 different groups of routes in WP Emerge - `web`, `admin` and `ajax`.
 - `web` - Loaded for front-end requests.
 - `admin` - Loaded for `/wp-admin/` requests, except `/wp-admin/admin-ajax.php`.
-- `ajax` - Loaded for `/wp-admin/admin-ajax.php` requests. 
+- `ajax` - Loaded for `/wp-admin/admin-ajax.php` requests.
 
 !> You should almost always avoid using `\App::route()->all()` when defining `admin` or `ajax` routes otherwise you will take over all custom admin pages and/or AJAX requests (even ones created by third party plugins).
 
@@ -37,10 +37,10 @@ Let's break it down:
   - `get()` - Shorthand for `methods( ['GET'] )`. See below for more information on the `methods` attribute.
   - `url( '/' )` - Shorthand for `where( 'url', '/' )`. See below for more information on `where` attribute.
   - `handle( 'HomeController@index' )` - Finalize the definition as a single route which is handled by `HomeController@index` when its conditions are satisfied.
-  
+
 !> Not finalizing a route with `view()`, `handler()` or `group()` will invalidate the route.
 
-!> Setting the same attribute multiple times will merge it. Take a loot at every attribute below to see how merging happens.
+!> Setting the same attribute multiple times will merge it. Take a look at every attribute below to see how merging happens.
 
 ## Finalizing Definition
 
@@ -73,7 +73,7 @@ In the above example we define 2 routes matching GET requests for `/dashboard/pr
 The `methods` attribute defines which request methods a route should match:
 ```php
 \App::route()->methods( ['GET', 'POST'] )->...
-``` 
+```
 
 There are also shorthand methods for every request method type (and even any request method):
 ```php
@@ -108,7 +108,7 @@ There's also a shorthand available:
 \App::route()->where( 'url', '/dashboard/' )->...
 ```
 
-You can find a full list of built-in conditions in the [Conditions](/framework/routing/conditions) article. 
+You can find a full list of built-in conditions in the [Conditions](/framework/routing/conditions) article.
 
 #### Merging Where
 
@@ -153,7 +153,7 @@ The `query` attribute defines a filter that should be applied to the query vars 
         'posts_per_page' => 20,
     ] );
 } )->...
-``` 
+```
 
 !> Since almost all conditions rely on the main query, only routes using the `url` condition can have this attribute applied.
 
@@ -175,7 +175,7 @@ When 2 `query` attributes are merged, their filters will be executed in the orde
 The `namespace` attribute defines what namespace should be automatically prepended to the route handler:
 ```php
 \App::route()->setNamespace( '\\App\\Controllers\\Web\\Dashboard\\' )->...
-``` 
+```
 
 ?> The `namespace` attribute is set using `setNamespace` as PHP<7 does not allow method names to match reserved keywords.
 
