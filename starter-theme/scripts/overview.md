@@ -31,9 +31,9 @@ Run the build process in production mode with Webpack optimizations enabled:
 
 ## `yarn release`
 
-Creates a production-ready zip of your theme following these steps:
+Creates a production-ready zip of your theme by running these steps for you:
 1. Run `yarn build`.
-2. Install production-only Composer dependencies.
+2. Install production-only Composer dependencies with an authoritative classmap.
 3. Create a `/wp-content/themes/your-theme-name.zip` archive containing all files and directories added to `release.include` of your `config.json` file.
    - By default, this list contains all necessary files for your theme.
    - If you have any custom files/directories outside of the standard directories of the theme make sure to add them to this list.
