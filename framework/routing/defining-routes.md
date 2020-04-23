@@ -155,7 +155,7 @@ The `query` attribute defines a filter that should be applied to the query vars 
 } )->...
 ```
 
-!> Since almost all conditions rely on the main query, only routes using the `url` condition can have this attribute applied.
+!> By default, only routes using the `url` condition can have this attribute applied as all other built-in conditions rely on the main query.
 
 #### Merging Query
 
@@ -192,9 +192,52 @@ This is especially useful if you have namespaces for different route groups, for
 
 #### Merging Namespace
 
-When 2 `namespace` attributes are merged, the latter will override the former completely:
+When 2 `namespace` attributes are merged, the latter will override the former:
 ```php
 \App::route()->setNamespace( '\\App\\First\\' )->setNamespace( '\\App\\Second\\' )->...
 // is equal to:
 \App::route()->setNamespace( '\\App\\Second\\' )->...
+```
+
+### Name
+
+The `name` attribute defines an arbitrary unique name for the route:
+```php
+\App::route()->name( 'dashboard' )->...
+```
+This name can then be used to generate a URL for the route in your views:
+```php
+<a href="<?php echo esc_url( \App::routeUrl( 'dashboard' ) ); ?>">Dashboard</a>
+```
+
+?> By default, `routeUrl()` can only be used for routes with one of the following conditions: `url`, `post_id`, `ajax`, `admin`.
+
+If the route condition has parameters, you can pass them as an array to `routeUrl()`:
+```php
+// Route:
+\App::route()->get()->url( '/dashboard/{username}' )->name('dashboard')->...
+// Link:
+<a href="<?php echo esc_url( \App::routeUrl( 'dashboard', ['username' => 'john_doe'] ) ); ?>">Dashboard</a>
+```
+
+#### Merging Name
+
+When 2 `name` attributes are merged in a route, the latter will override the former:
+```php
+\App::route()->name( 'first' )->name( 'second' )->...
+// is equal to:
+\App::route()->name( 'second' )->...
+```
+__However__, when a group name is merged into a route name they will be concatenated with a dot character:
+```php
+\App::route()
+    ->url( '/dashboard' )
+    ->name( 'dashboard' )
+    ->group( function () {
+        \App::route()->get()->url( '/' )->name('home')->handle( 'DashboardController@home' );
+        // -> will result in a route name of 'dashboard.home'
+
+        \App::route()->get()->url( '/settings' )->name('settings')->handle( 'DashboardController@settings' );
+        // -> will result in a route name of 'dashboard.settings'
+    } );
 ```

@@ -66,7 +66,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 
 ## Features
 
-#### Routes with custom URLs or dynamic conditions
+#### Named routes with custom URLs or dynamic conditions
 
 ```php
 \App::route()->get()->url( '/' )->handle( 'HomeController@index' );
@@ -95,6 +95,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 - Use existing routes or add new ones.
 - Use built-in dynamic route conditions or define your own custom ones.
 - Use anonymous functions for quick one-off conditions.
+- Use `\App::routeUrl()` to get the URL of a named route to avoid hard-coding URLs.
 
 ---
 
