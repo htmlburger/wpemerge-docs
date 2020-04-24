@@ -1,8 +1,11 @@
 # Quickstart
 
-1. Browse to `wp-content/themes`.
-2. Run `composer create-project htmlburger/wpemerge-theme your-theme-name`.
-3. If you receive an error stating `TTY mode is not supported on Windows platform.`, run `php wpemerge install` inside the newly created `your-theme-name` directory.
+1. Browse to `/wp-content/themes`.
+2. Run `composer create-project htmlburger/wpemerge-theme wpemerge`.
+3. If you receive an error stating `TTY mode is not supported on Windows platform.`, run `php wpemerge install` inside the newly created `wpemerge` directory.
+4. Activate your new theme.
+
+?> Your development theme is not required to have the name `wpemerge`, but it's a useful convention. The built-in release script will create an optimized copy of the theme with your desired final name.
 
 During the installation process you will have the option to:
 

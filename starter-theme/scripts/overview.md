@@ -31,13 +31,16 @@ Run the build process in production mode with Webpack optimizations enabled:
 
 ## `yarn release`
 
-Creates a production-ready zip of your theme by running these steps for you:
+Creates a production-ready directory and zip of your theme. Running `yarn release` will:
 1. Run `yarn build`.
-2. Install production-only Composer dependencies with an authoritative classmap.
-3. Create a `/wp-content/themes/your-theme-name.zip` archive containing all files and directories added to `release.include` of your `config.json` file.
+2. Create a new `wpemerge-release` theme directory.
+3. Copy all files and directories specified in the `release.include` key of your `config.json` file.
    - By default, this list contains all necessary files for your theme.
    - If you have any custom files/directories outside of the standard directories of the theme make sure to add them to this list.
-4. Restore development Composer dependencies.
+4. Install production-only Composer dependencies with an authoritative classmap for improved autoloading performance.
+5. Create a zip file of the directory created in step 2.
+
+?> To change the output directory and zip name adjust `release:zip` in your `package.json` file.
 
 ## `yarn lint`
 
