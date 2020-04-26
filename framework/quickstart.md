@@ -29,10 +29,10 @@
 4. Add the following to the **beginning** of your `functions.php`:
     ```php
     // Load our composer dependencies.
-    require_once( 'vendor/autoload.php' );
+    require_once 'vendor/autoload.php';
 
     // Load our App class.
-    require_once( 'app/src/App.php' );
+    require_once 'app/src/App.php';
 
     // Bootstrap our Application.
     \App::make()->bootstrap( [

@@ -7,7 +7,7 @@ Sometimes it can be hard to see the full picture which is why this guide will sh
 - You have PHP >= 5.5 installed.
 - You have Composer installed.
 - You have a blank WordPress >= 4.7 installation with the Twenty Seventeen theme installed and activated.
-- We will refer to your WordPress installation home url as `HOME_URL` (e.g. `http://localhost/my-website/`).
+- We will refer to your WordPress installation home URL as `HOME_URL` (e.g. `http://localhost/my-website/`).
 - We will refer to your Twenty Seventeen theme directory as `THEME_DIR` (e.g. `/var/www/html/my-website/wp-content/themes/twentyseventeen/`).
 
 ## Installing WP Emerge
@@ -15,59 +15,70 @@ Sometimes it can be hard to see the full picture which is why this guide will sh
 We begin by installing WP Emerge through Composer:
 
 1. Open your terminal of choice.
-2. `$ cd THEME_DIR`
+2. `$ cd THEME_DIR`  - don't forget to replace `THEME_DIR` with your actual theme directory path.
 3. `$ composer require htmlburger/wpemerge`
 
-Once that's done, we have to make sure the Composer `autoload.php` file is required into our theme, otherwise no composer packages will be loaded at all:
+Once that's done, we need to define the base WP Emerge application class that we will be using:
+1. Create a new directory inside `THEME_DIR` called `app`.
+2. Create a new directory inside `THEME_DIR/app` called `src`.
+3. Create a new file inside `THEME_DIR/app/src` called `App.php`.
+4. Add the following code to the new file:
+    ```php
+    <?php
 
+    use WPEmerge\Application\ApplicationTrait;
+
+    class App {
+       use ApplicationTrait;
+    }
+    ```
+
+Next, let's load the Composer `autoload.php` and the brand new `App.php` files:
 1. Open `THEME_DIR/functions.php` in your favorite editor.
 2. Add the following to the **beginning** of the file:
     ```php
-    /**
-     * Load Composer's autoloader.
-     */
-    require 'vendor/autoload.php';
+    // Load Composer's autoloader.
+    require_once 'vendor/autoload.php';
 
-    /**
-     * Bootstrap WP Emerge.
-     */
+    // Load our App class.
+    require_once 'app/src/App.php';
+
+    // Bootstrap WP Emerge.
     \App::make()->bootstrap();
     ```
 
 And we're done - we have composer and WP Emerge loaded and bootstrapped! But ... we're not really doing anything with WP Emerge - let's change that:
 
-1. In order to avoid bloating up the main theme `functions.php` we will separate our routes into their own file.
-2. Create a new directory inside `THEME_DIR` called `app`.
-3. Create a new directory inside `app` called `routes`.
-4. Create a new file inside the new `routes` directory called `web.php` and open it in your editor.
-5. Add the following code to your new file:
+1. Create a new directory inside `THEME_DIR/app` called `routes`.
+2. Create a new file inside the new `THEME_DIR/app/routes` directory called `web.php` and open it in your editor.
+3. Add the following code to the new file:
     ```php
     <?php
     /**
      * Web Routes.
      */
+
     \App::route()->get()->url( '/' )->handle( function() {
-        return \App::output( 'Hello World!' );
+        return 'Hello World!';
     } );
     ```
-6. The above code defines a new route which matches the Homepage url. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
-  - `\App::route()` - The route() utility allows us to start registering a new route.
+4. The above code defines a new route which matches the Homepage URL. This way we will override what WordPress displays on the homepage as a quick test. Let's break it down:
+  - `\App::route()` - The `route()` utility allows us to start registering a new route.
   - `get()` - Match requests which use the `GET` request method.
-  - `url( '/' )` - Match requests that match the provided url, relative to the homepage.
+  - `url( '/' )` - Match requests that match the provided URL, relative to the homepage.
   - `handle( function () { ... } )` - Declare a function that should respond to the request when it matches.
 
-Let's open up `HOME_URL` in our browser and we should be greeted with an almost blank page with the `Hello World!` sentence ... but we are not. Did we miss anything?
+Let's open up `HOME_URL` in the browser - we should be greeted with an almost blank page with the `Hello World!` sentence ... but we are not. Did we miss anything?
 
-Ah yes - we forgot to load our `web.php` file! Let's fix this so our `functions.php` code looks like this:
+Ah yes - we forgot to load the `web.php` routes file! Let's fix this by editing `functions.php` to look like this:
 ```php
-/**
- * Load Composer's autoloader.
- */
-require 'vendor/autoload.php';
+// Load our composer dependencies.
+require_once 'vendor/autoload.php';
 
-/**
- * Bootstrap WP Emerge.
- */
+// Load our App class.
+require_once 'app/src/App.php';
+
+// Bootstrap our Application.
 \App::make()->bootstrap( [
     'routes' => [
         'web' => __DIR__ . '/app/routes/web.php',
@@ -96,11 +107,12 @@ Let's get started!
 ### Creating a CTA template
 
 Let's create a new `THEME_DIR/template-cta.php` file with the following content:
-```html
+```php
 <?php
 /**
  * Template Name: Call To Action
  */
+
 ?>
 <?php get_header(); ?>
 
@@ -119,17 +131,17 @@ Let's create a new `THEME_DIR/template-cta.php` file with the following content:
 <?php get_footer(); ?>
 ```
 
-This is a pretty basic template with nothing but a little hard-coded Lorem Ipsum and a placeholder "Skip" link. Let's update the link so it adds `?cta=0` to our url, for example:
-```html
+This is a pretty basic template with nothing but a little hard-coded Lorem Ipsum and a placeholder "Skip" link. Let's update the link so it adds `?cta=0` to our URL, for example:
+```php
 <a href="<?php echo esc_url( add_query_arg( 'cta', '0' ) ); ?>">Skip &raquo;</a>
 ```
 
-This works OK but it is certainly not perfect and if we ever have other CTAs or other buttons that needs to skip the CTA we will end up with copy-pasted url logic. We'll keep this in mind for now and come back to it later when we have a better understanding of the control WP Emerge provides us with.
+This works OK but it is certainly not perfect and if we ever have other CTAs or other buttons that needs to skip the CTA we will end up with copy-pasted URL logic. We'll keep this in mind for now and come back to it later when we have a better understanding of the control WP Emerge provides us with.
 
 ### Using our new template
 
 We have our pretty basic template ready so let's put it to use by editing `THEME_DIR/app/routes/web.php` to look like this (deleting our previous test route):
-```html
+```php
 <?php
 /**
  * Web Routes.
@@ -231,10 +243,10 @@ Now if we visit `HOME_URL` we will see our CTA template but when we click on our
 
 ## Improvements
 
-Let's say that we want to have 2 "Skip" buttons - one above and one below our Lorem Ipsum content. The link url code is short but if we want to stay [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) we can't just copy-paste it.
+Let's say that we want to have 2 "Skip" buttons - one above and one below our Lorem Ipsum content. The link URL code is short but if we want to stay [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) we can't just copy-paste it.
 We could define a new variable at the top of our template file but this means that the variable will only be available in this particular template file (what if we wanted that variable to also appear in a child template partial?) and we will be mixing php logic with presentation (which we should always strive to avoid).
 
-Instead we can modify our controller method to supply our template (which we will be referring to as a `view` from now on) with a variable which will hold the skip url (we will refer to variables passed to views as `context`):
+Instead we can modify our controller method to supply our template (which we will be referring to as a `view` from now on) with a variable which will hold the skip URL (we will refer to variables passed to views as `context`):
 ```php
 public function index( $request, $view ) {
     if ( $request->get( 'cta' ) === '0' ) {
@@ -249,7 +261,7 @@ public function index( $request, $view ) {
 ```
 
 We also have to modify the template to use the newly available variable:
-```html
+```php
 <a href="<?php echo esc_url( $skip_url ); ?>">Skip &raquo;</a>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -268,7 +280,7 @@ We reduced PHP logic duplication, but this doesn't solve the use case where we w
 
 Thankfully, no! This is where view composers come into play - check out the [View Composers](/framework/views/view-composers) article to see how they can solve this problem and more.
 
-##### What if we wanted to show the CTA on a page other than the homepage - do we have to hardcode that page's url in the route definition?
+##### What if we wanted to show the CTA on a page other than the homepage - do we have to hardcode that page's URL in the route definition?
 
 We can but we don't have to. We can take advantage of WP Emerge's dynamic [Route Conditions](/framework/routing/conditions). As an example, this is what our route definition will look like if we wish to show the CTA on any page that uses a custom template called `template-cta-enabled-page.php`:
 ```php
