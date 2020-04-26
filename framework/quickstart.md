@@ -4,8 +4,18 @@
     ```bash
     composer require htmlburger/wpemerge
     ```
-2. Create a new file for your routes, for example `routes/web.php`.
-3. Add the following to your new `web.php` file:
+2. Create a new file for your main Application class, a useful convention is to use `app/src/App.php`:
+    ```php
+    <?php
+
+    use WPEmerge\Application\ApplicationTrait;
+
+    class App {
+       use ApplicationTrait;
+    }
+    ```
+    This class will serve as a shortcut to our application when we're configuring it.
+3. Create a new file for your routes, a useful convention is to use `app/routes/web.php`:
     ```php
     <?php
     /**
@@ -16,17 +26,18 @@
         return \App::output( 'Hello World!' );
     } );
     ```
-4. Add the following to the **start** of your `functions.php`:
+4. Add the following to the **beginning** of your `functions.php`:
     ```php
+    // Load our composer dependencies.
     require_once( 'vendor/autoload.php' );
- 
-    add_action( 'init', function() {
-        session_start(); // required only if you use Flash and OldInput
-    } );
 
+    // Load our App class.
+    require_once( 'app/src/App.php' );
+
+    // Bootstrap our Application.
     \App::make()->bootstrap( [
         'routes' => [
-            'web' => __DIR__ . '/routes/web.php',
+            'web' => __DIR__ . '/app/routes/web.php',
         ],
     ] );
     ```
