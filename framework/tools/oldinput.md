@@ -14,13 +14,13 @@ add_action( 'init', function() {
 A typical use case is to fill in field values after an error has occurred with the user's form submission:
 ```php
 // inside your form view
-<input name="my_email" value="<php esc_attr( OldInput::get( 'my_email', 'default' ) ) ?>" />
+<input name="my_email" value="<php esc_attr( \App::oldInput()->get( 'my_email', 'default' ) ) ?>" />
 ```
 
 To reduce verbosity you can define your own simple `old()` function like this:
 
 ```php
 function old() {
-    return call_user_func_array( [OldInput::class, 'get'], func_get_args() );
+    return call_user_func_array( [\App::oldInput(), 'get'], func_get_args() );
 }
 ```

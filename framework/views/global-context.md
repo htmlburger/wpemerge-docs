@@ -1,6 +1,6 @@
 # Global Context
 
-You can pass variables to all views and partials by adding them as globals using `View::addGlobal()` or `View::addGlobals()`.
+You can pass variables to all views and partials by adding them as globals using `\App::views()->addGlobal()` or `\App::views()->addGlobals()`.
 
 First, we need to create a service provider class:
 ```php
@@ -17,16 +17,16 @@ class ViewGlobalContextServiceProvider implements ServiceProviderInterface {
     public function register( $container ) {
         // Nothing to register.
     }
-  
+
     /**
      * {@inheritDoc}
      */
     public function bootstrap( $container ) {
         // Add one variable.
-        View::addGlobal( 'foo', 'bar' );
-        
+        \App::views()->addGlobal( 'foo', 'bar' );
+
         // Add many variables.
-        View::addGlobals( [
+        \App::views()->addGlobals( [
             'name' => get_bloginfo( 'name' ),
             'url' => home_url( '/' ),
         ] );

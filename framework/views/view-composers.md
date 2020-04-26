@@ -12,7 +12,7 @@ View composers are anonymous functions, class names or class methods (in the `'C
 
 ## Example
 
-In this example we want to pass the latest posts to the `latest-news.php` partial.
+In this example we want to pass the latest posts to the `templates/partials/latest-news.php` partial.
 
 First, we need to create a service provider class:
 ```php
@@ -20,7 +20,6 @@ First, we need to create a service provider class:
 
 namespace App\ViewComposers;
 
-use App;
 use WPEmerge\ServiceProviders\ServiceProviderInterface;
 
 class ViewComposersServiceProvider implements ServiceProviderInterface {
@@ -83,11 +82,11 @@ class LatestNewsViewComposer {
     }
 } );
 ```
-
+And in our service provider we refer to the class instead of the anonymous function:
 ```php
 // ...
 public function bootstrap( $container ) {
-    View::addComposer(
+    \App::views()->addComposer(
       'templates/partials/latest-news',
       \App\ViewComposers\LatestNewsViewComposer::class
     );
@@ -99,7 +98,7 @@ The expected method name by default is `compose` but you can use a custom one as
 ```php
 // ...
 public function bootstrap( $container ) {
-    View::addComposer(
+    \App::views()->addComposer(
       'templates/partials/latest-news',
       'LatestNewsViewComposer@customMethodName'
     );
@@ -107,7 +106,7 @@ public function bootstrap( $container ) {
 // ...
 ```
 
-By default, WP Emerge will instantiate your class directly. However, if your class is registered in the service container with its class name as the key, then the class will be resolved from the service container instead of being directly instantiated:
+By default, WP Emerge will instantiate your class directly. However, if your class is registered in the service container with its class name as the key, then the class will be resolved from the service container instead:
 
 ```php
 // Run this inside the register() method of a service provider.

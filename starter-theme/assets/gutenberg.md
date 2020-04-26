@@ -24,7 +24,7 @@ The color palette is available as shared `config.json` variables which you can e
 
 ### PHP
 
-To access shared variables in PHP, use `Config::get()`:
+To access shared variables in PHP, use `\App::theme()->config()->get()`:
 
 `app/src/WordPress/ThemeServiceProvider.php`
 ```php

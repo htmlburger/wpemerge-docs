@@ -36,24 +36,24 @@ It is not advisable to use a single nonce for your entire site but here's how to
 ## Using the token
 
 To output a hidden CSRF token field to your forms:
-```html
+```php
 <form>
-    <?php Csrf::field(); ?>
+    <?php \App::csrf()->field(); ?>
     <!-- or -->
-    <?php Csrf::field( 'custom_action' ); ?>
+    <?php \App::csrf()->field( 'custom_action' ); ?>
 </form>
 ```
 
 To add the token to a url:
 ```php
-$url = Csrf::url( $url );
+$url = \App::csrf()->url( $url );
 // or
-$url = Csrf::url( $url, 'custom_action' );
+$url = \App::csrf()->url( $url, 'custom_action' );
 ```
 
 To get the token directly:
 ```php
-$token = Csrf::getToken();
+$token = \App::csrf()->getToken();
 // or
-$token = Csrf::getToken( 'custom_action' );
+$token = \App::csrf()->getToken( 'custom_action' );
 ```

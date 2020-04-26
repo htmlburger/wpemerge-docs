@@ -156,7 +156,7 @@ class HomeController {
 #### View Composers
 
 ```php
-View::addComposer( 'templates/about-us', function( $view ) {
+\App::views()->addComposer( 'templates/about-us', function( $view ) {
     $view->with( ['hello' => 'world'] );
 } );
 ```
