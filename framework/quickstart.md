@@ -23,7 +23,7 @@
      */
 
     \App::route()->get()->url( '/' )->handle( function() {
-        return \App::output( 'Hello World!' );
+        return 'Hello World!';
     } );
     ```
 4. Add the following to the **beginning** of your `functions.php`:
