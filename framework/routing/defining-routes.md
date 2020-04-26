@@ -14,9 +14,15 @@ To define your desired routes you should create a separate file for each group y
 \App::make()->bootstrap( [
     'routes' => [
         // Assuming your route files are created in /wp-content/themes/my-theme/routes/
-        'web'   => get_template_directory() . '/routes/web.php',
-        'admin' => get_template_directory() . '/routes/admin.php',
-        'ajax'  => get_template_directory() . '/routes/ajax.php',
+        'web'   => [
+            'definitions' => get_template_directory() . '/routes/web.php',
+        ],
+        'admin' => [
+            'definitions' => get_template_directory() . '/routes/admin.php',
+        ],
+        'ajax'  => [
+            'definitions' => get_template_directory() . '/routes/ajax.php',
+        ],
     ],
     // ... other options go here
 ] );

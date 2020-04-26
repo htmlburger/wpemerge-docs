@@ -104,7 +104,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 ```php
 class HomeController {
     public function index( $request ) {
-        $name = $request->get( 'name' );
+        $name = $request->query( 'name' );
         return \App::view( 'templates/home.php' )
             ->with( [
                 'welcome' => 'Welcome, ' . $name . '!',

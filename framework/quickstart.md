@@ -37,7 +37,9 @@
     // Bootstrap our Application.
     \App::make()->bootstrap( [
         'routes' => [
-            'web' => __DIR__ . '/app/routes/web.php',
+            'web' => [
+                'definitions' => __DIR__ . '/app/routes/web.php',
+            ],
         ],
     ] );
     ```
@@ -48,9 +50,9 @@
 1. Add the following to your `composer.json`:
     ```js
     "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
+      "psr-4": {
+        "App\\": "app/"
+      }
     }
     ```
     - `App` represents the base namespace for your classes

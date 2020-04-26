@@ -81,7 +81,9 @@ require_once 'app/src/App.php';
 // Bootstrap our Application.
 \App::make()->bootstrap( [
     'routes' => [
-        'web' => __DIR__ . '/app/routes/web.php',
+        'web' => [
+            'definitions' => __DIR__ . '/app/routes/web.php',
+        ],
     ],
 ] );
 ```
@@ -195,22 +197,22 @@ This is because we have not loaded our class file. We can add a `require` statem
 1. Open `THEME_DIR/composer.json` - it should currently look something like this:
     ```js
     {
-        "require": {
-            "htmlburger/wpemerge": "^0.15.0"
-        }
+      "require": {
+        "htmlburger/wpemerge": "^0.15.0"
+      }
     }
     ```
 2. Edit it so it looks like this:
     ```js
     {
-        "require": {
-            "htmlburger/wpemerge": "^0.15.0"
-        },
-        "autoload": {
-           "psr-4": {
-                "App\\": "app/src/"
-           }
-       }
+      "require": {
+        "htmlburger/wpemerge": "^0.15.0"
+      },
+      "autoload": {
+        "psr-4": {
+          "App\\": "app/src/"
+        }
+      }
     }
     ```
     The above will tell Composer's autoloader package to autoload any class that is in the `App\` namespace by searching for a file in the `app/src/` directory according to [PSR-4](https://www.php-fig.org/psr/psr-4/) based on the class's namespace and class name.
@@ -229,7 +231,7 @@ public function index( $request, $view ) {
     // for the current request.
 
     // If the request includes the "cta" GET parameter with a value of "0" ...
-    if ( $request->get( 'cta' ) === '0' ) {
+    if ( $request->query( 'cta' ) === '0' ) {
         // ... return the view WordPress was trying to load:
         return \App::view( $view );
     }
@@ -249,7 +251,7 @@ We could define a new variable at the top of our template file but this means th
 Instead we can modify our controller method to supply our template (which we will be referring to as a `view` from now on) with a variable which will hold the skip URL (we will refer to variables passed to views as `context`):
 ```php
 public function index( $request, $view ) {
-    if ( $request->get( 'cta' ) === '0' ) {
+    if ( $request->query( 'cta' ) === '0' ) {
         return \App::view( $view );
     }
 
