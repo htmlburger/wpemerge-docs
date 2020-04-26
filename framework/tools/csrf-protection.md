@@ -7,7 +7,7 @@ The middleware will check for a CSRF token in the following places:
 - `__wpemergeCsrfToken` in `$_POST`.
 - The `X-CSRF-TOKEN` header.
 
-If the middleware cannot find a valid token in a non-read request (e.g. `POST`, `PUT`, `PATCH`, `DELETE`) it will show the default WordPress ["Are you sure?"](https://codex.wordpress.org/Function_Reference/wp_nonce_ays) screen.
+If the middleware cannot find a valid token in a non-read request (i.e. `POST`, `PUT`, `PATCH`, `DELETE`) it will show the default WordPress ["Are you sure?"](https://codex.wordpress.org/Function_Reference/wp_nonce_ays) screen.
 
 ## Adding the middleware
 

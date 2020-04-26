@@ -21,7 +21,7 @@ We begin by installing WP Emerge through Composer:
 Once that's done, we have to make sure the Composer `autoload.php` file is required into our theme, otherwise no composer packages will be loaded at all:
 
 1. Open `THEME_DIR/functions.php` in your favorite editor.
-2. Add the following to the **start** of the file:
+2. Add the following to the **beginning** of the file:
     ```php
     /**
      * Load Composer's autoloader.
@@ -152,7 +152,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     <?php
 
     namespace App\Controllers\Web;
-    
+
     class HomeController {
         public function index( $request, $view ) {
             return \App::view( 'template-cta.php' );
@@ -165,7 +165,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     <?php
     /**
      * Web Routes.
-     * 
+     *
      * WPEmerge will automatically prepend "\App\Controllers\Web\" to our controller class
      * so we don't have to specify it every time.
      */
@@ -184,7 +184,7 @@ This is because we have not loaded our class file. We can add a `require` statem
     ```js
     {
         "require": {
-            "htmlburger/wpemerge": "^0.8.5"
+            "htmlburger/wpemerge": "^0.15.0"
         }
     }
     ```
@@ -192,7 +192,7 @@ This is because we have not loaded our class file. We can add a `require` statem
     ```js
     {
         "require": {
-            "htmlburger/wpemerge": "^0.8.5"
+            "htmlburger/wpemerge": "^0.15.0"
         },
         "autoload": {
            "psr-4": {
@@ -213,14 +213,15 @@ Now that we have our controller's `index` method ready let's add some logic to i
 public function index( $request, $view ) {
     // $request is a WP Emerge class which represents the current request
     // made to the server.
-    // $view is the view file that WordPress is trying to load for the
-    // current request.
-    
+    // $view is the template filepath that WordPress is trying to load
+    // for the current request.
+
     // If the request includes the "cta" GET parameter with a value of "0" ...
     if ( $request->get( 'cta' ) === '0' ) {
         // ... return the view WordPress was trying to load:
         return \App::view( $view );
     }
+
     // otherwise, return our custom CTA view:
     return \App::view( 'template-cta.php' );
 }
@@ -255,7 +256,7 @@ We also have to modify the template to use the newly available variable:
 
 <a href="<?php echo esc_url( $skip_url ); ?>">Skip &raquo;</a>
 ```
-    
+
 We reduced PHP logic duplication, but this doesn't solve the use case where we want to have that variable available in a view partial, for example. For this we can use the `\App::render( $view, $context = [] )` function which works very similarly to `get_template_part()` but as you can see it has an optional argument which allows you to pass context variables as well:
 ```php
 <?php \App::render( 'foo-partial.php', ['skip_url' => $skip_url] ); ?>

@@ -2,11 +2,9 @@
 
 View composers are anonymous functions, class names or class methods (in the `'CLASS_NAME@METHOD_NAME'` format) that prepare a context for a view whenever it is rendered. This includes views, partials and even layouts.
 
-
 !> Default View Engine WARNING: Due to the nature of how `get_template_part()` works, you __MUST__ render partials using `\App::render()` instead of `get_template_part()` in order to support composition.
 
-!> If you wish to compose core 
-partials (e.g. `header.php`, `footer.php`) that are rendered using a `get_*()` function call (e.g. `get_header()`) you will have to use `\App::render( 'name' )` (e.g. `\App::render( 'header' )`) instead.
+!> If you wish to compose core partials (e.g. `header.php`, `footer.php`) that are rendered using a `get_*()` function call (e.g. `get_header()`) you will have to use `\App::render( 'name' )` (e.g. `\App::render( 'header' )`) instead.
 
 ?> If the specified class name does not exist `\App\ViewComposers\` is automatically prepended for convenience.
 
