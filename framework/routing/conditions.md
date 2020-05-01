@@ -1,8 +1,93 @@
 # Route Conditions
 
+## Post ID
+
+Match the detail page of a post by its id:
+
+```php
+\App::route()->get()->where( 'post_id', 10 )->handle( $handler );
+```
+
+## Post slug
+
+Match the detail page of a post by its slug:
+
+```php
+\App::route()->get()->where( 'post_slug', 'about-us' )->handle( $handler );
+```
+
+## Post template
+
+Match the detail page of a post by its post template:
+
+```php
+\App::route()->get()->where( 'post_template', 'templates/contact-us.php' )->handle( $handler );
+```
+
+## Post status
+
+Match the detail page of a post by its post status:
+
+```php
+\App::route()->get()->where( 'post_status', 'publish' )->handle( $handler );
+```
+
+## Post type
+
+Match the detail page of a post by its post type:
+
+```php
+\App::route()->get()->where( 'post_type', 'product' )->handle( $handler );
+```
+
+## Query var
+
+Match when a specified query var is present (any value is accepted):
+
+```php
+\App::route()->get()->where( 'query_var', 's' )->handle( $handler );
+```
+
+This is especially useful when dealing with custom endpoints ([add_rewrite_endpoint()](https://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint)):
+
+```php
+add_action( 'init', function() {
+    // remember to refresh your rewrite rules!
+    add_rewrite_endpoint( 'my_custom_endpoint', EP_PAGES );
+} );
+
+// ...
+
+\App::route()->get()->where( 'query_var', 'my_custom_endpoint' )->handle( $handler );
+```
+
+When combined with the post template condition, you can create pages that optionally receive additional parameters in the url using clean url "/sections/" instead of query arguments:
+
+```php
+add_action( 'init', function() {
+    // remember to refresh your rewrite rules!
+    add_rewrite_endpoint( 'secret', EP_PAGES );
+} );
+
+// ...
+
+\App::route()->get()
+    ->where( 'post_template', 'templates/page-with-secret.php' )
+    ->where( 'query_var', 'secret' )
+    ->handle( $handler );
+```
+
+You can match with a specific value of the query var as well:
+
+```php
+\App::route()->get()
+    ->where( 'query_var', 'some_query_var_name', 'some_query_var_value' )
+    ->handle( $handler );
+```
+
 ## URL
 
-Match against a specific path:
+Match against a specific URL path:
 
 ```php
 \App::route()->get()->url( '/foo/bar/' )->handle( $handler );
@@ -92,91 +177,6 @@ Match against an WordPress AJAX request:
 \App::route()->get()->where( 'ajax', 'my-ajax-action', true, true )->handle( $handler );
 ```
 
-## Post ID
-
-Match against the current post id:
-
-```php
-\App::route()->get()->where( 'post_id', 10 )->handle( $handler );
-```
-
-## Post slug
-
-Match against the current post slug:
-
-```php
-\App::route()->get()->where( 'post_slug', 'about-us' )->handle( $handler );
-```
-
-## Post template
-
-Match against the current post template:
-
-```php
-\App::route()->get()->where( 'post_template', 'templates/contact-us.php' )->handle( $handler );
-```
-
-## Post status
-
-Match against the current post status:
-
-```php
-\App::route()->get()->where( 'post_status', 'publish' )->handle( $handler );
-```
-
-## Post type
-
-Match against the current post type:
-
-```php
-\App::route()->get()->where( 'post_type', 'product' )->handle( $handler );
-```
-
-## Query var
-
-Match when a specified query var is present (any value is accepted):
-
-```php
-\App::route()->get()->where( 'query_var', 's' )->handle( $handler );
-```
-
-This is especially useful when dealing with custom endpoints ([add_rewrite_endpoint()](https://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint)):
-
-```php
-add_action( 'init', function() {
-    // remember to refresh your rewrite rules!
-    add_rewrite_endpoint( 'my_custom_endpoint', EP_PAGES );
-} );
-
-// ...
-
-\App::route()->get()->where( 'query_var', 'my_custom_endpoint' )->handle( $handler );
-```
-
-When combined with the post template condition, you can create pages that optionally receive additional parameters in the url using clean url "/sections/" instead of query arguments:
-
-```php
-add_action( 'init', function() {
-    // remember to refresh your rewrite rules!
-    add_rewrite_endpoint( 'secret', EP_PAGES );
-} );
-
-// ...
-
-\App::route()->get()
-    ->where( 'post_template', 'templates/page-with-secret.php' )
-    ->where( 'query_var', 'secret' )
-    ->handle( $handler );
-```
-
-You can match with a specific value of the query var as well:
-
-```php
-\App::route()->get()
-    ->where( 'query_var', 'some_query_var_name', 'some_query_var_value' )
-    ->handle( $handler );
-```
-
 ## Custom
 
 The custom condition allows you to add a callable which must return a boolean (whether the route has matched the current request or not):
@@ -200,6 +200,7 @@ You can also pass parameters to use built-in callables:
     ->handle( $handler );
 ```
 
+This makes it possible to use the full range of WordPress conditionals like `is_front_page()`, `is_home()`, `is_post_type_archive()`, `is_tax()`, `is_date()`, `is_author()`, `is_404()` etc.
 Any parameters you pass will be provided to both the callable AND the `$handler`:
 
 ```php
@@ -216,15 +217,18 @@ This works with anonymous functions as well, which can be used to reduce duplica
 \App::route()->get()
     ->where(
         function( $foo, $bar ) {
-            // $foo and $bar are available here.
+            // $foo === 'lorem'
+            // $bar === 'ipsum'
             return true;
         },
-        'foo',
-        'bar'
+        'lorem',
+        'ipsum'
     )
-    ->handle( function( $request, $view, $foo, $bar ) {
-        // ... and here!
-    } );
+    ->handle(
+        function( $request, $view, $foo, $bar ) {
+            // $foo and $bar are available here as well.
+        }
+    );
 ```
 
 !> This use-case is a bit hard to read - exact same usage is not advisable.
