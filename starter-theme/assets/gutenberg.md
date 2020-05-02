@@ -24,25 +24,25 @@ The color palette is available as shared `config.json` variables which you can e
 
 ### PHP
 
-To access shared variables in PHP, use `\App::theme()->config()->get()`:
+To access shared variables in PHP, use `\MyTheme::theme()->config()->get()`:
 
 `app/src/WordPress/ThemeServiceProvider.php`
 ```php
 add_theme_support( 'editor-color-palette', [
 	[
-		'name'  => __( 'Red', 'app' ),
+		'name'  => __( 'Red', 'mytheme' ),
 		'slug'  => 'material-red',
-		'color' => \App::theme()->config()->get( 'variables.color.material-red', '#000000' ),
+		'color' => \MyTheme::theme()->config()->get( 'variables.color.material-red', '#000000' ),
 	],
 	[
-		'name'  => __( 'Pink', 'app' ),
+		'name'  => __( 'Pink', 'mytheme' ),
 		'slug'  => 'material-pink',
-		'color' => \App::theme()->config()->get( 'variables.color.material-pink', '#000000' ),
+		'color' => \MyTheme::theme()->config()->get( 'variables.color.material-pink', '#000000' ),
 	],
 	[
-		'name'  => __( 'Purple', 'app' ),
+		'name'  => __( 'Purple', 'mytheme' ),
 		'slug'  => 'material-purple',
-		'color' => \App::theme()->config()->get( 'variables.color.material-purple', '#000000' ),
+		'color' => \MyTheme::theme()->config()->get( 'variables.color.material-purple', '#000000' ),
 	],
 	// ...
 ] );
@@ -96,15 +96,15 @@ Works in the same way as colors:
 ```php
 add_theme_support( 'editor-font-sizes', [
 	[
-        'name'      => __( 'extra small', 'app' ),
-        'shortName' => __( 'XS', 'app' ),
-        'size'      => \App::theme()->config()->get( 'variables.font-size.xs', 12 ),
+        'name'      => __( 'extra small', 'mytheme' ),
+        'shortName' => __( 'XS', 'mytheme' ),
+        'size'      => \MyTheme::theme()->config()->get( 'variables.font-size.xs', 12 ),
         'slug'      => 'xs',
     ],
     [
-        'name'      => __( 'small', 'app' ),
-        'shortName' => __( 'S', 'app' ),
-        'size'      => \App::theme()->config()->get( 'variables.font-size.s', 16 ),
+        'name'      => __( 'small', 'mytheme' ),
+        'shortName' => __( 'S', 'mytheme' ),
+        'size'      => \MyTheme::theme()->config()->get( 'variables.font-size.s', 16 ),
         'slug'      => 's',
     ],
 	// ...

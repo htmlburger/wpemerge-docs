@@ -2,10 +2,10 @@
 
 Here are the general steps you need to follow when you are ready to publish your theme.
 
-1. Edit your `package.json` file and make sure you have replaced the `app` textdomain referenced in the following commands:
+1. Edit your `package.json` file and make sure you have replaced the `mytheme` textdomain referenced in the following commands:
     ```json
-    "i18n:textdomain": "wpi18n ... --textdomain=app",
-    "i18n:pot": "wpi18n ... --textdomain=app",
+    "i18n:textdomain": "wpi18n ... --textdomain=mytheme",
+    "i18n:pot": "wpi18n ... --textdomain=mytheme",
     ```
 2. Edit your `package.json` file and make sure you have replaced the `wpemerge-release` release name for your theme in the following command:
     ```json
