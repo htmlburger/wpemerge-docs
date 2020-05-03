@@ -16,14 +16,16 @@ Refer to the generated `tests/php/README.md` file for further instructions.
 
 ## Boilerplate
 
-The CLI comes with a couple of boilerplate generating commands.
+The CLI comes with a couple of boilerplate generating commands. Specifying a namespace is optional.
 
-### `php wpemerge make:controller ControllerNameHere`
+### `php wpemerge make:controller MyNamespace\ControllerNameHere`
 
-1. Creates a file: `app/src/Controllers/ControllerNameHere.php`.
-2. Adds an example controller class definition with namespace and class name filled in.
+Creates the following file: `app/src/Controllers/MyNamespace/ControllerNameHere.php`.
 
-### `php wpemerge make:view-composer ViewComposerNameHere`
+### `php wpemerge make:service-provider MyNamespace\ServiceProviderNameHere`
 
-1. Creates a file: `app/src/ViewComposers/ViewComposerNameHere.php`.
-2. Adds an example view composer class definition with namespace and class name filled in.
+Creates the following file: `app/src/MyNamespace/ServiceProviderNameHere.php`.
+
+### `php wpemerge make:view-composer MyNamespace\ViewComposerNameHere`
+
+Creates the following file: `app/src/ViewComposers/MyNamespace/ViewComposerNameHere.php`.
