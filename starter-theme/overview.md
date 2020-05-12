@@ -1,5 +1,4 @@
-# [![WPEmerge.com](../_images/wpemerge-theme-logo-bar.png ':size=autox61')](http://wpemerge.com)
-
+# <a href="http://wpemerge.com"><img src="https://docs.wpemerge.com/_images/wpemerge-theme-logo-bar.png" height="61" alt="WP Emerge Theme Logo" aria-label='WPEmerge.com' /></a>
 
 [![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-theme.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-theme) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge-theme/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge-theme/builds) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
 
@@ -46,7 +45,7 @@ Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and th
 | Automatic Sprite Generation    | ✔                | ✖              | N/A³     |
 | Automatic Cache Busting        | ✔                | ✖              | ✖        |
 | WPCS Linting                   | ✔                | ✖              | ✖        |
-| [Advanced Error Reporting](/framework/routing/error-handling) | ✔ | ✖ | ✖ |
+| [Advanced Error Reporting](https://docs.wpemerge.com/#/framework/routing/error-handling) | ✔ | ✖ | ✖ |
 | WP Unit Tests for your classes | ✔                | ✖              | ✖        |
 
 _¹ Sage's Controller is more of a View Composer than a Controller._
@@ -73,7 +72,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 - ES6 for JavaScript. Separate bundles are created for **front-end**, **administration**, **Gutenberg** and **login** pages.
 - Pure [Webpack](https://webpack.js.org/) to transpile and bundle assets, create sprites, optimize images etc.
 - [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) for synchronized browser development.
-- Autoloading for all classes in your `MyTheme\` namespace.
+- Autoloading for all classes in your `MyApp\` namespace.
 - Automatic, fool-proof cache busting for all assets, including ones referenced in styles.
 - WPCS, JavaScript and SASS linting and fixing using a single yarn command.
 - Single-command optional CSS package installation:
@@ -124,23 +123,22 @@ wp-content/themes/your-theme
 │   │   ├── admin/            # Administration scripts.
 │   │   ├── editor/           # Gutenberg editor scripts.
 │   │   ├── login/            # Login scripts.
-│   │   └── theme/            # Front-end scripts.
+│   │   └── frontend/         # Front-end scripts.
 │   ├── styles/
 │   │   ├── admin/            # Administration styles.
 │   │   ├── editor/           # Gutenberg editor styles.
 │   │   ├── login/            # Login styles.
 │   │   ├── shared/           # Shared styles.
-│   │   └── theme/            # Front-end styles.
+│   │   └── frontend/         # Front-end styles.
 │   └── vendor/               # Any third-party, non-npm assets.
-├── theme/                    # Required theme files and views
-│   ├── partials/             # View partials.
-│   ├── templates/            # Page templates.
-│   ├── functions.php         # Bootstrap theme.
-│   ├── screenshot.png        # Theme screenshot.
-│   ├── style.css             # Theme stylesheet (avoid adding css here).
-│   └── [index.php ...]
 ├── vendor/                   # Composer packages.
-├── README.md                 # Your theme README.
+├── views/
+│   ├── layouts/
+│   └── partials/
+├── views-alternatives/       # Views for other engines like Blade.
+├── functions.php             # Bootstrap theme.
+├── screenshot.png            # Theme screenshot.
+├── style.css                 # Theme stylesheet.
 └── ...
 ```
 
@@ -152,7 +150,7 @@ Add PHP helper files here. Helper files should include __function definitions on
 
 #### `app/src/`
 
-Add PHP class files here. All clases in the `MyTheme\` namespace are autoloaded in accordance with [PSR-4](http://www.php-fig.org/psr/psr-4/).
+Add PHP class files here. All clases in the `MyApp\` namespace are autoloaded in accordance with [PSR-4](http://www.php-fig.org/psr/psr-4/).
 
 #### `resources/images/`
 
@@ -168,15 +166,23 @@ These directories are for the admin, editor and login bundles, respectively. The
 
 #### `resources/scripts/frontend/`
 
-Add JavaScript files here to add them to the front-end bundle. The entry point is `index.js`.
+Add JavaScript files here to add them to the frontend bundle. The entry point is `index.js`.
 
 #### `resources/scripts/[admin,editor,login]/`
 
 These directories are for the admin, editor and login bundles, respectively. They work identically to the main `resources/scripts/frontend/` directory.
 
-#### `theme/`
+#### `views/`
 
-Add views in this, the `theme/partials/` or the `theme/templates/` directories accordingly. Avoid adding any PHP logic here, unless it pertains to layouting (PHP logic should go into helper files or [WP Emerge controllers](/framework/routing/controllers))
+While views that follow the WordPress template hierarchy should go in the theme root directory (e.g. `index.php`, `searchform.php`, `archive-post.php` etc.), others should go in the following directories:
+1. `views/layouts/` - Layouts that other views extend.
+2. `views/partials/` - Small snippets that are meant to be reused throughout other views.
+3. `views/` - Named [custom post templates](https://developer.wordpress.org/themes/template-files-section/page-template-files/#creating-custom-page-templates-for-global-use) or views that don't fit anywhere else.
+
+Avoid adding any PHP logic in any of these views, unless it pertains to layouting. Business logic should go into:
+- Helper files (`app/helpers/*.php`)
+- Service classes
+- [WP Emerge Controllers](https://docs.wpemerge.com/#/framework/routing/controllers)
 
 ## Contributing
 

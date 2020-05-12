@@ -7,7 +7,7 @@
 
 ?> Your development theme is not required to have the name `wpemerge`, but it's a useful convention. The built-in release script will create an optimized copy of the theme with your desired final name.
 
-?> Note that starter theme uses `\MyTheme` instead of `\App` as its main application class. Keep that in mind when following framework examples which refer to `\App` (e.g. `\App::output()` becomes `\MyTheme::output()`).
+?> Note that starter theme uses `\MyApp` by default instead of `\App` as its main application class. Keep that in mind when following framework examples which refer to `\App` (e.g. `\App::output()` becomes `\MyApp::output()`).
 
 During the installation process you will have the option to:
 

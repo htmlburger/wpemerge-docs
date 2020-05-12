@@ -60,7 +60,7 @@ Runs the `textdomain` command of the [node-wp-i18n](https://www.npmjs.com/packag
 
 #### `yarn i18n:pot`
 
-Runs the `makepot` command of the [node-wp-i18n](https://www.npmjs.com/package/node-wp-i18n) package, generating your `languages/mytheme.pot` file based on all gettext function calls throughout your code.
+Runs the `makepot` command of the [node-wp-i18n](https://www.npmjs.com/package/node-wp-i18n) package, generating your `languages/myapp.pot` file based on all gettext function calls throughout your code.
 
 ## Webpack Dev Server
 

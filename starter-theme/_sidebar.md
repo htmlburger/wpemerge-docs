@@ -16,12 +16,12 @@
 
 * Utilities
 
-  * [\MyTheme::theme()](/starter-theme/utilities/theme)
-  * [\MyTheme::theme()->assets()](/starter-theme/utilities/theme-assets)
-  * [\MyTheme::theme()->avatar()](/starter-theme/utilities/theme-avatar)
-  * [\MyTheme::theme()->config()](/starter-theme/utilities/theme-config)
-  * [\MyTheme::theme()->image()](/starter-theme/utilities/theme-image)
-  * [\MyTheme::theme()->sidebar()](/starter-theme/utilities/theme-sidebar)
+  * [\MyApp::theme()](/starter-theme/utilities/theme)
+  * [\MyApp::theme()->assets()](/starter-theme/utilities/theme-assets)
+  * [\MyApp::theme()->avatar()](/starter-theme/utilities/theme-avatar)
+  * [\MyApp::theme()->config()](/starter-theme/utilities/theme-config)
+  * [\MyApp::theme()->image()](/starter-theme/utilities/theme-image)
+  * [\MyApp::theme()->sidebar()](/starter-theme/utilities/theme-sidebar)
 
 * CLI
 
