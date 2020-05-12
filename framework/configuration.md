@@ -90,7 +90,9 @@ When booting WP Emerge you can specify a number of configuration options:
     /**
      * Custom directories to search for views.
      * Use absolute paths or leave blank to disable.
-     * Applies only to the default PhpViewEngine.
+     * View engines other than the default PhpViewEngine
+     * will default to this value as well but may have
+     * their own setting as well.
      */
     'views' => [get_stylesheet_directory(), get_template_directory()],
 
