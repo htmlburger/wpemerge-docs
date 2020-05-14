@@ -4,10 +4,10 @@ Here are the general steps you need to follow when you are ready to publish your
 
 1. Make sure you replace all instances of the `\MyApp` class and namespace to something that matches your project name.
 2. Make sure you replace all instances of `MYAPP_*` constants to something that matches your project name.
-3. Edit your `package.json` file and make sure you have replaced the `myapp` textdomain with something that matches your project name in the following commands:
+3. Edit your `package.json` file and make sure you have replaced the `my_app` textdomain with something that matches your project name in the following commands:
     ```json
-    "i18n:textdomain": "wpi18n ... --textdomain=myapp",
-    "i18n:pot": "wpi18n ... --textdomain=myapp",
+    "i18n:textdomain": "wpi18n ... --textdomain=my_app",
+    "i18n:pot": "wpi18n ... --textdomain=my_app",
     ```
 4. Edit your `package.json` file and make sure you have replaced the `wpemerge-release` release name for your project in the following command:
     ```json

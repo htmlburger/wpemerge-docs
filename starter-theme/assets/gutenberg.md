@@ -30,17 +30,17 @@ To access shared variables in PHP, use `\MyApp::core()->config()->get()`:
 ```php
 add_theme_support( 'editor-color-palette', [
 	[
-		'name'  => __( 'Red', 'myapp' ),
+		'name'  => __( 'Red', 'my_app' ),
 		'slug'  => 'material-red',
 		'color' => \MyApp::core()->config()->get( 'variables.color.material-red', '#000000' ),
 	],
 	[
-		'name'  => __( 'Pink', 'myapp' ),
+		'name'  => __( 'Pink', 'my_app' ),
 		'slug'  => 'material-pink',
 		'color' => \MyApp::core()->config()->get( 'variables.color.material-pink', '#000000' ),
 	],
 	[
-		'name'  => __( 'Purple', 'myapp' ),
+		'name'  => __( 'Purple', 'my_app' ),
 		'slug'  => 'material-purple',
 		'color' => \MyApp::core()->config()->get( 'variables.color.material-purple', '#000000' ),
 	],
@@ -96,14 +96,14 @@ Works in the same way as colors:
 ```php
 add_theme_support( 'editor-font-sizes', [
 	[
-        'name'      => __( 'extra small', 'myapp' ),
-        'shortName' => __( 'XS', 'myapp' ),
+        'name'      => __( 'extra small', 'my_app' ),
+        'shortName' => __( 'XS', 'my_app' ),
         'size'      => \MyApp::core()->config()->get( 'variables.font-size.xs', 12 ),
         'slug'      => 'xs',
     ],
     [
-        'name'      => __( 'small', 'myapp' ),
-        'shortName' => __( 'S', 'myapp' ),
+        'name'      => __( 'small', 'my_app' ),
+        'shortName' => __( 'S', 'my_app' ),
         'size'      => \MyApp::core()->config()->get( 'variables.font-size.s', 16 ),
         'slug'      => 's',
     ],
