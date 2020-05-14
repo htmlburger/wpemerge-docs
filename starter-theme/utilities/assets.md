@@ -12,8 +12,6 @@ Get the real absolute URL to an asset that was built using the Webpack pipeline.
 
 Assets such as images and fonts which pass through the build pipeline have their content hashed and appended to their filenames to facilitate cache busting. Since filenames change depending on the contents, a `dist/manifest.json` file is **automatically** generated to act as a map between the source filename and the final filename which includes said hash.
 
-### Example
-
 Having this `dist/manifest.json`:
 ```json
 {
@@ -34,6 +32,34 @@ https://example.org/wp-content/themes/my-theme/dist/images/favicon.3bb5e12219.ic
 You can see this exact scenario used for the `\MyApp::core()->assets()->addFavicon()` method here:
 
 https://github.com/htmlburger/wpemerge-theme-core/blob/master/src/Assets/Assets.php#L159
+
+`\MyApp::core()->assets()->getBundleUrl( $name, $extension )`
+
+Get the URL for the given JavaScript or CSS bundle.
+This utility takes care of returning the correct bundle URL based on whether a production bundle exists, SCRIPT_DEBUG is enabled or the bundles are currently being served in hot mode.
+
+Example:
+```php
+// Enqueue scripts.
+\MyApp::core()->assets()->enqueueScript(
+    'theme-js-bundle',
+    \MyApp::core()->assets()->getBundleUrl( 'frontend', '.js' ),
+    [ 'jquery' ],
+    true
+);
+
+// Enqueue styles.
+$style = \MyApp::core()->assets()->getBundleUrl( 'frontend', '.css' );
+
+if ( $style ) {
+    // A style bundle is not created in hot mode as it is injected via JavaScript
+    // so we skip enqueueing it if it does not exist.
+    \MyApp::core()->assets()->enqueueStyle(
+        'theme-css-bundle',
+        $style
+    );
+}
+```
 
 `\MyApp::core()->assets()->enqueueStyle( $handle, $src, $dependencies = [], $media = 'all' )`
 
