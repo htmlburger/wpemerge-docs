@@ -24,7 +24,7 @@ The color palette is available as shared `config.json` variables which you can e
 
 ### PHP
 
-To access shared variables in PHP, use `\MyApp::theme()->config()->get()`:
+To access shared variables in PHP, use `\MyApp::core()->config()->get()`:
 
 `app/src/WordPress/ThemeServiceProvider.php`
 ```php
@@ -32,17 +32,17 @@ add_theme_support( 'editor-color-palette', [
 	[
 		'name'  => __( 'Red', 'myapp' ),
 		'slug'  => 'material-red',
-		'color' => \MyApp::theme()->config()->get( 'variables.color.material-red', '#000000' ),
+		'color' => \MyApp::core()->config()->get( 'variables.color.material-red', '#000000' ),
 	],
 	[
 		'name'  => __( 'Pink', 'myapp' ),
 		'slug'  => 'material-pink',
-		'color' => \MyApp::theme()->config()->get( 'variables.color.material-pink', '#000000' ),
+		'color' => \MyApp::core()->config()->get( 'variables.color.material-pink', '#000000' ),
 	],
 	[
 		'name'  => __( 'Purple', 'myapp' ),
 		'slug'  => 'material-purple',
-		'color' => \MyApp::theme()->config()->get( 'variables.color.material-purple', '#000000' ),
+		'color' => \MyApp::core()->config()->get( 'variables.color.material-purple', '#000000' ),
 	],
 	// ...
 ] );
@@ -98,13 +98,13 @@ add_theme_support( 'editor-font-sizes', [
 	[
         'name'      => __( 'extra small', 'myapp' ),
         'shortName' => __( 'XS', 'myapp' ),
-        'size'      => \MyApp::theme()->config()->get( 'variables.font-size.xs', 12 ),
+        'size'      => \MyApp::core()->config()->get( 'variables.font-size.xs', 12 ),
         'slug'      => 'xs',
     ],
     [
         'name'      => __( 'small', 'myapp' ),
         'shortName' => __( 'S', 'myapp' ),
-        'size'      => \MyApp::theme()->config()->get( 'variables.font-size.s', 16 ),
+        'size'      => \MyApp::core()->config()->get( 'variables.font-size.s', 16 ),
         'slug'      => 's',
     ],
 	// ...
