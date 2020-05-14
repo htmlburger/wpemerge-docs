@@ -2,7 +2,7 @@
 
 ?> This article assumes you are using the default OS terminal on MacOS and Linux or GitBash on Windows.
 
-The WP Emerge Theme comes with a powerful asset build process which covers a multitude of use cases so you don't have to.
+The WP Emerge Starter Theme comes with a powerful asset build process which covers a multitude of use cases so you don't have to.
 
 ## Requirements
 

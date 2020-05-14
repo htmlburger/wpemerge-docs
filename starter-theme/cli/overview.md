@@ -1,6 +1,6 @@
 # CLI
 
-WP Emerge Theme comes with a minimal CLI utility which can help you out with tasks such as writing boilerplate code.
+WP Emerge Starter Theme comes with a minimal CLI utility which can help you out with tasks such as writing boilerplate code.
 
 ## Commands
 
