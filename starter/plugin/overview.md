@@ -1,11 +1,11 @@
-# <a href="http://wpemerge.com"><img src="https://docs.wpemerge.com/_images/wpemerge-theme-logo-bar.png" height="61" alt="WP Emerge Starter Theme Logo" aria-label='WPEmerge.com' /></a>
+# <a href="http://wpemerge.com"><img src="https://docs.wpemerge.com/_images/wpemerge-plugin-logo-bar.png" height="61" alt="WP Emerge Starter Plugin Logo" aria-label='WPEmerge.com' /></a>
 
-[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-theme.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-theme) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge-theme/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge-theme/builds) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
+[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-plugin.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-plugin) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge-plugin/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge-plugin/builds) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
 
 
-A modern WordPress starter theme which uses the [WP Emerge](https://github.com/htmlburger/wpemerge) framework.
+A modern WordPress starter plugin which uses the [WP Emerge](https://github.com/htmlburger/wpemerge) framework.
 
-_This is the WP Emerge Starter Theme project - for the WP Emerge framework please check out https://github.com/htmlburger/wpemerge._
+_This is the WP Emerge Starter Plugin project - for the WP Emerge framework please check out https://github.com/htmlburger/wpemerge._
 
 ## Summary
 
@@ -19,9 +19,9 @@ _This is the WP Emerge Starter Theme project - for the WP Emerge framework pleas
 
 ## Documentation
 
-[http://docs.wpemerge.com/#/starter/theme/overview](http://docs.wpemerge.com/#/starter/theme/overview)
+[http://docs.wpemerge.com/#/starter/plugin/overview](http://docs.wpemerge.com/#/starter/plugin/overview)
 
-[http://docs.wpemerge.com/#/starter/theme/quickstart](http://docs.wpemerge.com/#/starter/theme/quickstart)
+[http://docs.wpemerge.com/#/starter/plugin/quickstart](http://docs.wpemerge.com/#/starter/plugin/quickstart)
 
 ## Development Team
 
@@ -97,7 +97,7 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 ## Directory structure
 
 ```
-wp-content/themes/your-theme
+wp-content/plugins/your-plugin
 ├── app/
 │   ├── helpers/              # Helper files, add your own here as well.
 │   ├── routes/               # Register your WP Emerge routes.
@@ -122,13 +122,9 @@ wp-content/themes/your-theme
 │   ├── images/
 │   ├── scripts/
 │   │   ├── admin/            # Administration scripts.
-│   │   ├── editor/           # Gutenberg editor scripts.
-│   │   ├── login/            # Login scripts.
 │   │   └── frontend/         # Front-end scripts.
 │   ├── styles/
 │   │   ├── admin/            # Administration styles.
-│   │   ├── editor/           # Gutenberg editor styles.
-│   │   ├── login/            # Login styles.
 │   │   ├── frontend/         # Front-end styles.
 │   │   └── shared/           # Shared styles.
 │   └── vendor/               # Any third-party, non-npm assets.
@@ -136,11 +132,9 @@ wp-content/themes/your-theme
 ├── views/
 │   ├── layouts/
 │   └── partials/
-├── views-alternatives/       # Views for other engines like Blade.
-├── functions.php             # Bootstrap theme.
-├── screenshot.png            # Theme screenshot.
-├── style.css                 # Theme stylesheet.
+├── screenshot-1.png          # Plugin screenshot.
 ├── wpemerge                  # WP Emerge CLI shortcut.
+├── wpemerge.php              # Bootstrap plugin.
 └── ...
 ```
 
@@ -162,24 +156,23 @@ Add images for styling here. Optimized copies will be placed in `dist/images/` w
 
 Add .css and .scss files to add them to the front-end bundle. Don't forget to `@import` them in `index.scss`.
 
-#### `resources/styles/[admin,editor,login]/`
+#### `resources/styles/admin/`
 
-These directories are for the admin, editor and login bundles, respectively. They work identically to the main `resources/styles/frontend/` directory.
+The admin styles directory which works identically to the `resources/styles/frontend/` directory.
 
 #### `resources/scripts/frontend/`
 
 Add JavaScript files here to add them to the frontend bundle. The entry point is `index.js`.
 
-#### `resources/scripts/[admin,editor,login]/`
+#### `resources/scripts/admin/`
 
-These directories are for the admin, editor and login bundles, respectively. They work identically to the main `resources/scripts/frontend/` directory.
+The admin scripts directory which works identically to the `resources/scripts/frontend/` directory.
 
 #### `views/`
 
-While views that follow the WordPress template hierarchy should go in the theme root directory (e.g. `index.php`, `searchform.php`, `archive-post.php` etc.), others should go in the following directories:
 1. `views/layouts/` - Layouts that other views extend.
 2. `views/partials/` - Small snippets that are meant to be reused throughout other views.
-3. `views/` - Named [custom post templates](https://developer.wordpress.org/themes/template-files-section/page-template-files/#creating-custom-page-templates-for-global-use) or views that don't fit anywhere else.
+3. `views/` - Full page views that may extend layouts and may include partials.
 
 Avoid adding any PHP logic in any of these views, unless it pertains to layouting. Business logic should go into:
 - Helper files (`app/helpers/*.php`)
@@ -188,13 +181,13 @@ Avoid adding any PHP logic in any of these views, unless it pertains to layoutin
 
 ## Contributing
 
-WP Emerge Starter Theme is completely open source and we encourage everybody to participate by:
+WP Emerge Starter Plugin is completely open source and we encourage everybody to participate by:
 
 - Reviewing `.github/CONTRIBUTING.md`.
-- ⭐ the project on GitHub \([https://github.com/htmlburger/wpemerge-theme](https://github.com/htmlburger/wpemerge-theme)\)
-- Posting bug reports \([https://github.com/htmlburger/wpemerge-theme/issues](https://github.com/htmlburger/wpemerge-theme/issues)\)
+- ⭐ the project on GitHub \([https://github.com/htmlburger/wpemerge-plugin](https://github.com/htmlburger/wpemerge-plugin)\)
+- Posting bug reports \([https://github.com/htmlburger/wpemerge-plugin/issues](https://github.com/htmlburger/wpemerge-plugin/issues)\)
 - (Emailing security issues to [hi@atanas.dev](mailto:hi@atanas.dev) instead)
-- Posting feature suggestions \([https://github.com/htmlburger/wpemerge-theme/issues](https://github.com/htmlburger/wpemerge-theme/issues)\)
-- Posting and/or answering questions \([https://github.com/htmlburger/wpemerge-theme/issues](https://github.com/htmlburger/wpemerge-theme/issues)\)
-- Submitting pull requests \([https://github.com/htmlburger/wpemerge-theme/pulls](https://github.com/htmlburger/wpemerge-theme/pulls)\)
+- Posting feature suggestions \([https://github.com/htmlburger/wpemerge-plugin/issues](https://github.com/htmlburger/wpemerge-plugin/issues)\)
+- Posting and/or answering questions \([https://github.com/htmlburger/wpemerge-plugin/issues](https://github.com/htmlburger/wpemerge-plugin/issues)\)
+- Submitting pull requests \([https://github.com/htmlburger/wpemerge-plugin/pulls](https://github.com/htmlburger/wpemerge-plugin/pulls)\)
 - Sharing your excitement about WP Emerge with your community
