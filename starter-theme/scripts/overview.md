@@ -29,6 +29,17 @@ Run the build process in production mode with Webpack optimizations enabled:
 
 ?> Non-minified versions of JavaScript and CSS assets will also be generated in build mode in order to support WordPress' SCRIPT_DEBUG mode.
 
+## `yarn rebrand`
+
+Rewrites your files to use a new project name, namespace, constant and function prefix. For example:
+ - `namespace \MyApp\*;`
+ - `function my_app_*() {};`
+ - `define( 'MY_APP_*', '*' );`
+
+?> The `rebrand` command is rudimentary and only meant to be used once per project.
+
+!> The `rebrand` command is potentially destructive - make sure you have committed and backed up your files before running it.
+
 ## `yarn release`
 
 Creates a production-ready directory and zip of your theme. Running `yarn release` will:
