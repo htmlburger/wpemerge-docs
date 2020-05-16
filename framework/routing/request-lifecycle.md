@@ -1,6 +1,6 @@
 # Request Lifecycle
 
-In order to enable WP Emerge you first have to boot it. This is usually done in your theme's functions.php file or your plugin's main file as it is early enough to allow WP Emerge to hook itself into required WordPress actions. Once WP Emerge is booted, it will hook into the `template_include` action to process the request. This means that there are 2 major parts to the request lifecycle:
+In order to enable WP Emerge you first have to boot it. This is usually done in your plugin's main `.php` file or your theme's `functions.php` file as it is early enough to allow WP Emerge to hook itself into required WordPress actions. Once WP Emerge is booted, it will hook into the `template_include` action to process the request. This means that there are 2 major parts to the request lifecycle:
 
 ## Bootstrapping
 

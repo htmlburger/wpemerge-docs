@@ -1,6 +1,6 @@
 # Configuration
 
-The starter theme comes with a configuration file which gives you control over shared variables, development and release settings to mention a few.
+The starter plugin and theme come with a configuration file which gives you control over shared variables, development and release settings to mention a few.
 
 The configuration comes in the form of a `config.json.dist` file which you should copy into a new `config.json` file and customize as needed. Here's the full list of configuration options available:
 ```json

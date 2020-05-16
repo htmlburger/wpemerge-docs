@@ -8,7 +8,11 @@
         <p>A modern, MVC-powered WordPress as a CMS workflow you've never seen before.</p>
     </div>
     <div>
-        [Starter Theme](starter-theme/overview.md)
+        [Starter Plugin](starter/plugin/overview.md)
+        <p>An organized, ES6 and SASS powered plugin taking advantage of the WP Emerge framework.</p>
+    </div>
+    <div>
+        [Starter Theme](starter/theme/overview.md)
         <p>An organized, ES6 and SASS powered theme taking advantage of the WP Emerge framework.</p>
     </div>
 </div>

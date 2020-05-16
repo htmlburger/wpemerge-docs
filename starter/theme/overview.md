@@ -19,13 +19,13 @@ _This is the WP Emerge Starter Theme project - for the WP Emerge framework pleas
 
 ## Documentation
 
-[http://docs.wpemerge.com/#/starter-theme/overview](http://docs.wpemerge.com/#/starter-theme/overview)
+[http://docs.wpemerge.com/#/starter/theme/overview](http://docs.wpemerge.com/#/starter/theme/overview)
 
-[http://docs.wpemerge.com/#/starter-theme/quickstart](http://docs.wpemerge.com/#/starter-theme/quickstart)
+[http://docs.wpemerge.com/#/starter/theme/quickstart](http://docs.wpemerge.com/#/starter/theme/quickstart)
 
 ## Development Team
 
-Brought to you by [Atanas Angelov](https://github.com/atanas-angelov-dev) and the lovely folks at [htmlBurger](http://htmlburger.com).
+Brought to you by [Atanas Angelov](https://atanas.dev/) and the lovely folks at [htmlBurger](http://htmlburger.com).
 
 ## Comparison Table
 

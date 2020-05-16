@@ -2,7 +2,7 @@
 
 ?> This article assumes you are using the default OS terminal on MacOS and Linux or GitBash on Windows.
 
-The WP Emerge Starter Theme comes with a powerful asset build process which covers a multitude of use cases so you don't have to.
+The WP Emerge starter plugin and theme come with a powerful asset build process which covers a multitude of use cases to save you time and resources.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ The WP Emerge Starter Theme comes with a powerful asset build process which cove
     - To run the build process in production mode run `yarn build`
     - To run the build process in development mode run `yarn start`. This will also rebuild assets on changes.
     - To run the build process in development mode run `yarn hot`. This will also rebuild assets on changes and automatically reload your browser.
-    - For more information, check out the [Yarn Scripts](/starter-theme/scripts/overview) article.
+    - For more information, check out the [Yarn Scripts](/starter/scripts/overview) article.
 
 ## Importing assets
 

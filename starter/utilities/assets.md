@@ -4,7 +4,7 @@ This utility provides tools to work with assets.
 
 `\MyApp::core()->assets()->getUrl()`
 
-Return the public URL of the theme or plugin root directory.
+Return the public URL of the plugin or theme root directory.
 
 `\MyApp::core()->assets()->getAssetUrl( $asset )`
 
@@ -31,7 +31,7 @@ https://example.org/wp-content/themes/my-theme/dist/images/favicon.3bb5e12219.ic
 
 You can see this exact scenario used for the `\MyApp::core()->assets()->addFavicon()` method here:
 
-https://github.com/htmlburger/wpemerge-theme-core/blob/master/src/Assets/Assets.php#L159
+https://github.com/htmlburger/wpemerge-app-core/blob/master/src/Assets/Assets.php#L159
 
 `\MyApp::core()->assets()->getBundleUrl( $name, $extension )`
 
@@ -42,7 +42,7 @@ Example:
 ```php
 // Enqueue scripts.
 \MyApp::core()->assets()->enqueueScript(
-    'theme-js-bundle',
+    'my-js-bundle',
     \MyApp::core()->assets()->getBundleUrl( 'frontend', '.js' ),
     [ 'jquery' ],
     true
@@ -55,7 +55,7 @@ if ( $style ) {
     // A style bundle is not created in hot mode as it is injected via JavaScript
     // so we skip enqueueing it if it does not exist.
     \MyApp::core()->assets()->enqueueStyle(
-        'theme-css-bundle',
+        'my-css-bundle',
         $style
     );
 }

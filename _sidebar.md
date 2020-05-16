@@ -1,3 +1,4 @@
 * [Home](/)
 * [Framework](/framework/overview)
-* [Starter Theme](/starter-theme/overview)
+* [Starter Plugin](/starter/plugin/overview)
+* [Starter Theme](/starter/theme/overview)

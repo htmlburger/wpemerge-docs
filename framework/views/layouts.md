@@ -18,7 +18,7 @@ Here's the main `theme/index.php` view of the WP Emerge Starter Theme:
 \App::render( 'loop' );
 ```
 
-The above is not a snippet - this is the entire file!
+The above is not a snippet - it's the entire file!
 
 ### Where are get_header() and get_footer()?
 

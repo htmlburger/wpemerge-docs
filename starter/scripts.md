@@ -1,4 +1,4 @@
-# Yarn Scripts
+# Scripts
 
 ## `yarn start`
 
@@ -42,12 +42,12 @@ Rewrites your files to use a new project name, namespace, constant and function 
 
 ## `yarn release`
 
-Creates a production-ready directory and zip of your theme. Running `yarn release` will:
+Creates a production-ready directory and zip of your plugin or theme. Running `yarn release` will:
 1. Run `yarn build`.
-2. Create a new `wpemerge-release` theme directory.
+2. Create a new `wpemerge-release` plugin or theme directory.
 3. Copy all files and directories specified in the `release.include` key of your `config.json` file.
-   - By default, this list contains all necessary files for your theme.
-   - If you have any custom files/directories outside of the standard directories of the theme make sure to add them to this list.
+   - By default, this list contains all necessary files for your plugin or theme.
+   - If you have any custom files/directories outside of the standard directories make sure to add them to this list.
 4. Install production-only Composer dependencies with an authoritative classmap for improved autoloading performance.
 5. Create a zip file of the directory created in step 2.
 
@@ -77,7 +77,7 @@ Runs the `makepot` command of the [node-wp-i18n](https://www.npmjs.com/package/n
 
 In `yarn hot` mode, Webpack Dev Server will setup a simple web server and serve changes to your assets as you work on them. If your website is setup inside a virtual machine and you are running `yarn hot` inside that virtual machine you will have to change your `development.hotUrl` option in your `config.json` file as otherwise WP Emerge will assume you are running it on your localhost.
 
-To let WP Emerge know where you run `yarn hot`, open up `config.json` from the root theme directory and edit the `development.hotUrl` key like this:
+To let WP Emerge know where you run `yarn hot`, open up `config.json` from the root directory of your plugin or theme and edit the `development.hotUrl` key like this:
 ```json
 {
     "development": {

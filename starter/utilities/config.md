@@ -1,6 +1,6 @@
 # \MyApp::core()->config()
 
-This utility provides tools to work with the theme's `config.json` file.
+This utility provides tools to work with the project's `config.json` file.
 
 `\MyApp::core()->config()->get( $key, $default = null )`
 

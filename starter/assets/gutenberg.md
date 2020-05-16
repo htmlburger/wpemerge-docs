@@ -1,6 +1,6 @@
 # Gutenberg
 
-Gutenberg support is included - here's how to customize it:
+Gutenberg support is included in the starter theme - here's how to customize it:
 
 ## Color palette
 
