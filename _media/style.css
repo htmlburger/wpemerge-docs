@@ -35,6 +35,10 @@ a.app-name-link {
     color: #FFFFFF;
 }
 
+.markdown-section p.warn {
+	background-color: var(--theme-light-color);
+}
+
 pre code {
     white-space: pre-wrap !important;
 }
