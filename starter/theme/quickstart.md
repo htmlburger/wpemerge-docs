@@ -2,7 +2,7 @@
 
 1. Browse to `/wp-content/themes`.
 2. Run `composer create-project htmlburger/wpemerge-theme wpemerge`.
-3. If you receive an error stating `TTY mode is not supported on Windows platform.`, run `php wpemerge install` inside the newly created `wpemerge` directory.
+3. Run `cd wpemerge && php wpemerge install`.
 4. Activate your new theme.
 
 ?> Your development theme is not required to have the name `wpemerge`, but it's a useful convention. The built-in release script will create an optimized copy of the theme with your desired final name.
@@ -22,3 +22,11 @@ Let's say you've chosen `AwesomeTheme` as your namespace during the `yarn rebran
 - `\MyApp::render()` becomes `\AwesomeTheme::render()`.
 - `my_app_get_title()` becomes `awesome_theme_get_title()`.
 - etc.
+
+## Quickstart on Bedrock
+
+1. Browse to your [Bedrock](https://roots.io/bedrock/) root directory.
+2. Run `composer require htmlburger/wpemerge-theme`.
+3. Run `composer require --dev htmlburger/wpemerge-cli`.
+4. Run `(cd web/app/themes/wpemerge-theme && composer run install-dev-env && php wpemerge install)`.
+5. Activate your new theme.
