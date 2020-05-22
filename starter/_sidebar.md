@@ -17,7 +17,7 @@
 * Assets
 
   * [Overview](/starter/assets/overview.md)
-  * [Sprite Mixins](/starter/assets/sprite-mixins.md)
+  * [Sprites](/starter/assets/sprites.md)
   * [Gutenberg](/starter/assets/gutenberg.md)
 
 * Utilities

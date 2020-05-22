@@ -1,11 +1,30 @@
-# Sprite Mixins
+# Sprites
 
-Adding images inside the `resources/images/sprite/` directory will prepare them for sprite usage. To use a sprite image in your styles you can employ one of the automatically generated SASS mixins in `resources/styles/_sprite.scss`.
-In addition, a variable will be defined for every sprite image which you will use as a reference in mixins (e.g. `birds.jpg` becomes `$birds`).
+## SVG Sprite
+
+Adding images inside the `resources/images/sprite-svg/` directory will combine them into a single sprite file.
+The sprite file will be automatically output in your site's footer so SVGs don't block loading critical site content.
+
+To output a single SVG from the sprite you have to use an SVG reference:
+```html
+<svg><use xlink:href="#my-sprite-id" /></svg>
+```
+
+In the example above, `my-sprite-id` represents the filename for the original SVG file, without the extension. Here are a couple more examples:
+
+| File | SVG |
+| --- | --- |
+| `resources/images/sprite-svg/home.svg` | `<svg><use xlink:href="#home" /></svg>` |
+| `resources/images/sprite-svg/github.svg` | `<svg><use xlink:href="#github" /></svg>` |
+| `resources/images/sprite-svg/heart-icon.svg` | `<svg><use xlink:href="#heart-icon" /></svg>` |
+
+## Raster Sprite
+Adding images inside the `resources/images/sprite/` directory will combine them into a single sprite file. To use a sprite image in your styles you can employ one of the automatically generated SASS mixins in `resources/styles/_sprite.scss`.
+In addition, a variable will be automatically defined for every sprite image you add - these variables can be used as a reference in mixins (e.g. `birds.jpg` becomes `$birds`).
 
 !> `resources/styles/_sprite.scss` is an automatically generated file - never modify it manually.
 
-## Examples
+### Examples
 1. Add a sprite image as a background:
     ```scss
     .foo {
@@ -29,7 +48,7 @@ In addition, a variable will be defined for every sprite image which you will us
 
 Refer to the generated comments inside `resources/styles/_sprite.scss` for more information and examples.
 
-## Retina Support
+### Retina Support
 
 To enable retina support for sprites follow these steps:
 
