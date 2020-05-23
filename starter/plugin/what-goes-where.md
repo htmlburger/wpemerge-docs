@@ -32,16 +32,16 @@ Small template snippets that are meant to be reused throughout other templates g
 
 ## Styles
 
-?> `/resources/styles/[frontend|admin|login|editor]/`
+?> `/resources/styles/[frontend|admin]/`
 
-Styles for the frontend, admin, login and editor go in the respective directory.  
+Styles for the frontend and admin go in the respective directory.  
 Since the starter plugin uses SASS you can add as many files as you need and import them in the main `index.scss` file (or any other file that is imported in it) and they will be bundled up into a single optimized CSS file. You can even include them via a wildcard (e.g. `@import './module-*.scss';`).
 
 ## Scripts
 
-?> `/resources/scripts/[frontend|admin|login|editor]/`
+?> `/resources/scripts/[frontend|admin]/`
 
-Scripts for the frontend, admin, login and editor go in the respective directory.  
+Scripts for the frontend and admin go in the respective directory.  
 Since the starter plugin uses Webpack you can add as many files as you need and include them in the main `index.js` file (or any other file that is included in it) and they will be bundled up into a single optimized JS file. You can even include them via a wildcard (e.g. `import './modules/*.js';`).
 
 ## Images
