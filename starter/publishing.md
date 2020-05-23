@@ -2,7 +2,7 @@
 
 Here are the general steps you need to follow when you are ready to publish your plugin or theme.
 
-1. Make sure you've ran `yarn rebrand` to replace all `MyApp` placeholders with ones that match your project name.
+1. Make sure you've ran `yarn rebrand` to replace all `MyApp` placeholders with ones that match your project name. __Always make sure you have a backup of your files before running the rebrand command!__
 2. Edit your `package.json` file and make sure you have replaced the `wpemerge-release` release name for your project in the following command:
     ```json
     "release:zip": "node resources/build/release/release.js wpemerge-release"
