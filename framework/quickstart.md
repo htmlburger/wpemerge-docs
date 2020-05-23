@@ -63,11 +63,10 @@
 
 Here are a few example classes (and their filepaths) that will be autoloaded:
 
-| Class                        | File                           |
-|----------------------------- |------------------------------- |
-| `App\MyClass`                | `app/MyClass.php`              |
-| `App\Foo\Bar\Baz`            | `app/Foo/Bar/Baz.php`          |
-| `App\Controllers\Web\Home`   | `app/Controllers/Web/Home.php` |
-
+| Class                         | File                              |
+|-----------------------------  |---------------------------------- |
+| `App\MyClass`                 | `app/MyClass.php`                 |
+| `App\Controllers\Web\Home`    | `app/Controllers/Web/Home.php`    |
+| `App\ViewComposers\UserBadge` | `app/ViewComposers/UserBadge.php` |
 
 You can find more information about PSR-4 autoloading at http://www.php-fig.org/psr/psr-4/

@@ -2,17 +2,19 @@
 
   * [Overview](/starter/plugin/overview.md)
   * [Quickstart](/starter/plugin/quickstart.md)
+  * [What goes where](/starter/plugin/what-goes-where.md)
 
 * Starter Theme
 
   * [Overview](/starter/theme/overview.md)
   * [Quickstart](/starter/theme/quickstart.md)
+  * [What goes where](/starter/theme/what-goes-where.md)
 
 * Common
 
     * [Configuration](/starter/configuration.md)
     * [Publishing](/starter/publishing.md)
-    * [Scripts](/starter/scripts.md)
+    * [Development Scripts](/starter/scripts.md)
 
 * Assets
 
