@@ -30,7 +30,7 @@ To help with importing assets, the webpack configuration supports a number of re
 
 | Alias in JavaScript | Alias in SASS | Resolve |
 | --- | --- |--- |
-| `~/` | `~` | `node_modules` |
+| `~/` | `~` | `node_modules/` |
 | `@scripts/` | `~@scripts/` | `resources/scripts/` |
 | `@styles/` | `~@styles/` | `resources/styles/` |
 | `@images/` | `~@images/` | `resources/images/` |
