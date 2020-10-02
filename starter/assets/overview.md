@@ -44,8 +44,8 @@ To help with importing assets, the webpack configuration supports a number of re
 
 | File | Import |
 | --- | --- |
-| `node_modules/foo/bar.js` | `import foo from '~/foo/bar';` |
 | `node_modules/foo/index.js` | `import foo from '~/foo';` |
+| `node_modules/foo/bar.js` | `import foo from '~/foo/bar';` |
 | `resources/vendor/foo/bar.js` | `import foo from '@vendor/foo/bar';` |
 | `resources/scripts/frontend/foo.js` | `import foo from '@scripts/frontend/foo';` |
 | `resources/scripts/frontend/foo/bar.js` | `import foo from '@scripts/frontend/foo/bar';` |
@@ -61,8 +61,8 @@ Similar patterns apply to SASS as well:
 
 | File | Import |
 | --- | --- |
-| `node_modules/foo/bar.scss` | `@import '~foo/bar';` |
 | `node_modules/foo/index.scss` | `@import '~foo';` |
+| `node_modules/foo/bar.scss` | `@import '~foo/bar';` |
 | `resources/vendor/foo/bar.scss` | `@import '~@vendor/foo/bar';` |
 | `resources/styles/foo.scss` | `@import '~@styles/foo';` |
 | `resources/styles/foo/bar.scss` | `@import '~@styles/foo/bar';` |
