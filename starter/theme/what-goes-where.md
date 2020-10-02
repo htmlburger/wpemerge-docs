@@ -6,13 +6,13 @@ Starting a new project can be overwhelming as every feature has its cognitive co
 
 ## One-off functions
 
-?> `/app/src/helpers/{relevant-filename}.php`
+?> `/app/helpers/{relevant-filename}.php`
 
-The best place to add a simple function would be in a suitable file inside the `helpers` directory. If such a file does not exist don't be afraid to add one yourself, just make sure you `require_once` the new file in `app/src/helpers.php`.
+The best place to add a simple function would be in a suitable file inside the `helpers` directory. If such a file does not exist don't be afraid to add one yourself, just make sure you `require_once` the new file in `app/helpers.php`.
 
 ## One-off actions and filters
 
-?> `/app/src/hooks.php`
+?> `/app/hooks.php`
 
 The bast place to add simple actions or filters is the dedicated `hooks.php` file. Avoid defining functions here - use `add_action()` and `add_filter()` only.
 
