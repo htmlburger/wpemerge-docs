@@ -31,12 +31,12 @@ To help with importing assets, the webpack configuration supports a number of re
 | Alias in JavaScript | Alias in SASS | Resolve |
 | --- | --- |--- |
 | `~/` | `~` | `node_modules` |
-| `@scripts/` | `~@scripts/` | `resources/scripts` |
-| `@styles/` | `~@styles/` | `resources/styles` |
-| `@images/` | `~@images/` | `resources/images` |
-| `@fonts/` | `~@fonts/` | `resources/fonts` |
-| `@vendor/` | `~@vendor/` | `resources/vendor` |
-| `@dist/` | `~@dist/` | `dist` |
+| `@scripts/` | `~@scripts/` | `resources/scripts/` |
+| `@styles/` | `~@styles/` | `resources/styles/` |
+| `@images/` | `~@images/` | `resources/images/` |
+| `@fonts/` | `~@fonts/` | `resources/fonts/` |
+| `@vendor/` | `~@vendor/` | `resources/vendor/` |
+| `@dist/` | `~@dist/` | `dist/` |
 
 ?> All aliases resolve to absolute paths so you can use them in any file, regardless of its location.
 
@@ -44,27 +44,27 @@ To help with importing assets, the webpack configuration supports a number of re
 
 | File | Import |
 | --- | --- |
-| `node_modules/foo/foo.js` | `import foo from '~/foo/foo';` |
+| `node_modules/foo/bar.js` | `import foo from '~/foo/bar';` |
 | `node_modules/foo/index.js` | `import foo from '~/foo';` |
-| `resources/vendor/foo/foo.js` | `import foo from '@vendor/foo/foo';` |
-| `resources/scripts/frontend/foo/foo.js` | `import foo from '@scripts/frontend/foo/foo';` |
+| `resources/vendor/foo/bar.js` | `import foo from '@vendor/foo/bar';` |
 | `resources/scripts/frontend/foo.js` | `import foo from '@scripts/frontend/foo';` |
+| `resources/scripts/frontend/foo/bar.js` | `import foo from '@scripts/frontend/foo/bar';` |
 
 In the last two examples you can even omit the `@scripts/` portion as your `resources/scripts/` directory is considered a module root:
 
 | File | Import |
 | --- | --- |
-| `resources/scripts/foo/foo.js` | `import foo from 'foo/foo';` |
 | `resources/scripts/foo.js` | `import foo from 'foo';` |
+| `resources/scripts/foo/bar.js` | `import foo from 'foo/bar';` |
 
 Similar patterns apply to SASS as well:
 
 | File | Import |
 | --- | --- |
-| `node_modules/foo/foo.scss` | `@import '~foo/foo';` |
+| `node_modules/foo/bar.scss` | `@import '~foo/bar';` |
 | `node_modules/foo/index.scss` | `@import '~foo';` |
-| `resources/vendor/foo/foo.scss` | `@import '~@vendor/foo/foo';` |
-| `resources/styles/foo/foo.scss` | `@import '~@styles/foo/foo';` |
+| `resources/vendor/foo/bar.scss` | `@import '~@vendor/foo/bar';` |
 | `resources/styles/foo.scss` | `@import '~@styles/foo';` |
+| `resources/styles/foo/bar.scss` | `@import '~@styles/foo/bar';` |
 
 Unlike `scripts/`, the `styles/` directory is __NOT__ considered a module root to avoid name clashes.
