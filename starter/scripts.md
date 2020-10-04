@@ -42,16 +42,14 @@ Rewrites your files to use a new project name, namespace, constant and function 
 
 ## `yarn release`
 
-Creates a production-ready directory and zip of your plugin or theme. Running `yarn release` will:
+Creates a production-ready zip of your plugin or theme. Running `yarn release` will:
 1. Run `yarn build`.
-2. Create a new `wpemerge-release` plugin or theme directory.
+2. Create a new temporary directory.
 3. Copy all files and directories specified in the `release.include` key of your `config.json` file.
    - By default, this list contains all necessary files for your plugin or theme.
    - If you have any custom files/directories outside of the standard directories make sure to add them to this list.
 4. Install production-only Composer dependencies with an authoritative classmap for improved autoloading performance.
-5. Create a zip file of the directory created in step 2.
-
-?> To change the output directory and zip name adjust `release:zip` in your `package.json` file.
+5. Create a zip file e.g. `themes/your-theme.zip` ready for distribution.
 
 ## `yarn lint`
 

@@ -1,11 +1,9 @@
 # Quickstart
 
 1. Browse to `/wp-content/plugins`.
-2. Run `composer create-project htmlburger/wpemerge-plugin wpemerge`.
+2. Run `composer create-project htmlburger/wpemerge-plugin PLUGIN_NAME` replacing `PLUGIN_NAME` with your desired name.
 3. Run `cd wpemerge && php wpemerge install`.
 4. Activate your new plugin.
-
-?> Your development plugin is not required to have the name `wpemerge`, but it's a useful convention. The built-in release script will create an optimized copy of the plugin with your desired final name.
 
 During the installation process you will have the option to:
 
