@@ -4,6 +4,11 @@ When booting WP Emerge you can specify a number of configuration options:
 ```php
 \App::make()->bootstrap( [
     /**
+     * Default class namespace prefix.
+     */
+    'namespace' => 'App\\',
+
+    /**
      * Array of service providers you wish to enable.
      */
     'providers' => [
