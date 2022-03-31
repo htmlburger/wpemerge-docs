@@ -154,7 +154,7 @@ Match __any__ url:
 
 Match against a custom WordPress admin page.
 
-!> WP Emerge will not register any pages when you use this condition - you have to register those pages yourself using [add_menu_page()](https://developer.wordpress.org/reference/functions/add_menu_page/) or [add_submenu_page()](https://developer.wordpress.org/reference/functions/add_submenu_page/).
+!> WP Emerge will not register any pages when you use this condition - you have to register those pages yourself using [add_menu_page()](https://developer.wordpress.org/reference/functions/add_menu_page/) or [add_submenu_page()](https://developer.wordpress.org/reference/functions/add_submenu_page/), for example: `add_menu_page( 'Page title', 'Top-level menu title', 'manage_options', 'my-menu-page', '__return_false' );`. Note that a callback function must be specified, even if it is `__return_false`, or WordPress won't execute a required hook.
 
 ```php
 \App::route()->get()->where( 'admin', 'my-menu-page' )->handle( $handler );
