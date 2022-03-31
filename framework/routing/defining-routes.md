@@ -32,6 +32,7 @@ To define your desired routes you should create a separate file for each group y
 
 Routes defined in this way will automatically have the middleware group of the same name applied to them so if you wish to have some custom middleware applied to all of your `web` routes, for example, you can add them to the `web` middleware group in the `middleware_groups` configuration option. You can read more on the subject in the [Configuration](/framework/configuration) and [Middleware](/framework/routing/middleware) articles.
 
+
 ## Route Definition
 
 A typical route definition consists of several attribute declarations and a finalizer, for example:
@@ -115,6 +116,49 @@ There's also a shorthand available:
 ```
 
 You can find a full list of built-in conditions in the [Conditions](/framework/routing/conditions) article.
+
+### Route URL parameters
+
+Route parameters allow you to capture segments of the URI within your route:
+
+```php
+\App::route()->get()->url( '/teams/{team}/edit' )
+    ->handle( function ($request, $view, $team) {
+        // $team variable will contain the part of the
+        // corresponding segment of the requested URI
+    } );
+```
+
+Route parameters should be placed in `{}` braces. Route parameters are injected into route handlers / controllers based on their order - the names of the route callback / controller arguments do not matter.
+
+You can make a parameter optional by adding `?` after the paramter name:
+
+```php
+\App::route()->get()->url( '/teams/{team?}' )
+    ->handle( function ($request, $view, $team) {
+        // $team variable will be empty string if the team is not passed
+    } );
+```
+
+You can mix required and optional parameteres:
+
+```php
+\App::route()->get()->url( '/teams/{team?}/players/{member}' )
+    ->handle( function ($request, $view, $team, $member) {
+        // Example URL: https://example.com/teams/lakers/members/lebron
+        // The handler would receive: 
+        // $team = "lakers"
+        // $member = "lebron"
+        
+        // Example URL: https://example.com/teams/members/lebron
+        // The handler would receive: 
+        // $team = ""
+        // $member = "lebron"
+
+    } );
+
+```
+
 
 #### Merging Where
 
