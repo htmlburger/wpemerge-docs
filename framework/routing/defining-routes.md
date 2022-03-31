@@ -129,9 +129,9 @@ Route parameters allow you to capture segments of the URI within your route:
     } );
 ```
 
-Route parameters should be placed in `{}` braces. Route parameters are injected into route handlers / controllers based on their order - the names of the route callback / controller arguments do not matter.
+Route parameters should be placed in `{}` braces. They are injected into route handlers / controllers based on their order - the names of the route callback / controller arguments do not matter.
 
-You can make a parameter optional by adding `?` after the paramter name:
+You can make a parameter optional by adding `?` after the parameter name:
 
 ```php
 \App::route()->get()->url( '/teams/{team?}' )
