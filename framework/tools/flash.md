@@ -21,13 +21,19 @@ $container[ WPEMERGE_SESSION_KEY ] = function() {
 
 A typical use case is to flash error messages inside a controller method in response to a user submitting a form:
 ```php
-// inside your controller method
-if ( $email_is_invalid ) {
-    // flash an error message
-    \App::flash()->add( 'errors', 'Please enter a valid email address.' );
-    // redirect the user back to the form
-    return \App::redirect()->back();
-}
+\App::route()->post()->url( '/contact-form' )
+    ->middleware( 'flash' )
+    ->handle( function ($request, $view) {
+        $is_valid_email = filter_var($request->body('email'), FILTER_VALIDATE_EMAIL);
+        if (!$is_valid_email) {
+            \App::flash()->add( 'errors', 'Please enter a valid email address.' );
+        }
+        
+        /* ... */ 
+        
+        // redirect the user back to the form
+        return \App::redirect()->back();
+    } );
 
 // inside your form view
 $errors = \App::flash()->get( 'errors' );
