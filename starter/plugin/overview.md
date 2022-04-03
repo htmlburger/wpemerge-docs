@@ -1,6 +1,6 @@
 # <a href="http://wpemerge.com"><img src="https://docs.wpemerge.com/_images/wpemerge-plugin-logo-bar.png" height="61" alt="WP Emerge Starter Plugin Logo" aria-label='WPEmerge.com' /></a>
 
-[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-plugin.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-plugin) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge-plugin/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge-plugin/builds) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
+[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-plugin.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-plugin) [![Build](https://img.shields.io/github/workflow/status/htmlburger/wpemerge-plugin/Tests?style=flat-square)](https://github.com/htmlburger/wpemerge-plugin/actions/workflows/test.yml) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
 
 
 A modern WordPress starter plugin which uses the [WP Emerge](https://github.com/htmlburger/wpemerge) framework.
@@ -30,7 +30,7 @@ Brought to you by [Atanas Angelov](https://atanas.dev/) and the lovely folks at 
 
 ## Comparison Table
 
-|                                | WP Emerge Theme  | WPB           | WPT   |
+|                                | WP Emerge Plugin  | WPB           | WPT   |
 |--------------------------------|------------------|----------------|----------|
 | View Engine                    | PHP, Blade, Twig, any | PHP            | PHP      |
 | Routing                        | ✔                | ✖              | ✖        |
@@ -75,14 +75,14 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 - Automatic, fool-proof cache busting for all assets, including ones referenced in styles.
 - WPCS, JavaScript and SASS linting and fixing using a single yarn command.
 - Single-command optional CSS package installation:
-    - Normalize.css
-    - Boostrap 4
-    - Bulma
-    - Foundation
-    - Tachyons
-    - Tailwind CSS
-    - Spectre.css
-    - FontAwesome
+  - Normalize.css
+  - Boostrap 4
+  - Bulma
+  - Foundation
+  - Tachyons
+  - Tailwind CSS
+  - Spectre.css
+  - FontAwesome
 - WP Unit Test scaffolding for your own classes.
 
 ## Non-goals

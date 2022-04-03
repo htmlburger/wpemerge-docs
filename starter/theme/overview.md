@@ -1,6 +1,6 @@
 # <a href="http://wpemerge.com"><img src="https://docs.wpemerge.com/_images/wpemerge-theme-logo-bar.png" height="61" alt="WP Emerge Starter Theme Logo" aria-label='WPEmerge.com' /></a>
 
-[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-theme.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-theme) [![Travis branch](https://img.shields.io/travis/htmlburger/wpemerge-theme/master.svg?style=flat-square)](https://travis-ci.org/htmlburger/wpemerge-theme/builds) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
+[![Packagist](https://img.shields.io/packagist/vpre/htmlburger/wpemerge-theme.svg?style=flat-square&colorB=0366d6)](https://packagist.org/packages/htmlburger/wpemerge-theme) [![Build](https://img.shields.io/github/workflow/status/htmlburger/wpemerge-theme/Tests?style=flat-square)](https://github.com/htmlburger/wpemerge-theme/actions/workflows/test.yml) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square&colorB=7d07d1)](https://gitter.im/wpemerge/Lobby)
 
 
 A modern WordPress starter theme which uses the [WP Emerge](https://github.com/htmlburger/wpemerge) framework.
@@ -77,14 +77,14 @@ _Email any factual inaccuracies to [hi@atanas.dev](mailto:hi@atanas.dev) so they
 - Automatic, fool-proof cache busting for all assets, including ones referenced in styles.
 - WPCS, JavaScript and SASS linting and fixing using a single yarn command.
 - Single-command optional CSS package installation:
-    - Normalize.css
-    - Boostrap 4
-    - Bulma
-    - Foundation
-    - Tachyons
-    - Tailwind CSS
-    - Spectre.css
-    - FontAwesome
+  - Normalize.css
+  - Boostrap 4
+  - Bulma
+  - Foundation
+  - Tachyons
+  - Tailwind CSS
+  - Spectre.css
+  - FontAwesome
 - WP Unit Test scaffolding for your own classes.
 
 ## Non-goals
