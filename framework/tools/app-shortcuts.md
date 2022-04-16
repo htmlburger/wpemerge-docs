@@ -52,6 +52,16 @@ Start a [route definition](/framework/routing/defining-routes.md).
 \App::route()->get()->where( 'is_home' )->handle( 'HomeController@index' );
 ```
 
+## \App::router()
+
+`\App::router()`
+
+Get the Router service instance.
+
+```php
+\App::route()->get()->where( 'is_home' )->handle( 'HomeController@index' );
+```
+
 ## \App::run()
 
 `\App::run( RequestInterface $request, $middleware, $handler, $arguments = [] )`

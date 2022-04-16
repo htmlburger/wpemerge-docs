@@ -5,6 +5,7 @@ When booting WP Emerge you can specify a number of configuration options:
 \App::make()->bootstrap( [
     /**
      * Default class namespace prefix.
+     * Automatically prepended to all controllers and view composers for convenience.
      */
     'namespace' => 'App\\',
 

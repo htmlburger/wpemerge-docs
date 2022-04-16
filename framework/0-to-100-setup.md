@@ -180,7 +180,7 @@ WP Emerge allows us to use anonymous functions to define as our route handlers, 
     /**
      * Web Routes.
      *
-     * WPEmerge will automatically prepend "\App\Controllers\Web\" to our controller class
+     * WPEmerge will, by default, automatically prepend "\App\Controllers\Web\" to our controller class
      * so we don't have to specify it every time.
      */
 
