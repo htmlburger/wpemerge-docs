@@ -24,7 +24,7 @@ Let's say you've chosen `AwesomePlugin` as your namespace during the `yarn rebra
 ## Quickstart on Bedrock
 
 1. Browse to your [Bedrock](https://roots.io/bedrock/) root directory.
-2. Run `composer require htmlburger/wpemerge-plugin:0.16.2`.
+2. Run `composer require htmlburger/wpemerge-plugin:0.17.1`.
 3. Run `composer require --dev htmlburger/wpemerge-cli`.
 4. Run `(cd web/app/plugins/wpemerge-plugin && composer run install-dev-env && php wpemerge install)`.
 5. Activate your new plugin.
